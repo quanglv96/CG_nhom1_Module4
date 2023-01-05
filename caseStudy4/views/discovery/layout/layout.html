@@ -4,115 +4,116 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/lib/bootstrap-5.2.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="stylesheet" href="/assets/css/body.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/css/content.css">
-    <link rel="stylesheet" href="/assets/css/footer.css">
-    <link rel="stylesheet" href="/assets/lib/fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="stylesheet" href="../assets/lib/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/body.css">
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/lib/fontawesome-free-6.2.1-web/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header-cointainer container-fluid">
-        <div class="header container d-flex align-items-center justify-content-between">
-            <div class="navigation d-flex align-items-center">
-                <div class="logo d-flex align-items-center me-3">
-                    <img class="logo-img" src="/assets/img/logo/Picture1.png" alt="">
-                </div>
-                <div class="nav-bar d-flex align-items-center">
-                    <div><a class="px-3 nav-item text-decoration-none text-white" href="">Home</a></div>
-                    <div><a class="px-3 nav-item text-decoration-none text-white" href="">Library</a></div>
-                </div>
+<!-- Header -->
+<div class="header-cointainer container-fluid">
+    <div class="header container d-flex align-items-center justify-content-between">
+        <div class="navigation d-flex align-items-center">
+            <div class="logo d-flex align-items-center me-3">
+                <img class="logo-img" src="../assets/img/logo/Picture1.png" alt="">
             </div>
-            <div class="user-controller d-flex align-items-center">
-                <div class="search-bar mx-2">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search">
-                        <span class="input-group-text">
+            <div class="nav-bar d-flex align-items-center">
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="">Home</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="">Library</a></div>
+            </div>
+        </div>
+        <div class="user-controller d-flex align-items-center">
+            <div class="search-bar mx-2">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search">
+                    <span class="input-group-text">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg>   
-                        </span> 
-                    </div>
+                            </svg>
+                        </span>
                 </div>
-                <div class="user-register d-flex align-items-center">
-                    <button class="btn btn-outline-dark text-white login-btn mx-2">Sign in</button>
-                    <button class="btn btn-outline-danger mx-2">Create account</button>
+            </div>
+            <div class="user-register d-flex align-items-center">
+                <button class="btn btn-outline-dark text-white login-btn mx-2">Sign in</button>
+                <button class="btn btn-outline-danger mx-2">Create account</button>
+            </div>
+            <div class="user-info d-flex align-items-center">
+                <div class="user-avatar p-2">
+                    <div class="avatar"></div>
                 </div>
-                <div class="user-info d-flex align-items-center">
-                    <div class="user-avatar p-2">
-                        <div class="avatar"></div>
-                    </div>
-                    <p class="m-0 text-white username">Username</p>
-                    <span class="text-white mx-2 user-toggle px-1">
+                <p class="m-0 text-white username">Username</p>
+                <span class="text-white mx-2 user-toggle px-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down btn-icon" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         </svg>
                     </span>
-                    <ul class="user-menu border p-0">
-                        <li><a class="dropdown-item py-2 px-3" href="#">User info</a></li>
-                        <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
-                        <hr class="m-1">
-                        <li>
-                            <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out 
-                                <span class="d-flex align-items-center ms-2">
+                <ul class="user-menu border p-0">
+                    <li><a class="dropdown-item py-2 px-3" href="#">User info</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
+                    <hr class="m-1">
+                    <li>
+                        <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out
+                            <span class="d-flex align-items-center ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                                     </svg>
                                 </span>
-                            </a>  
-                        </li>
-                    </ul>
-                </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="body-container container-fluid">
-        <div class="body container pb-5">
-            <div class="row">
+</div>
+<div class="body-container container-fluid">
+    <div class="body container pb-5">
+        <div class="row">
 
-                <!-- Sidebar -->
+            <!-- Sidebar -->
 
-                <div class="sidebar col col-lg-3">
-                    <div class="search-box">
-                        <ul class="search-menu p-0 m-0 mt-4">
-                            <li class="search-item">
-                                <a class="filter-option d-block px-3 py-2" href="#!">
+            <div class="sidebar col col-lg-3">
+                <div class="search-box">
+                    <ul class="search-menu p-0 m-0 mt-4">
+                        <li class="search-item">
+                            <a class="filter-option d-block px-3 py-2" href="#!">
                                     <span class="filter-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                         </svg>
                                     </span>
-                                    Everything
-                                </a>
-                            </li>
-                            <li class="search-item">
-                                <a class="filter-option d-block px-3 py-2" href="#!">
+                                Everything
+                            </a>
+                        </li>
+                        <li class="search-item">
+                            <a class="filter-option d-block px-3 py-2" href="#!">
                                     <span class="filter-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-soundwave" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M8.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5zm-2 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm-6 1.5A.5.5 0 0 1 5 6v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm8 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm-10 1A.5.5 0 0 1 3 7v2a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5zm12 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5z"/>
                                         </svg>
                                     </span>
-                                    Tracks
-                                </a>
-                            </li>
-                            <li class="search-item">
-                                <a class="filter-option d-block px-3 py-2" href="#!">
+                                Tracks
+                            </a>
+                        </li>
+                        <li class="search-item">
+                            <a class="filter-option d-block px-3 py-2" href="#!">
                                     <span class="filter-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
                                         </svg>
                                     </span>
-                                    People
-                                </a>
-                            </li>        
-                            <li class="search-item">
-                                <a class="filter-option d-block px-3 py-2" href="#!">
+                                People
+                            </a>
+                        </li>
+                        <li class="search-item">
+                            <a class="filter-option d-block px-3 py-2" href="#!">
                                     <span class="filter-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-list" viewBox="0 0 16 16">
                                             <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/>
@@ -121,124 +122,162 @@
                                             <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
                                         </svg>
                                     </span>
-                                    Playlists
-                                </a>
-                            </li>        
-                        </ul>
-                    </div>
-                    <hr class="mx-3">
-                    <div class="filter-box px-3">
-                        <p class="tag-header">Filter by tag</p>
-                        <div class="tag-list">
-                            <div class="tag px-2 small-text">#Pop</div>
-                            <div class="tag px-2 small-text">#Rock</div>
-                            <div class="tag px-2 small-text">#Ballad</div>
-                        </div>
+                                Playlists
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="mx-3">
+                <div class="filter-box px-3">
+                    <p class="tag-header">Filter by tag</p>
+                    <div class="tag-list">
+                        <div class="tag px-2 small-text">#Pop</div>
+                        <div class="tag px-2 small-text">#Rock</div>
+                        <div class="tag px-2 small-text">#Ballad</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Content -->
+            <!-- Content -->
 
-                <div class="body-content col col-lg-9">
+            <div class="body-content col col-lg-9">
 
-                    <!-- Song -->
+                <!-- Song -->
 
-                    <div class="content-item-song row mt-4">
-                        <div class="item-image col-3">
-                            <div class="image"></div>
-                        </div>
-                        <div class="item-desc col-9">
-                            <div class="desc-box d-flex align-items-center">
-                                <div class="play-btn d-flex justify-content-center align-items-center me-2">
-                                    <i class="fa-solid fa-play"></i>
-                                </div>
-                                <div class="first-desc-row d-inline-block">
-                                    <p class="user-upload m-0 grey-text small-text">User upload</p>
-                                    <p class="item-name m-0">Song name</p>
-                                </div>
-                                <div class="second-desc-row d-inline-block right-text">
-                                    <p class="date-upload m-0 grey-text small-text">Time upload</p>
-                                    <p class="tag-ref m-0 px-2 small-text">Dance & EDM</p>   
-                                </div>
+                <div class="content-item-song row mt-4">
+                    <div class="item-image col-3">
+                        <div class="image"></div>
+                    </div>
+                    <div class="item-desc col-9">
+                        <div class="desc-box d-flex align-items-center">
+                            <div class="play-btn-1 play-btn d-flex justify-content-center align-items-center me-2">
+                                <i class="fa-solid fa-play"></i>
                             </div>
-                            <div class="play-box">
-                                <div class="gif">
-                                    <img class="gif-img" src="/assets/img/giphy.gif" alt="">
-                                </div>
-                                <div class="audio-box">
-                                    <audio controls class="audio-control d-block" src="/assets/audio/Futari_no_kimochi_Inuyasha_OST.mp3">
-                                        <source src="/assets/audio/Futari_no_kimochi_Inuyasha_OST.mp3">
-                                    </audio>
-                                </div>
-                                <div class="action-box d-flex justify-content-between mt-2">
-                                    <div class="like-box">
+                            <div class="first-desc-row d-inline-block">
+                                <p class="user-upload m-0 grey-text small-text">User upload</p>
+                                <p class="item-name m-0">Song name</p>
+                            </div>
+                            <div class="second-desc-row d-inline-block right-text">
+                                <p class="date-upload m-0 grey-text small-text">Time upload</p>
+                                <p class="tag-ref m-0 px-2 small-text">Dance & EDM</p>
+                            </div>
+                        </div>
+                        <div class="play-box">
+                            <div id="wave-1">
+
+                            </div>
+                            <div class="action-box d-flex justify-content-between mt-2">
+                                <div class="like-box">
                                         <span class="like-count small-text grey-text border py-1 px-2 me-1 border-radius-1">
                                             <i class="fa-solid fa-heart"></i> 110K
                                         </span>
-                                        <span class="like-count small-text grey-text border py-1 px-2 border-radius-1">
+                                    <span class="like-count small-text grey-text border py-1 px-2 border-radius-1">
                                             <i class="fa-solid fa-square-plus"></i> Add to playlist
                                         </span>
-                                    </div>
-                                    <div class="like-box">
+                                </div>
+                                <div class="like-box">
                                         <span class="play-count small-text grey-text border py-1 px-2 me-1 border-radius-1">
                                             <i class="fa-solid fa-play"></i> 110K
                                         </span>
-                                        <span class="comment-count small-text grey-text border py-1 px-2 border-radius-1">
+                                    <span class="comment-count small-text grey-text border py-1 px-2 border-radius-1">
                                             <i class="fa-solid fa-comment"></i> 100K
                                         </span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- User -->
-
-                    <div class="content-item-user row mt-4">
-                        <div class="item-image col-3">
-                            <div class="image circle">
-
+                <div class="content-item-song row mt-4">
+                    <div class="item-image col-3">
+                        <div class="image"></div>
+                    </div>
+                    <div class="item-desc col-9">
+                        <div class="desc-box d-flex align-items-center">
+                            <div class="play-btn-2 play-btn d-flex justify-content-center align-items-center me-2">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <div class="first-desc-row d-inline-block">
+                                <p class="user-upload m-0 grey-text small-text">User upload</p>
+                                <p class="item-name m-0">Song name</p>
+                            </div>
+                            <div class="second-desc-row d-inline-block right-text">
+                                <p class="date-upload m-0 grey-text small-text">Time upload</p>
+                                <p class="tag-ref m-0 px-2 small-text">Dance & EDM</p>
                             </div>
                         </div>
-                        <div class="item-desc col-9 user-desc">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <p class="m-0 big-text">Username</p>
-                                    <p class="m-0 grey-text">Name</p>
-                                    <p class="m-0 grey-text">Address</p>
+                        <div class="play-box">
+                            <div id="wave-2">
+
+                            </div>
+                            <div class="action-box d-flex justify-content-between mt-2">
+                                <div class="like-box">
+                                        <span class="like-count small-text grey-text border py-1 px-2 me-1 border-radius-1">
+                                            <i class="fa-solid fa-heart"></i> 110K
+                                        </span>
+                                    <span class="like-count small-text grey-text border py-1 px-2 border-radius-1">
+                                            <i class="fa-solid fa-square-plus"></i> Add to playlist
+                                        </span>
+                                </div>
+                                <div class="like-box">
+                                        <span class="play-count small-text grey-text border py-1 px-2 me-1 border-radius-1">
+                                            <i class="fa-solid fa-play"></i> 110K
+                                        </span>
+                                    <span class="comment-count small-text grey-text border py-1 px-2 border-radius-1">
+                                            <i class="fa-solid fa-comment"></i> 100K
+                                        </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Playlist -->
+                <!-- User -->
 
-                    <div class="content-item-song row mt-4">
-                        <div class="item-image col-3">
-                            <div class="image"></div>
+                <div class="content-item-user row mt-4">
+                    <div class="item-image col-3">
+                        <div class="image circle">
+
                         </div>
-                        <div class="item-desc col-9 d-flex align-items-center">
-                            <div class="d-block">
-                                <div>
-                                    <p class="m-0 big-text">Playlist</p>
-                                    <p class="m-0 grey-text">Name</p>
-                                    <p class="m-0 grey-text">Address</p>
-                                </div>
-                                <div class="action-box d-flex justify-content-between mt-2">
-                                    <div class="like-box">
+                    </div>
+                    <div class="item-desc col-9 user-desc">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="m-0 big-text">Username</p>
+                                <p class="m-0 grey-text">Name</p>
+                                <p class="m-0 grey-text">Address</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playlist -->
+
+                <div class="content-item-song row mt-4">
+                    <div class="item-image col-3">
+                        <div class="image"></div>
+                    </div>
+                    <div class="item-desc col-9 d-flex align-items-center">
+                        <div class="d-block">
+                            <div>
+                                <p class="m-0 big-text">Playlist</p>
+                                <p class="m-0 grey-text">Name</p>
+                                <p class="m-0 grey-text">Address</p>
+                            </div>
+                            <div class="action-box d-flex justify-content-between mt-2">
+                                <div class="like-box">
                                         <span class="like-count small-text grey-text border py-1 px-2 me-1 border-radius-1 pointer">
                                             <i class="fa-solid fa-heart"></i> 110K
                                         </span>
-                                        
-                                    </div>
-                                    <div class="like-box">
+
+                                </div>
+                                <div class="like-box">
                                         <span class="play-count small-text grey-text border py-1 px-2 me-1 border-radius-1 pointer">
                                             <i class="fa-solid fa-play"></i> 110K
                                         </span>
-                                        <span class="comment-count small-text grey-text border py-1 px-2 border-radius-1 pointer">
+                                    <span class="comment-count small-text grey-text border py-1 px-2 border-radius-1 pointer">
                                             <i class="fa-solid fa-comment"></i> 100K
                                         </span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -247,35 +286,37 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid footer-container m-0">
-        <div class="container footer">
-            <div class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top pt-4 pb-5 px-3">
-                <div class="col-md-4 d-flex align-items-center">
-                    <a href="#!" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1 big-text">
-                        NTDQ
-                    </a>
-                    <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
-                </div>
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3">
-                        <a class="text-muted" href="#">
-                            <i class="big-icon fa-brands fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="ms-3">
-                        <a class="text-muted" href="#">
-                            <i class="big-icon fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="ms-3">
-                        <a class="text-muted" href="#">
-                            <i class="big-icon fa-brands fa-facebook"></i>
-                        </a>
-                    </li>
-                </ul>
+</div>
+<div class="container-fluid footer-container m-0">
+    <div class="container footer">
+        <div class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top pt-4 pb-5 px-3">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="#!" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1 big-text">
+                    NTDQ
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
             </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3">
+                    <a class="text-muted" href="#">
+                        <i class="big-icon fa-brands fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="text-muted" href="#">
+                        <i class="big-icon fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="text-muted" href="#">
+                        <i class="big-icon fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-    <script src="/assets/js/header.js"></script>
+</div>
+<script src="../assets/js/header.js"></script>
+<script src="../assets/js/body.js"></script>
 </body>
 </html>
