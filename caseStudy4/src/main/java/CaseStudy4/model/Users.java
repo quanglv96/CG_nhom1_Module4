@@ -1,6 +1,7 @@
 package CaseStudy4.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

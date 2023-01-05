@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ISongRepository extends JpaRepository<Songs, Long> {
     Iterable<Songs> findAllByOrderByViewsDesc();
+    Iterable<Songs> findAllByNameContaining(String name);
+
 }

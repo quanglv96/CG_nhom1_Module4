@@ -21,6 +21,11 @@ public class SongService implements ISongService {
     }
 
     @Override
+    public Iterable<Songs> findAllByNameContaining(String name) {
+        return isongRepository.findAllByNameContaining(name);
+    }
+
+    @Override
     public Optional<Songs> findById(Long id) {
         return isongRepository.findById(id);
     }
