@@ -2,6 +2,7 @@ package CaseStudy4.controller;
 
 import CaseStudy4.model.Songs;
 import CaseStudy4.service.Songs.ISongService;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -27,6 +31,10 @@ public class SongController {
     @GetMapping
     public ResponseEntity<Iterable<Songs>> findAll(){
         return new ResponseEntity<>(iSongService.findAll(),HttpStatus.OK) ;
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<Optional<Songs>> findByID(@PathVariable("id") Long id){
+        return new ResponseEntity<>(iSongService.findById(id),HttpStatus.OK) ;
     }
 
     @GetMapping("/listTrending")
@@ -48,10 +56,11 @@ public class SongController {
         MultipartFile file_mp3 = songs.getImage();
         String fileName_MP3 = file_mp3.getOriginalFilename();
         try {
-            file_mp3.transferTo(new File(upload_IMG + fileName_MP3));
+            file_mp3.transferTo(new File(upload_MP3 + fileName_MP3));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+        iSongService.save(new Songs(songs.getName(),fileName_MP3,fileName_IMG,songs.getUsers(),songs.getSingerList(),songs.getComposer(),LocalDate.now(),songs.getTagsList(),20,25));
 
         return new ResponseEntity<>(iSongService.findAll(), HttpStatus.OK);
     }
@@ -60,6 +69,24 @@ public class SongController {
     public ResponseEntity<Iterable<Songs>> delete(@PathVariable("id") Long id) {
         iSongService.remove(id);
         return new ResponseEntity<>(iSongService.findAll(), HttpStatus.OK);
+    }
+    @PostMapping("/setLike/{id}")
+    public void setLikes(@PathVariable("id") Long id){
+        Songs songs=iSongService.findById(id).get();
+        songs.setLikes(songs.getLikes()+1);
+        iSongService.save(songs);
+    }
+    @PostMapping("/disLike/{id}")
+    public void disLike(@PathVariable("id") Long id){
+        Songs songs=iSongService.findById(id).get();
+        songs.setLikes(songs.getLikes()-1);
+        iSongService.save(songs);
+    }
+    @PostMapping("/setView/{id}")
+    public void setView(@PathVariable("id") Long id){
+        Songs songs=iSongService.findById(id).get();
+        songs.setViews(songs.getViews()+1);
+        iSongService.save(songs);
     }
 
     @PutMapping()

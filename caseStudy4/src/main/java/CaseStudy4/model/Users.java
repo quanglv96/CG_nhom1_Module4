@@ -39,5 +39,26 @@ public class Users {
     @Transient
     private MultipartFile image;
 
+    public Users( String username, String password, String name, String address, String email, String phone, String avatar, Role role) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.avatar = avatar;
+        this.role = role;
+    }
 
+    public Users(Long id, String username, String password, String name, String address, String email, String phone, String avatar, Role role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.avatar = avatar;
+        this.role = role;
+    }
 }

@@ -27,4 +27,11 @@ public class Comments {
     @JoinColumn(name="id_playlist")
     private Playlist playlist;
 
+    public Comments(LocalDate date, String content, Users users, Songs songs, Playlist playlist) {
+        this.date = date;
+        this.content = content;
+        this.users = users;
+        this.songs = songs;
+        this.playlist = playlist;
+    }
 }

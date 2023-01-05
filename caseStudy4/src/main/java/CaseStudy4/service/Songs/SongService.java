@@ -13,6 +13,7 @@ public class SongService implements ISongService {
 
     @Override
     public Iterable<Songs> findAll() {
+        isongRepository.setViewsAllSong();
         return isongRepository.findAll();
     }
     @Override

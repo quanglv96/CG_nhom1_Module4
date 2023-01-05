@@ -1,5 +1,6 @@
 package CaseStudy4.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +37,16 @@ public class Playlist {
     private List<Tags> tagsList;
     private long views;
     private long likes;
+
+    public Playlist(String name, String description, LocalDate date_create, LocalDate last_update, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
+        this.name = name;
+        this.description = description;
+        this.date_create = date_create;
+        this.last_update = last_update;
+        this.users = users;
+        this.songsList = songsList;
+        this.tagsList = tagsList;
+        this.views = views;
+        this.likes = likes;
+    }
 }

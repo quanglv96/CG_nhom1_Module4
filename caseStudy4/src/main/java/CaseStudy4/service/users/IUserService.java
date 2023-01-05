@@ -5,4 +5,5 @@ import CaseStudy4.service.IGeneralService;
 
 
 public interface IUserService extends IGeneralService<Users> {
+    void updatePasswordByID(String newPass, Long id);
 }
