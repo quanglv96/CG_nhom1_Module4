@@ -1,7 +1,7 @@
 package CaseStudy4.controller;
 
 import CaseStudy4.model.Users;
-import CaseStudy4.repository.IRoleRepository;
+
 import CaseStudy4.service.Role.IRoleService;
 import CaseStudy4.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
