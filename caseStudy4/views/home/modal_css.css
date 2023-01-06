@@ -9,13 +9,43 @@
     z-index: 2;
 }
 
-.modal-dialogue {
+
+.modal-body-sign, td{
+    padding: 30px 30px 15px 30px;
+    text-align: left;
+    size: 30px;
+}
+.modal-body-sign,table{
+    margin: 0 auto;
+}
+.modal-body-sign{
+    background-color: white;
+    width: 900px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    background-color: white;
-    padding: 16px 24px 32px 24px;
     z-index: 3;
+    box-shadow: 5px 10px #888888;
+}
+
+
+.modal-body-log, td{
+    padding: 10px 30px 10px 30px;
+    text-align: left;
+    size: 30px;
+}
+.modal-body-log,table{
+    margin: 0 auto;
+}
+.modal-body-log{
+    background-color: white;
+    width: 400px;
+    height: 550px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: 5px 10px #888888;
 }

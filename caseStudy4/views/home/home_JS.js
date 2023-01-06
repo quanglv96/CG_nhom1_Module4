@@ -23,19 +23,12 @@ function displaySongTrend() {
 
 function getListSong(songsList) {
     return `<div class="item">
-        <a href="${songsList.id}"><img width="150px" height="150px" src="../../src/main/resources/upload_img/${songsList.avatar}"></a><br>
+        <a href="${songsList.id}"><img width="150px" height="150px" src="/views/upload_img/${songsList.avatar}"></a><br>
         <p class="nameSongList name-song" ><a href="${songsList.id}">${songsList.name}</a><br></p>
         <p class="nameSongList name--user" ><a href="${songsList.id}">${songsList.users.name}</a></p>
     </div>`
 }
 
-function signIn() {
-    ///
-}
-
-function createAccount() {
-
-}
 
 function submitSearch(choice) {
     let text = document.getElementById("input_search").value;
@@ -84,7 +77,7 @@ function getSongSearch(listSong) {
                     </div>
                     <div class="second-desc-row d-inline-block right-text">
                         <p class="date-upload m-0 grey-text small-text">${songs.date}</p>
-                        <p class="tag-ref m-0 px-2 small-text">${songs.tagsList}</p>
+                        <p class="tag-ref m-0 px-2 small-text">#${songs.tagsList[0].name}</p>
                     </div>
                 </div>
                 <div class="play-box">
@@ -124,7 +117,7 @@ function getPlaylistSearch(playList) {
         let list = playList[i];
         let content = `<div class="content-item-song row mt-4">
                     <div class="item-image col-3">
-                        <div class="image"></div>
+                        <div class="image"><img class="playlist-avt" src="/views/upload_img/${list.avatar}"></div>
                     </div>
                     <div class="item-desc col-9 d-flex align-items-center">
                         <div class="d-block">
@@ -162,7 +155,7 @@ function getUserSearch(listUser) {
         let user = listUser[i];
         let content = `<div class="content-item-user row mt-4">
                     <div class="item-image col-3">
-                    <div><img src="../../src/main/resources/upload_img/${user.avatar}"></div>
+                    <div class="image"><img class="user-avt" src="/views/upload_img/${user.avatar}"></div>
                     </div>
                     <div class="item-desc col-9 user-desc">
                         <div class="d-flex align-items-center">
