@@ -1,0 +1,58 @@
+.body-container {
+    background-color: #f2f2f2;
+    margin-top: 58px;
+}
+
+.body {
+    background-color: white;
+}
+
+.song-area .play-button {
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.song-area .song-description {
+    width: 100%;
+}
+
+.song-area .song-img {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+}
+
+.song-area #audio-wave {
+    margin-top: 135px;
+}
+
+.user-img {
+    height: 50px;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+}
+
+.input-container {
+    background-color: #f2f2f2;
+}
+
+.input-comment, .input-container {
+    width: 100%;
+}
+
+.img-avt {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.comment-area .c-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+

@@ -1,6 +1,12 @@
-.body-content .image {
+/* .body-content .image {
     background-image: linear-gradient(blue, violet);
     height: 200px;
+} */
+
+.body-content .song-avt {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio:  1 / 1;
 }
 
 .body-content .desc-box {
@@ -36,20 +42,14 @@
     width: 100%;
 }
 
-.body-content .audio-box {
-    background-color: #f1f2f3;
-}
-
-.body-content .gif-img {
-    width: 100%;
-    height: 60px;
-}
-
 .user-desc {
     display: flex;
     align-items: center;
 }
 
+.first-desc-row {
+    flex: 1;
+}
 
 
 
