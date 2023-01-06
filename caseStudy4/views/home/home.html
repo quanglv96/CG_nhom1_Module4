@@ -15,6 +15,8 @@
           integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="home_CSS.css">
+    <link rel="stylesheet" href="modal_css.css">
+
 </head>
 <body>
 <div class="menu">
@@ -24,7 +26,7 @@
         </div>
         <div class="login col">
             <div class="col btn_menu">
-                <button class="btn btn-outline-light" onclick="signIn()" type="button">Sign in</button>
+                <button  id="onFormSignIn" class="btn btn-outline-light" onclick="signIn()" type="button">Sign in</button>
                 <button class="btn btn-outline-danger" onclick="createAccount()" type="button">Create account</button>
             </div>
         </div>
@@ -55,6 +57,39 @@
     <h2>Thanks for listening. Now join in.</h2>
     <h4>Save tracks, follow artists and build playlists. All for free.</h4>
 </div>
+
+<!--MODAL-->
+<div id="formSignIn" class="modal">
+    <div class="modal-dialogue">
+        <form class="modal-form">
+            <h2 class="text-center modal-header"></h2>
+            <div class="modal-body">
+                <div class="form-group my-2 px-3">
+                    <label for="name">Name:</label><br>
+                    <input name="name" id="name" type="text" class="form-control name-input no-border-radius">
+                </div>
+                <div class="form-group my-2 px-3">
+                    <label for="price">Price:</label><br>
+                    <input name="price" id="price" type="text" class="form-control price-input no-border-radius">
+                </div>
+                <div class="form-group my-2 px-3">
+                    <p style="margin: 0;">Category:</p>
+                    <select name="category" class="form-select no-border-radius" id="category">
+                    </select>
+                </div>
+                <div class="form-group my-2 px-3">
+                    <label for="image">Image:</label><br>
+                    <input name="imgFile" id="image" type="file" class="form-control image-input no-border-radius">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-danger modal-close py-1 px-2 no-border-radius" type="button">Close</button>
+                <div class="btn btn-outline-dark modal-submit py-1 px-2 no-border-radius"></div>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 <script src="home_JS.js"></script>
+<script src="modal_js.js"></script>
 </html>
