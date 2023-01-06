@@ -29,14 +29,32 @@ function getListSong(songsList) {
     </div>`
 }
 
+let textSearchHome;
+
+function redirectResultSearch() {
+    textSearchHome = document.getElementById("input_search").value;
+    window.location = "/caseStudy4/views/discovery/layout/layout.html";
+
+}
 
 function submitSearch(choice) {
-    let text = document.getElementById("input_search").value;
+    let textSearchLayout = document.getElementById("input_search").value;
+    if (textSearchLayout == null) {
+        document.getElementById("input_search").value = textSearchHome;
+        textSearchLayout = textSearchHome;
+    }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/search?search=" + text,
+        url: "http://localhost:8080/search?search=" + textSearchLayout,
         success: function (data) {
             $(".body-content").empty();
+            let content;
+            if(data.length===0){
+                 content="<h4>Search results for keyword:"+textSearchLayout+" : Not Found</h4>";
+            }else {
+                content="<h4>Search results for keyword:'"+textSearchLayout+"'<br>" + data[0].length +" songs, "+ data[1].length+" playlists, "+data[2].length+ " username/singe</h4>";
+            }
+            $(".body-content").append(content);
             switch (choice) {
                 case 1:
                     getSongSearch(data[0])
@@ -53,11 +71,11 @@ function submitSearch(choice) {
                     getUserSearch(data[2]);
                     break;
             }
-            document.getElementById("resultSearch").innerHTML = content;
         }
     });
     event.preventDefault();
 }
+
 
 function getSongSearch(listSong) {
     for (let i = 0; i < listSong.length; i++) {
@@ -77,7 +95,7 @@ function getSongSearch(listSong) {
                     </div>
                     <div class="second-desc-row d-inline-block right-text">
                         <p class="date-upload m-0 grey-text small-text">${songs.date}</p>
-                        <p class="tag-ref m-0 px-2 small-text">#${songs.tagsList[0].name}</p>
+                 
                     </div>
                 </div>
                 <div class="play-box">

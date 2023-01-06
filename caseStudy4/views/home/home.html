@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="home_CSS.css">
     <link rel="stylesheet" href="modal_css.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-
 </head>
 <body>
 <div class="menu">
@@ -42,9 +41,13 @@
 <div class="container">
     <div class="text-input search">
         <form id="formSearch">
-            <input id="input_search" size="90px" type="text" placeholder="Enter artists, brand, tracks, podcast">
-            <button type="button" onclick="submitSearch(0)" class="btn"><i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            <div class="input-group-prepend input-group mb-3" style="padding: 0 170px 0 170px">
+                <input class="form-control" id="input_search" size="100px" type="text" placeholder="Enter artists, brand, tracks, podcast">
+                <div class="input-group-append">
+                    <button style="width: 50px" type="button" onclick="redirectResultSearch()" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+            </div>
         </form>
     </div>
 </div>
