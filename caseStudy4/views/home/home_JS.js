@@ -43,22 +43,21 @@ function submitSearch(choice) {
         type: "GET",
         url: "http://localhost:8080/search?search=" + text,
         success: function (data) {
-            window.location = "layout.html";
-            let content="";
+            $(".body-content").empty();
             switch (choice) {
                 case 1:
-                    content += getSongSearch(data[0])
+                    getSongSearch(data[0])
                     break;
                 case 2:
-                    content += getPlaylistSearch(data[1])
+                    getPlaylistSearch(data[1])
                     break;
                 case 3:
-                    content += getUserSearch(data[2])
+                    getUserSearch(data[2])
                     break;
                 default:
-                    content += getSongSearch(data[0])
-                    content += getPlaylistSearch(data[1])
-                    content += getUserSearch(data[2])
+                    getSongSearch(data[0])
+                    getPlaylistSearch(data[1]);
+                    getUserSearch(data[2]);
                     break;
             }
             document.getElementById("resultSearch").innerHTML = content;
@@ -68,17 +67,15 @@ function submitSearch(choice) {
 }
 
 function getSongSearch(listSong) {
-    let content="";
     for (let i = 0; i < listSong.length; i++) {
         let songs = listSong[i];
-        content += `<div class="content-item-song row mt-4">
+        let content = `<div class="content-item-song row mt-4">
             <div class="item-image col-3">
-<!--                <div class="image"></div>-->
-                <div><img src="../../src/main/resources/upload_img/${songs.avatar}"></div>
+            <div><img src="http://localhost:63342/caseStudy4/views/upload_img/${songs.avatar}"></div>
             </div>
             <div class="item-desc col-9">
                 <div class="desc-box d-flex align-items-center">
-                    <div class="play-btn-1 play-btn d-flex justify-content-center align-items-center me-2">
+                    <div class="play-btn-${songs.id} play-btn d-flex justify-content-center align-items-center me-2">
                         <i class="fa-solid fa-play"></i>
                     </div>
                     <div class="first-desc-row d-inline-block">
@@ -91,8 +88,8 @@ function getSongSearch(listSong) {
                     </div>
                 </div>
                 <div class="play-box">
-                    <div id="wave-1">
-
+                    <div id="wave-${songs.id}">
+                    
                     </div>
                     <div class="action-box d-flex justify-content-between mt-2">
                         <div class="like-box">
@@ -116,16 +113,16 @@ function getSongSearch(listSong) {
                     </div>
                 </div>
             </div>
-        </div>`
+        </div>`;
+        $(".body-content").append(content);
+        createWave(songs.id, `../resources/upload_mp3/${songs.audio}`);
     }
-    return content;
 }
 
 function getPlaylistSearch(playList) {
-    let content="";
     for (let i = 0; i < playList.length; i++) {
         let list = playList[i];
-        content += `<div class="content-item-song row mt-4">
+        let content = `<div class="content-item-song row mt-4">
                     <div class="item-image col-3">
                         <div class="image"></div>
                     </div>
@@ -154,16 +151,16 @@ function getPlaylistSearch(playList) {
                             </div>
                         </div>
                     </div>
-                </div>`
+                </div>`;
+        $(".body-content").append(content);
     }
-    return content;
 }
 
 function getUserSearch(listUser) {
-    let content="";
+
     for (let i = 0; i < listUser.length; i++) {
         let user = listUser[i];
-        content += `<div class="content-item-user row mt-4">
+        let content = `<div class="content-item-user row mt-4">
                     <div class="item-image col-3">
                     <div><img src="../../src/main/resources/upload_img/${user.avatar}"></div>
                     </div>
@@ -177,6 +174,6 @@ function getUserSearch(listUser) {
                         </div>
                     </div>
                 </div>`
+        $(".body-content").append(content);
     }
-    return content;
 }

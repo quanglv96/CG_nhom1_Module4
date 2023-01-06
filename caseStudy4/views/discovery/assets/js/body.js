@@ -1,15 +1,17 @@
+let wavesurfer = []
 function createWave(id, url) {
-    let wavesurfer = WaveSurfer.create({
-        container: '#wave-' + id,
+    let containerId = '#wave-' + id
+    wavesurfer[containerId] = WaveSurfer.create({
+        container: containerId,
         waveColor: 'grey',
         progressColor: '#e05e2b',
         barWidth: 2,
-        height: 115,
+        height: 107,
         hideScrollbar: true,
         cursorColor: "white"
     });
-    wavesurfer.load(url);
-    
+    wavesurfer[containerId].load(url);
+
     let playBtn = $(".play-btn-" + id)[0];
     let isPlay = true;
     playBtn.onclick = function() {
@@ -20,7 +22,7 @@ function createWave(id, url) {
             $(".play-btn-" + id).html('<i class="fa-solid fa-play"></i>')
             isPlay = true;
         }
-        wavesurfer.playPause();
+        wavesurfer[containerId].playPause();
     }
 }
 
