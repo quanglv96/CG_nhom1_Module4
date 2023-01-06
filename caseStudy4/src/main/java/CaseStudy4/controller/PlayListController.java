@@ -48,7 +48,7 @@ public class PlayListController {
         return new ResponseEntity<>(iPlaylistService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<Iterable<Playlist>> update(@ModelAttribute Playlist playlist) {
         Playlist oldPlaylist=iPlaylistService.findById(playlist.getId()).get();
         LocalDate last_update = LocalDate.now();

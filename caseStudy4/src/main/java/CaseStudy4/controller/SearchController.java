@@ -25,23 +25,23 @@ public class SearchController {
 
     @GetMapping
     public ResponseEntity<Object> search(@RequestParam("search") String text){
-        List<ResponseEntity<Iterable>> resultSearch=new ArrayList<>();
+        List resultSearch=new ArrayList<>();
         resultSearch.add(findSongByName(text));
         resultSearch.add(findPlaylistByName(text));
         resultSearch.add(findUserByName(text));
         return new ResponseEntity<>(resultSearch,HttpStatus.OK);
     }
     @GetMapping("/songs")
-    public ResponseEntity<Iterable> findSongByName(@RequestParam("search") String text){
-        return new ResponseEntity<>(iSongService.findAllByNameContaining(text),HttpStatus.OK);
+    public Iterable findSongByName(@RequestParam("search") String text){
+        return iSongService.findAllByNameContaining(text);
     }
     @GetMapping("/playlist")
-    public ResponseEntity<Iterable> findPlaylistByName(@RequestParam("search") String text){
-        return new ResponseEntity<>(iPlaylistService.findAllByNameContaining(text),HttpStatus.OK);
+    public Iterable findPlaylistByName(@RequestParam("search") String text){
+        return iPlaylistService.findAllByNameContaining(text);
     }
     @GetMapping("/user")
-    public ResponseEntity<Iterable> findUserByName(@RequestParam("search") String text){
-        return new ResponseEntity<>(iUserService.findAllByNameContaining(text),HttpStatus.OK);
+    public Iterable findUserByName(@RequestParam("search") String text){
+        return iUserService.findAllByNameContaining(text);
     }
 
 }

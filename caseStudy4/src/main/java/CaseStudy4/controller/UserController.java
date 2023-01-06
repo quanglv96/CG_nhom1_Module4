@@ -44,7 +44,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping
+    @GetMapping("{id}")
     public ResponseEntity<Optional<Users>> findById(@ModelAttribute Long id) {
         return new ResponseEntity<>(iUserService.findById(id), HttpStatus.OK);
     }
