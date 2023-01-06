@@ -71,7 +71,7 @@ function getSongSearch(listSong) {
         let songs = listSong[i];
         let content = `<div class="content-item-song row mt-4">
             <div class="item-image col-3">
-            <div><img src="http://localhost:63342/caseStudy4/views/upload_img/${songs.avatar}"></div>
+            <div class="image"><img class="song-avt" src="/views/upload_img/${songs.avatar}"></div>
             </div>
             <div class="item-desc col-9">
                 <div class="desc-box d-flex align-items-center">
@@ -115,7 +115,7 @@ function getSongSearch(listSong) {
             </div>
         </div>`;
         $(".body-content").append(content);
-        createWave(songs.id, `../resources/upload_mp3/${songs.audio}`);
+        createWave(songs.id, `/views/upload_mp3/${songs.audio}`);
     }
 }
 

@@ -3,6 +3,7 @@ package CaseStudy4.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ public class Playlist {
     @NotNull
     private String name;
     private String description; // mô tả nội dung bài hát
+    private String avatar;
     private LocalDate date_create; // ngày tạo
     private LocalDate last_update; // ngày cập nhập lần cuối
     @NotNull
@@ -49,4 +51,34 @@ public class Playlist {
         this.views = views;
         this.likes = likes;
     }
+
+    public Playlist(Long id, String name, String description, String avatar, LocalDate date_create, LocalDate last_update, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.date_create = date_create;
+        this.last_update = last_update;
+        this.users = users;
+        this.songsList = songsList;
+        this.tagsList = tagsList;
+        this.views = views;
+        this.likes = likes;
+    }
+
+    public Playlist(String name, String description, String avatar, LocalDate date_create, LocalDate last_update, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.date_create = date_create;
+        this.last_update = last_update;
+        this.users = users;
+        this.songsList = songsList;
+        this.tagsList = tagsList;
+        this.views = views;
+        this.likes = likes;
+    }
+
+    @Transient
+    private MultipartFile image;
 }
