@@ -1,0 +1,73 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(190, 189, 189, 0.5);
+    display: none;
+    z-index: 0;
+}
+
+.modal-header {
+    padding: 14px 14px 14px 0 !important;
+}
+
+.modal-dialogue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    background-color: white;
+    padding: 16px 24px;
+    z-index: 2;
+}
+
+.modal-image {
+    position: relative;
+}
+
+.modal-img {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+}
+
+.upload-btn {
+    border: none;
+    border-radius: 4px;
+    position: absolute;
+    left: 55px;
+    top: 200px;
+    opacity: 80%;
+}
+
+.modal-input {
+    padding: 4px 8px;
+    width: 100%;
+    border: 0.5px solid rgb(202, 197, 197);
+    border-radius: 4px; 
+}
+
+.upload-mp3 {
+    padding: 4px 8px;
+    width: 100%;
+    border: 0.5px solid rgb(202, 197, 197);
+    border-radius: 4px; 
+}
+
+.mp3-name {
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
+.modal-close, .modal-submit {
+    border: none;
+    padding: 4px 8px !important;
+}
+
+.modal-footer {
+    padding: 10px 0 10px 10px !important;
+}
