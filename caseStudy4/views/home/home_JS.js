@@ -29,19 +29,18 @@ function getListSong(songsList) {
     </div>`
 }
 
-let textSearchHome;
 
 function redirectResultSearch() {
-    textSearchHome = document.getElementById("input_search").value;
+    let textSearchHome = document.getElementById("input_search").value;
+    localStorage.setItem("textSearchHome", textSearchHome);
     window.location = "/caseStudy4/views/discovery/layout/layout.html";
-
 }
 
 function submitSearch(choice) {
     let textSearchLayout = document.getElementById("input_search").value;
-    if (textSearchLayout == null) {
-        document.getElementById("input_search").value = textSearchHome;
-        textSearchLayout = textSearchHome;
+    if (textSearchLayout === null) {
+        textSearchLayout = localStorage.getItem("textSearchHome")
+        document.getElementById("input_search").value = textSearchLayout;
     }
     $.ajax({
         type: "GET",
