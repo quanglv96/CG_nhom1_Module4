@@ -1,7 +1,11 @@
 package CaseStudy4.service.comment;
 
 import CaseStudy4.model.Comments;
+import CaseStudy4.model.Playlist;
+import CaseStudy4.model.Songs;
 import CaseStudy4.repository.ICommentRepository;
+import CaseStudy4.service.Songs.ISongService;
+import CaseStudy4.service.playlist.IPlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +15,10 @@ import java.util.Optional;
 public class CommentService implements ICommentService {
     @Autowired
     private ICommentRepository iCommentRepository;
+    @Autowired
+    private ISongService iSongService;
+    @Autowired
+    private IPlaylistService iPlaylistService;
 
     @Override
     public Iterable<Comments> findAll() {
@@ -33,12 +41,13 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public Iterable<Comments> findAllBySongsOrderByDateDesc(Long id) {
-        return iCommentRepository.findAllBySongsOrderByDateDesc(id);
+    public Iterable<Comments> findAllBySongsOrderByDateDesc(Songs songs) {
+        return iCommentRepository.findAllBySongsOrderByDateDesc(songs);
     }
 
     @Override
-    public Iterable<Comments> findAllByPlaylistOrderByDateDesc(Long id) {
-        return iCommentRepository.findAllByPlaylistOrderByDateDesc(id);
+    public Iterable<Comments> findAllByPlaylistOrderByDateDesc(Playlist playlist) {
+        return iCommentRepository.findAllByPlaylistOrderByDateDesc(playlist);
     }
+
 }

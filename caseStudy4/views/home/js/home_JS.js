@@ -21,9 +21,9 @@ function displaySongTrend() {
 
 function getListSong(songsList) {
     return `<div class="item">
-        <img width="150px" height="150px" src="/views/upload_img/${songsList.avatar}"></a><br>
-        <p class="nameSongList name-song" ><a href="${songsList.id}">${songsList.name}</a><br></p>
-        <p class="nameSongList name--user" ><a href="${songsList.id}">${songsList.users.name}</a></p>
+        <img onclick="redirectSong(${songsList.id})" width="150px" height="150px" src="/views/upload_img/${songsList.avatar}"></a><br>
+        <p class="nameSongList name-song" ><a onclick="redirectSong(${songsList.id})" >${songsList.name}</a><br></p>
+        <p class="nameSongList name--user" ><a>${songsList.users.name}</a></p>
     </div>`
 }
 
@@ -31,7 +31,7 @@ function getListSong(songsList) {
 function redirectResultSearch() {
     let textSearchHome = document.getElementById("input_search").value;
     localStorage.setItem("textSearchHome", textSearchHome);
-    window.location = "/caseStudy4/views/discovery/layout/layout.html";
+    window.location = "../../discovery/layout/layout.html";
 }
 
 function submitSearch(choice) {

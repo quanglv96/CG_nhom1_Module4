@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Users>> findById(@ModelAttribute Long id) {
+    public ResponseEntity<Optional<Users>> findById( @PathVariable Long id) {
         return new ResponseEntity<>(iUserService.findById(id), HttpStatus.OK);
     }
 

@@ -34,11 +34,13 @@ public class SongController {
     }
     @GetMapping("{id}")
     public ResponseEntity<Optional<Songs>> findByID(@PathVariable("id") Long id){
+        setView(id);
         return new ResponseEntity<>(iSongService.findById(id),HttpStatus.OK) ;
     }
 
     @GetMapping("/listTrending")
     public ResponseEntity<Iterable<Songs>> listTrending(){
+
         return new ResponseEntity<>(iSongService.listTrending(),HttpStatus.OK) ;
     }
     @GetMapping("/newSongs")

@@ -2,7 +2,9 @@ package CaseStudy4.controller;
 
 import CaseStudy4.model.Comments;
 import CaseStudy4.repository.ICommentRepository;
+import CaseStudy4.service.Songs.ISongService;
 import CaseStudy4.service.comment.ICommentService;
+import CaseStudy4.service.playlist.IPlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +16,17 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     @Autowired
     private ICommentService iCommentService;
-    @GetMapping("/song")
-    public ResponseEntity<Iterable<Comments>> listCommentInSong(@RequestBody Long id){
-        return new ResponseEntity<>(iCommentService.findAllBySongsOrderByDateDesc(id), HttpStatus.OK);
+    @Autowired
+    private ISongService iSongService;
+    @Autowired
+    private IPlaylistService iPlaylistService;
+    @GetMapping("/song/{id}")
+    public ResponseEntity<Iterable<Comments>> listCommentInSong(@PathVariable Long id){
+        return new ResponseEntity<>(iCommentService.findAllBySongsOrderByDateDesc(iSongService.findById(id).get()), HttpStatus.OK);
     }
     @GetMapping("/playlist")
     public ResponseEntity<Iterable<Comments>> listCommentInPlaylist(@RequestBody Long id){
-        return new ResponseEntity<>(iCommentService.findAllByPlaylistOrderByDateDesc(id), HttpStatus.OK);
+        return new ResponseEntity<>(iCommentService.findAllByPlaylistOrderByDateDesc(iPlaylistService.findById(id).get()), HttpStatus.OK);
     }
     @DeleteMapping
     public ResponseEntity<?> deleteComment(@RequestBody Long id){
