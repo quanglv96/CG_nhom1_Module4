@@ -68,7 +68,11 @@
 <!--MODAL SignIn-->
 <div id="modalCreateAccount" class="modal">
     <form id= "formCreateAccount" class="modal-form">
+
         <div class="modal-body-sign">
+            <div style="position: relative">
+                <button  type="button" style="position: absolute; right: 0" id="closeModalSignIn" class="btn-close" aria-label="Close"></button>
+            </div>
             <table>
                 <tr>
                     <th colspan="2" style="text-align: center; font-size: 40px">CREATE ACCOUNT</th>
@@ -124,10 +128,7 @@
                     </td>
                 </tr>
                 <tr >
-                    <td style="text-align: center">
-                        <button type="button" id="closeModalSignIn" class="btn btn-outline-danger">Close</button>
-                    </td>
-                    <td style="text-align: center">
+                    <td colspan="2" style="text-align: center">
                         <button type="submit" class="btn btn-outline-success">Create</button>
                     </td>
                 </tr>
@@ -140,6 +141,9 @@
 <div id="modalLogin" class="modal">
     <form id= "formLogin" class="modal-form">
         <div class="modal-body-log">
+            <div style="position: relative">
+                <button  type="button" style="position: absolute; right: 0" id="closeModalLogin" class="btn-close" aria-label="Close"></button>
+            </div>
             <table>
                 <tr>
                     <th style="text-align: center; font-size: 40px">Login</th>
@@ -176,11 +180,6 @@
                             <button class="btn" style="background-color: #e31818;width: 5px">|</button>
                             <button class="btn " style="background-color: #e31818;width: 230px;color: white;font-weight: bold">Login with Google</button>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">
-                        <button type="button" id="closeModalLogin" class="btn-close" aria-label="Close"></button>
                     </td>
                 </tr>
             </table>
