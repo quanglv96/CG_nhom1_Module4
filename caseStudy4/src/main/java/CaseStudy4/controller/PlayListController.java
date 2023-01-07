@@ -1,7 +1,6 @@
 package CaseStudy4.controller;
 
 import CaseStudy4.model.Playlist;
-import CaseStudy4.model.Songs;
 import CaseStudy4.service.playlist.IPlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +39,10 @@ public class PlayListController {
     public ResponseEntity<Iterable<Playlist>> listTrending() {
         return new ResponseEntity<>(iPlaylistService.listTrending(), HttpStatus.OK);
     }
+    @GetMapping("/newPlaylist")
+    public ResponseEntity<Iterable<Playlist>> newPlaylist() {
+        return new ResponseEntity<>(iPlaylistService.listNewPlaylist(), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<Iterable<Playlist>> save(@ModelAttribute Playlist playlist) {
@@ -74,7 +77,7 @@ public class PlayListController {
             }
             Playlist oldPlaylist = iPlaylistService.findById(playlist.getId()).get();
             LocalDate last_update = LocalDate.now();
-            iPlaylistService.save(new Playlist(playlist.getId(), playlist.getName(), playlist.getDescription(), fileName_IMG, oldPlaylist.getDate_create(), last_update, playlist.getUsers(), playlist.getSongsList(), playlist.getTagsList(), oldPlaylist.getViews(), oldPlaylist.getLikes()));
+            iPlaylistService.save(new Playlist(playlist.getId(), playlist.getName(), playlist.getDescription(), fileName_IMG, oldPlaylist.getDateCreate(), last_update, playlist.getUsers(), playlist.getSongsList(), playlist.getTagsList(), oldPlaylist.getViews(), oldPlaylist.getLikes()));
             return new ResponseEntity<>(iPlaylistService.findAll(), HttpStatus.OK);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

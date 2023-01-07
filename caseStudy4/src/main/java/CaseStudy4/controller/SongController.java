@@ -41,6 +41,10 @@ public class SongController {
     public ResponseEntity<Iterable<Songs>> listTrending(){
         return new ResponseEntity<>(iSongService.listTrending(),HttpStatus.OK) ;
     }
+    @GetMapping("/newSongs")
+    public ResponseEntity<Iterable<Songs>> newSongs(){
+        return new ResponseEntity<>(iSongService.listNewSongs(),HttpStatus.OK) ;
+    }
     @PostMapping
     public ResponseEntity<Iterable<Songs>> save( @ModelAttribute Songs songs) {
 

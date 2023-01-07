@@ -38,6 +38,11 @@ public class PlaylistService implements IPlaylistService{
     }
 
     @Override
+    public Iterable<Playlist> listNewPlaylist() {
+        return iPlaylistRepository.findAllByOrderByDateCreateDesc();
+    }
+
+    @Override
     public Iterable<Playlist> findAllByNameContaining(String name) {
         return iPlaylistRepository.findAllByNameContaining(name);
     }

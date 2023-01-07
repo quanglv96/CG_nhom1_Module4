@@ -27,6 +27,11 @@ public class SongService implements ISongService {
     }
 
     @Override
+    public Iterable<Songs> listNewSongs() {
+        return isongRepository.findAllByOrderByDateDesc();
+    }
+
+    @Override
     public Optional<Songs> findById(Long id) {
         return isongRepository.findById(id);
     }

@@ -8,5 +8,6 @@ import CaseStudy4.service.IGeneralService;
 
 public interface IPlaylistService extends IGeneralService<Playlist> {
     Iterable<Playlist> listTrending();
+    Iterable<Playlist> listNewPlaylist();
     Iterable<Playlist> findAllByNameContaining(String name);
 }

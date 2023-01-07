@@ -33,3 +33,24 @@
 .next-arrow {
     right: 8px;
 }
+.nameSongList {
+    margin: 0px;
+    text-align: left;
+    width: 190px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.name-song a{
+    text-align: left;
+    color: black;
+}
+.name--user a{
+    color: #8d8c8c;
+    margin: 0px;
+}
+
+.item-title a, .item-description a{
+    text-decoration: none;
+}

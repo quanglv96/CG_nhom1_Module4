@@ -22,8 +22,8 @@ public class Playlist {
     private String name;
     private String description; // mô tả nội dung bài hát
     private String avatar;
-    private LocalDate date_create; // ngày tạo
-    private LocalDate last_update; // ngày cập nhập lần cuối
+    private LocalDate dateCreate; // ngày tạo
+    private LocalDate lastUpdate; // ngày cập nhập lần cuối
     @NotNull
     @OneToOne(targetEntity = Users.class)
     @JoinColumn(name = "id_users")
@@ -40,11 +40,11 @@ public class Playlist {
     private long views;
     private long likes;
 
-    public Playlist(String name, String description, LocalDate date_create, LocalDate last_update, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
+    public Playlist(String name, String description, LocalDate dateCreate, LocalDate lastUpdate, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
         this.name = name;
         this.description = description;
-        this.date_create = date_create;
-        this.last_update = last_update;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
         this.users = users;
         this.songsList = songsList;
         this.tagsList = tagsList;
@@ -52,13 +52,13 @@ public class Playlist {
         this.likes = likes;
     }
 
-    public Playlist(Long id, String name, String description, String avatar, LocalDate date_create, LocalDate last_update, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
+    public Playlist(Long id, String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.avatar = avatar;
-        this.date_create = date_create;
-        this.last_update = last_update;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
         this.users = users;
         this.songsList = songsList;
         this.tagsList = tagsList;
@@ -66,12 +66,12 @@ public class Playlist {
         this.likes = likes;
     }
 
-    public Playlist(String name, String description, String avatar, LocalDate date_create, LocalDate last_update, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
+    public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
         this.name = name;
         this.description = description;
         this.avatar = avatar;
-        this.date_create = date_create;
-        this.last_update = last_update;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
         this.users = users;
         this.songsList = songsList;
         this.tagsList = tagsList;
