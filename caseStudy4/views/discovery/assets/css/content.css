@@ -3,7 +3,12 @@
     height: 200px;
 } */
 
-.body-content .song-avt {
+.body-content .song-avt ,.user-avt ,.playlist-avt {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio:  1 / 1;
+}
+.body-content .user-avt {
     width: 100%;
     object-fit: contain;
     aspect-ratio:  1 / 1;

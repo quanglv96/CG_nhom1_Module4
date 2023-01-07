@@ -32,7 +32,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Iterable<Users>> save(@ModelAttribute Users users) {
+    public ResponseEntity save(@ModelAttribute Users users) {
+        if(iUserService.findUsersByUsername(users.getUsername())){
+            return new ResponseEntity(users, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         MultipartFile file_img = users.getImage();
         String fileName_IMG = file_img.getOriginalFilename();
         try {

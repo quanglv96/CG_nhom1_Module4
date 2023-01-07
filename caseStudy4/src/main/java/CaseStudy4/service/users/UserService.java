@@ -40,4 +40,9 @@ public class UserService implements IUserService {
     public Iterable<Users> findAllByNameContaining(String name) {
         return iUserRepository.findAllByNameContaining(name);
     }
+
+    @Override
+    public Boolean findUsersByUsername(String name) {
+        return iUserRepository.findUsersByUsername(name);
+    }
 }

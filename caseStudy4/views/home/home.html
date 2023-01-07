@@ -16,18 +16,18 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="home_CSS.css">
     <link rel="stylesheet" href="modal_css.css">
-
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 <body>
 <div class="menu">
     <div class="row">
         <div class="col logo">
-            <img src="../../src/main/resources/upload_img/LOGONHOM1.png" width="100px">
+            <img src="/views/upload_img/LOGONHOM1.png" width="100px">
         </div>
         <div class="login col">
             <div class="col btn_menu">
-                <button  id="onFormSignIn" class="btn btn-outline-light" onclick="signIn()" type="button">Sign in</button>
-                <button class="btn btn-outline-danger" onclick="createAccount()" type="button">Create account</button>
+                <button id="onFormLogIn" class="btn btn-outline-light" type="button">Sign in</button>
+                <button id="onFormSignIn" class="btn btn-outline-danger" type="button">Create account</button>
             </div>
         </div>
     </div>
@@ -41,8 +41,13 @@
 <div class="container">
     <div class="text-input search">
         <form id="formSearch">
-            <input id="input_search" size="90px" type="text" placeholder="Enter artists, brand, tracks, podcast">
-            <button type="button" onclick="submitSearch(0)" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="input-group-prepend input-group mb-3" style="padding: 0 170px 0 170px">
+                <input class="form-control" id="input_search" size="100px" type="text" placeholder="Enter artists, brand, tracks, podcast">
+                <div class="input-group-append">
+                    <button style="width: 50px" type="button" onclick="redirectResultSearch()" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+            </div>
         </form>
     </div>
 </div>
@@ -50,46 +55,141 @@
     <h4 style="padding-bottom: 20px">Hear what’s trending for free in the SoundCloud community</h4>
     <div id="listTrending"></div>
 </div>
-<div style="padding-top: 50px" >
-    <button style="width: 300px; height: 60px; font-size: 22px; background-color: #e02424" id="trending_playlist" type="button" class="btn btn-danger">Explore trending playlists</button>
+<div style="padding-top: 50px">
+    <button style="width: 300px; height: 60px; font-size: 22px; background-color: #e02424" id="trending_playlist"
+            type="button" class="btn btn-danger">Explore trending playlists
+    </button>
 </div>
 <div style="padding-top: 50px; padding-bottom: 100px">
     <h2>Thanks for listening. Now join in.</h2>
     <h4>Save tracks, follow artists and build playlists. All for free.</h4>
 </div>
 
-<!--MODAL-->
-<div id="formSignIn" class="modal">
-    <div class="modal-dialogue">
-        <form class="modal-form">
-            <h2 class="text-center modal-header"></h2>
-            <div class="modal-body">
-                <div class="form-group my-2 px-3">
-                    <label for="name">Name:</label><br>
-                    <input name="name" id="name" type="text" class="form-control name-input no-border-radius">
-                </div>
-                <div class="form-group my-2 px-3">
-                    <label for="price">Price:</label><br>
-                    <input name="price" id="price" type="text" class="form-control price-input no-border-radius">
-                </div>
-                <div class="form-group my-2 px-3">
-                    <p style="margin: 0;">Category:</p>
-                    <select name="category" class="form-select no-border-radius" id="category">
-                    </select>
-                </div>
-                <div class="form-group my-2 px-3">
-                    <label for="image">Image:</label><br>
-                    <input name="imgFile" id="image" type="file" class="form-control image-input no-border-radius">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline-danger modal-close py-1 px-2 no-border-radius" type="button">Close</button>
-                <div class="btn btn-outline-dark modal-submit py-1 px-2 no-border-radius"></div>
-            </div>
-        </form>
-    </div>
+<!--MODAL SignIn-->
+<div id="modalCreateAccount" class="modal">
+    <form id= "formCreateAccount" class="modal-form">
+        <div class="modal-body-sign">
+            <table>
+                <tr>
+                    <th colspan="2" style="text-align: center; font-size: 40px">CREATE ACCOUNT</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="username">Username:</label><br>
+                        <input size="30px" name="username" id="newUsername" type="text" placeholder="Enter username"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                    <td>
+                        <label for="name">Full Name:</label><br>
+                        <input size="30px" name="name" id="name" type="text" placeholder="Enter full name"
+                               class="form-control name-input no-border-radius">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:</label><br>
+                        <input size="30px" name="password" id="newPassword" type="password" placeholder="Enter password"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                    <td>
+                        <label for="address">Address:</label><br>
+                        <input size="30px" name="address" id="address" type="text" placeholder="Enter address"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="re-Password">Re-Password:</label><br>
+                        <input size="30px" name="re-Password" id="re-Password" type="password"
+                               placeholder="Enter re-Password"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                    <td>
+                        <label for="phone">Phone number:</label><br>
+                        <input size="30px" name="phone" id="phone" type="text" placeholder="Enter phone number"
+                               class="form-control price-input no-border-radius">
+                    </Td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="image">Image:</label><br>
+                        <input size="30px" name="image" id="image" type="file"
+                               class="form-control image-input no-border-radius">
+                    </td>
+                    <td>
+                        <label for="email">Email:</label><br>
+                        <input size="30px" name="email" id="email" type="text" placeholder="Enter email"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                </tr>
+                <tr >
+                    <td style="text-align: center">
+                        <button type="button" id="closeModalSignIn" class="btn btn-outline-danger">Close</button>
+                    </td>
+                    <td style="text-align: center">
+                        <button type="submit" class="btn btn-outline-success">Create</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+<!--MODAL LOGIN-->
+<div id="modalLogin" class="modal">
+    <form id= "formLogin" class="modal-form">
+        <div class="modal-body-log">
+            <table>
+                <tr>
+                    <th style="text-align: center; font-size: 40px">Login</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="username">Username:</label><br>
+                        <input size="30px" name="username" id="username" type="text" placeholder="Enter username"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:</label><br>
+                        <input size="30px" name="password" id="password" type="password" placeholder="Enter password"
+                               class="form-control price-input no-border-radius">
+                    </td>
+                </tr>
+                <tr >
+                    <td style="text-align: center">
+                        <button  style="margin: 20px;width: 200px" type="submit" class="btn btn-outline-success">Login</button>
+                        <br><a href="#">Forgot your password?</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">
+                        <div class="input-group-prepend input-group mb-3" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')">
+                            <button class="btn" style="background-color: #0a53be;width: 15px"><i class="fa-brands fa-facebook-f"></i></button>
+                            <button class="btn" style="background-color: #0a53be;width: 5px">|</button>
+                            <button class="btn " style="background-color: #0a53be;width: 230px;color: white;font-weight: bold" >Login with Facebook</button>
+                        </div>
+                        <div class="input-group-prepend input-group mb-3" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')" >
+                            <button class="btn" style="background-color: #e31818;width: 15px"><i class="fa-brands fa-google-plus-g"></i></button>
+                            <button class="btn" style="background-color: #e31818;width: 5px">|</button>
+                            <button class="btn " style="background-color: #e31818;width: 230px;color: white;font-weight: bold">Login with Google</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">
+                        <button type="button" id="closeModalLogin" class="btn-close" aria-label="Close"></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
 </div>
 </body>
 <script src="home_JS.js"></script>
 <script src="modal_js.js"></script>
+<script src="signin_js.js"></script>
 </html>
