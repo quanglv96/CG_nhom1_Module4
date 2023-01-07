@@ -43,9 +43,9 @@
     <div class="text-input search">
         <form id="formSearch">
             <div class="input-group-prepend input-group mb-3" style="padding: 0 170px 0 170px">
-                <input class="form-control" id="input_search" size="100px" type="text" placeholder="Enter artists, brand, tracks, podcast">
+                <input onchange="fieldTextSearch()" class="form-control" id="input_search" size="100px" type="text" placeholder="Enter artists, brand, tracks, podcast">
                 <div class="input-group-append">
-                    <button style="width: 50px" type="button" onclick="redirectResultSearch()" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button id="btnSearch" style="width: 50px" type="button" onclick="redirectResultSearch(this.value)" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
             </div>
@@ -193,4 +193,5 @@
 <script src="../../discovery/assets/js/redirect_Song.js"></script>
 <script src="../js/modal_js.js"></script>
 <script src="../js/signin_js.js"></script>
+<script src="../js/search_js.js"></script>
 </html>

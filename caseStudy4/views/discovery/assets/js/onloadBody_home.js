@@ -103,9 +103,9 @@ function renderNewPlaylist() {
 function getListSong(songsList) {
     return `<div class="item-contain col col-3 p-3">
                         <div class="item">
-                            <a href="${songsList.id}"><img class="slider-img" src="/views/upload_img/${songsList.avatar}" alt=""/></a>
-                            <p class="m-0 item-title nameSongList name-song"><a href="${songsList.id}">${songsList.name}</a></p>
-                            <p class="m-0 item-description font-12 grey-text nameSongList name--use"><a href="${songsList.users.id}">${songsList.users.name}</a></p>
+                            <a onclick="redirectSong(${songsList.id})" style="cursor: pointer;"><img class="slider-img" src="/views/upload_img/${songsList.avatar}" alt=""/></a>
+                            <p class="m-0 item-title nameSongList name-song" style="cursor: pointer"><a onclick="redirectSong(${songsList.id})">${songsList.name}</a></p>
+                            <p class="m-0 item-description font-12 grey-text nameSongList name--use" style="cursor: pointer"><a onclick="redirectResultSearchUser(${songsList.users.id})">${songsList.users.name}</a></p>
                         </div>
                     </div>`
 }

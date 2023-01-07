@@ -1,6 +1,7 @@
 package CaseStudy4.service.Songs;
 
 import CaseStudy4.model.Songs;
+import CaseStudy4.model.Users;
 import CaseStudy4.repository.ISongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,11 @@ public class SongService implements ISongService {
     @Override
     public Iterable<Songs> listNewSongs() {
         return isongRepository.findAllByOrderByDateDesc();
+    }
+
+    @Override
+    public Iterable<Songs> findAllByUsers(Users users) {
+        return isongRepository.findAllByUsers(users);
     }
 
     @Override

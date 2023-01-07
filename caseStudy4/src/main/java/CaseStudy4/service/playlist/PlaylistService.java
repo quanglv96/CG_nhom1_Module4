@@ -2,6 +2,7 @@ package CaseStudy4.service.playlist;
 
 import CaseStudy4.model.Playlist;
 
+import CaseStudy4.model.Users;
 import CaseStudy4.repository.IPlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,11 @@ public class PlaylistService implements IPlaylistService{
     @Override
     public Iterable<Playlist> listNewPlaylist() {
         return iPlaylistRepository.findAllByOrderByDateCreateDesc();
+    }
+
+    @Override
+    public Iterable<Playlist> findAllByUsers(Users users) {
+        return iPlaylistRepository.findAllByUsers(users);
     }
 
     @Override

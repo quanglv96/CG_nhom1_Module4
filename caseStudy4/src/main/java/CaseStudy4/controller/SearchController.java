@@ -46,5 +46,13 @@ public class SearchController {
     public Iterable<Users> findUserByName(@RequestParam("search") String text){
         return iUserService.findAllByNameContaining(text);
     }
+    @GetMapping("/songsByUser")
+    public ResponseEntity<Object> findSongByUser(@RequestParam("idUser") Long idUser){
+        List<Object> resultSearch=new ArrayList<>();
+        resultSearch.add(iUserService.findById(idUser).get());
+        resultSearch.add(iSongService.findAllByUsers(iUserService.findById(idUser).get()));
+        resultSearch.add(iPlaylistService.findAllByUsers(iUserService.findById(idUser).get()));
+        return new ResponseEntity<>(resultSearch,HttpStatus.OK);
+    }
 
 }
