@@ -38,7 +38,7 @@ function redirectResultSearch() {
 
 function submitSearch(choice) {
     let textSearchLayout = document.getElementById("input_search").value;
-    if (textSearchLayout === null) {
+    if (textSearchLayout === undefined) {
         textSearchLayout = localStorage.getItem("textSearchHome")
         document.getElementById("input_search").value = textSearchLayout;
     }
@@ -46,14 +46,12 @@ function submitSearch(choice) {
         type: "GET",
         url: "http://localhost:8080/search?search=" + textSearchLayout,
         success: function (data) {
-            $(".body-content").empty();
-            let content;
-            if(data.length===0){
-                 content="<h4>Search results for keyword:"+textSearchLayout+" : Not Found</h4>";
-            }else {
-                content="<h4>Search results for keyword:'"+textSearchLayout+"'<br>" + data[0].length +" songs, "+ data[1].length+" playlists, "+data[2].length+ " username/singe</h4>";
+            if(document.getElementById("input_search").value=== ""){
+                document.getElementById("input_search").value = localStorage.getItem("textSearchHome")
             }
-            $(".body-content").append(content);
+            $(".body-content").empty();
+            $(".body-content").append(`<h2>Search results for keyword:"`+textSearchLayout+`"<h2>`);
+            $(".body-content").append(`<h4 style="color: #848687">Found ` + data[0].length +" tracks, "+ data[1].length+" playlists, "+data[2].length+ " people</h4>");
             switch (choice) {
                 case 1:
                     getSongSearch(data[0])
