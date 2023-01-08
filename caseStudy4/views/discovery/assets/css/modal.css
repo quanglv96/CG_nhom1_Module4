@@ -113,3 +113,17 @@
     color: red;
     cursor: pointer;
 }
+
+.form-group.invalid .modal-input {
+    background-color: #ffe5e9;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+.modal-btn {
+    padding: 6px 12px !important;
+    width: 50%;
+    border-radius: 0 !important;
+}
