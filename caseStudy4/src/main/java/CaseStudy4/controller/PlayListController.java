@@ -1,6 +1,8 @@
 package CaseStudy4.controller;
 
 import CaseStudy4.model.Playlist;
+import CaseStudy4.model.Tags;
+import CaseStudy4.model.Users;
 import CaseStudy4.service.playlist.IPlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,10 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -45,7 +49,7 @@ public class PlayListController {
     }
 
     @PostMapping
-    public ResponseEntity<Iterable<Playlist>> save(@ModelAttribute Playlist playlist) {
+    public ResponseEntity<?> save(@ModelAttribute Playlist playlist, @ModelAttribute("userLogin")Users users) {
         MultipartFile file_img = playlist.getImage();
         String fileName_IMG = file_img.getOriginalFilename();
         try {
@@ -55,8 +59,9 @@ public class PlayListController {
         }
         LocalDate date_create = LocalDate.now();
         LocalDate last_update = LocalDate.now();
-        iPlaylistService.save(new Playlist(playlist.getName(), playlist.getDescription(), fileName_IMG, date_create, last_update, playlist.getUsers(), playlist.getSongsList(), playlist.getTagsList(), 20, 20));
-        return new ResponseEntity<>(iPlaylistService.findAll(), HttpStatus.OK);
+Playlist newUser=new Playlist(playlist.getName(), playlist.getDescription(), fileName_IMG, date_create, last_update, users, 200, 200);
+        iPlaylistService.save(newUser);
+        return  ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("{id}")

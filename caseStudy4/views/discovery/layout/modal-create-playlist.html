@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/footer.css">
-    <link rel="stylesheet" href="/assets/css/modal.css">
-    <link rel="stylesheet" href="/assets/lib/fontawesome-free-6.2.1-web/css/all.css">
-    <link rel="stylesheet" href="/assets/lib/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/modal-create-playlist.css">
+    <link rel="stylesheet" href="../assets/lib/fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="stylesheet" href="../assets/lib/bootstrap-5.2.3-dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
@@ -69,21 +69,21 @@
         </div>
     </div> -->
 
-    <button onclick="openModal()" class="modal-open btn btn-sm btn-primary">Open modal</button>
-    <div class="modal">
+<!--    <button onclick="openModal()" class="modal-open btn btn-sm btn-primary">Open modal</button>-->
+    <div class="modal" style="display: block !important;">
         <div class="modal-dialogue">
-            <form action="#!">
+            <form id="form-create-playlist">
                 <h2 class="text-center modal-header">Create new playlist</h2>
                 <div class="row">
                     <div class="col col-4">
                         <div class="modal-image mb-3">
-                            <img class="modal-img" src="/assets/img/white.png" alt="">
+                            <img class="modal-img" src="" alt="">
                             <button class="upload-box upload-btn p-1">
                                 <span onclick="openUpload()" class="py-2 px-2">
                                     <i class="me-1 fa-solid fa-camera"></i>
                                     <span>Upload image</span>
                                 </span>
-                                <input onchange="replaceImg(this)" class="input-file" type="file" hidden>
+                                <input onchange="replaceImg(this)" class="input-file" type="file" id="image" name="image" hidden>
                             </button>
                         </div>
                     </div>
@@ -98,13 +98,13 @@
                                 <textarea class="modal-input" rows="3" name="description" type="text" id="description" placeholder="Description"></textarea>
                             </div>
                             <div class="form-group mb-2">
-                                <label class="modal-label my-1" for="tag">Tag:</label><br>
-                                <input class="modal-input" name="tag" type="text" id="tag" placeholder="Tag">
+                                <label class="modal-label my-1" for="tags">Tag:</label><br>
+                                <input class="modal-input" name="tags" type="text" id="tags" placeholder="Tag">
                             </div>   
                         </div>
                         <div class="modal-footer">
                             <button onclick="closeModal()" class="modal-close btn btn-sm btn-danger py-1 px-2" type="button">Close</button>
-                            <button class="modal-submit btn btn-sm btn-dark py-1 px-2" type="button">Create</button>
+                            <button onclick="createPlaylist()" class="modal-submit btn btn-sm btn-dark py-1 px-2" type="button">Create</button>
                         </div>
                     </div>
                 </div>
@@ -113,6 +113,8 @@
 
 
     </div>
-    <script src="../assets/js/modal.js"></script>
+
 </body>
+<script src="../assets/js/modal-create-playlist.js"></script>
+<script src="../assets/js/create-playlist.js"></script>
 </html>
