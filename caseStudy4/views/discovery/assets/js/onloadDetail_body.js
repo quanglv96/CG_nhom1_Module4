@@ -1,4 +1,5 @@
 window.onload = function () {
+    onloadCheckLogin();
     let idSong = localStorage.getItem("idSong");
     getSongByID(idSong);
     getCommentByIdSong(idSong);
@@ -10,12 +11,14 @@ function getSongByID(idSong){
         type: "GET",
         url: "http://localhost:8080/songs/" + idSong,
         success: function (data) {
+            if(userLogin!==null){
+                document.getElementById("user-avatar").setAttribute("src", `../../upload_img/`+userLogin.avatar)
+            }
             document.getElementById("name-Songs").innerText = data.name;
             document.getElementById("name-user").innerText = data.users.name;
             document.getElementById("time-upload").innerText = data.date;
             document.getElementById("audio-wave").innerHTML = `<audio href="views/upload_mp3/${data.audio}></audio>`;
             document.getElementById("avatar-song").setAttribute("src", `../../upload_img/${data.avatar}`)
-            document.getElementById("user-avatar").setAttribute("src", `../../upload_img/`+userLogin.avatar)
             document.getElementById("like-song").innerText = data.likes;
             document.getElementById("view-song").innerText = data.views;
             //comment
@@ -23,7 +26,6 @@ function getSongByID(idSong){
             document.getElementById("avatar-User-Song").setAttribute("src", `../../upload_img/${data.users.avatar}`)
             document.getElementById("name-user2").innerText = data.users.name;
             document.getElementById("comment-2").innerText = data.views;
-
 
         }
     })

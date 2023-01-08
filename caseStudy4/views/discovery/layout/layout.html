@@ -43,11 +43,11 @@
                         </span>
                 </div>
             </div>
-            <div class="user-register d-flex align-items-center">
+            <div id="falseLogin" class="user-register d-flex align-items-center">
                 <button id="onFormLogIn" class="btn btn-outline-dark text-white login-btn mx-2">Sign in</button>
                 <button id="onFormSignIn" class="btn btn-outline-danger mx-2">Create account</button>
             </div>
-            <div class="user-info d-flex align-items-center">
+            <div id="trueLogin" class="user-info d-flex align-items-center">
                 <div class="user-avatar p-2">
                     <div class="avatar"></div>
                 </div>
@@ -62,7 +62,7 @@
                     <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
                     <hr class="m-1">
                     <li>
-                        <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out
+                        <a class="dropdown-item py-2 px-3 d-flex" onclick="logOut()">Log out
                             <span class="d-flex align-items-center ms-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
@@ -304,6 +304,7 @@
 <script src="../assets/js/header.js"></script>
 <script src="../assets/js/body.js"></script>
 <script src="../../discovery/assets/js/redirect_Song.js"></script>
+<script src="../../users/onload-check-login.js"></script>
 <script src="../../home/js/search_js.js"></script>
 <script src="../../home/js/home_JS.js"></script>
 <script src="../../home/js/modal_js.js"></script>
@@ -311,14 +312,13 @@
 <script src="../../home/js/login_js.js"></script>
 <script>
     window.onload=function (){
+        onloadCheckLogin();
         if(localStorage.getItem("searchIdUser")==null){
             submitSearch();
         }else {
             searchSongByUser(localStorage.getItem("searchIdUser"))
         }
     }
-    function redirectDetailsHome() {
-        window.location = "../../discovery/layout/layout.html";
-    }
+
 </script>
 </html>

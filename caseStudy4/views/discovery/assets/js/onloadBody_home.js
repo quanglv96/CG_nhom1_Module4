@@ -1,8 +1,10 @@
 function onloadBody_home() {
+    onloadCheckLogin();
     renderTop10Songs();
     renderNewSongs();
     renderTop10Playlist();
-    renderNewPlaylist();}
+    renderNewPlaylist();
+}
 
 function renderTop10Songs() {
     $.ajax({
