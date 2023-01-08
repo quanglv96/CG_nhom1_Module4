@@ -55,3 +55,15 @@
     border-radius: 50%;
 }
 
+.comment {
+    position: relative;
+}
+
+.send-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 25px;
+    cursor: pointer;
+}
+
