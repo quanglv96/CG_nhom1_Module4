@@ -10,7 +10,7 @@ function onloadCheckLogin(){
         }
     }else {
         if(trueLogin!==null){
-            trueLogin.setAttribute("style",'display:block !important')
+            trueLogin.setAttribute("style",'display:block')
         }
         if(falseLogin!==null){
             falseLogin.setAttribute("style",'display:none !important')

@@ -1,5 +1,6 @@
 package CaseStudy4.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class Songs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +64,9 @@ public class Songs {
         this.tagsList = tagsList;
         this.views = views;
         this.likes = likes;
+    }
+
+    public Songs() {
     }
 
     public Songs(String name, String audio, String avatar, Users users, List<Singer> singerList, String composer, LocalDate date, List<Tags> tagsList, long views, long likes) {

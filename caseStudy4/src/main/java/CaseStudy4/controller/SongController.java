@@ -1,6 +1,7 @@
 package CaseStudy4.controller;
 
 import CaseStudy4.model.Songs;
+import CaseStudy4.model.Users;
 import CaseStudy4.service.Songs.ISongService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class SongController {
         return new ResponseEntity<>(iSongService.listNewSongs(),HttpStatus.OK) ;
     }
     @PostMapping
-    public ResponseEntity<Iterable<Songs>> save( @ModelAttribute Songs songs) {
+    public ResponseEntity<Iterable<Songs>> save( @ModelAttribute Songs songs,@ModelAttribute("userLogin") Users users) {
 
         // up load ảnh
         MultipartFile file_img = songs.getImage();
@@ -59,14 +60,14 @@ public class SongController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         // upload mp3
-        MultipartFile file_mp3 = songs.getImage();
+        MultipartFile file_mp3 = songs.getMp3();
         String fileName_MP3 = file_mp3.getOriginalFilename();
         try {
             file_mp3.transferTo(new File(upload_MP3 + fileName_MP3));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        iSongService.save(new Songs(songs.getName(),fileName_MP3,fileName_IMG,songs.getUsers(),songs.getSingerList(),songs.getComposer(),LocalDate.now(),songs.getTagsList(),20,25));
+        iSongService.save(new Songs(songs.getName(),fileName_MP3,fileName_IMG,users,songs.getSingerList(),songs.getComposer(),LocalDate.now(),songs.getTagsList(),20,25));
 
         return new ResponseEntity<>(iSongService.findAll(), HttpStatus.OK);
     }
