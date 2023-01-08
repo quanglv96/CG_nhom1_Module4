@@ -40,7 +40,6 @@ public class SongController {
 
     @GetMapping("/listTrending")
     public ResponseEntity<Iterable<Songs>> listTrending(){
-
         return new ResponseEntity<>(iSongService.listTrending(),HttpStatus.OK) ;
     }
     @GetMapping("/newSongs")
