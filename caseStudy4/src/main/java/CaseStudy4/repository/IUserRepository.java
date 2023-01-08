@@ -12,7 +12,10 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
 
     Iterable<Users> findAllByNameContaining(String name);
     Optional<Users> findUserByName(String name);
+    Optional<Users> findUserByUsername(String username);
+
+int countUsersByUsername(String name);
 
 
-    Boolean findUsersByUsername(String name);
+
 }

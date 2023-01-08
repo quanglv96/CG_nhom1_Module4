@@ -32,7 +32,7 @@ function fieldTextSearch(){
     document.getElementById("btnSearch").setAttribute("value",textSearchHome)
 }
 function redirectResultSearch(textSearchHome) {
-    localStorage.setItem("textSearchHome", textSearchHome);
+    localStorage.setItem("textSearch", textSearchHome);
     window.location = "../../discovery/layout/layout.html";
 }
 function redirectResultSearchUser(idUser) {

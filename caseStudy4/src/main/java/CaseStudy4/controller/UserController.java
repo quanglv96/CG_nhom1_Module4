@@ -3,6 +3,7 @@ package CaseStudy4.controller;
 import CaseStudy4.model.Users;
 
 import CaseStudy4.service.Role.IRoleService;
+import CaseStudy4.service.images.IImageService;
 import CaseStudy4.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,8 @@ public class UserController {
     private IUserService iUserService;
     @Autowired
     private IRoleService iRoleService;
+    @Autowired
+    private IImageService imageService;
     @Value("${upload.img}")
     private String upload_IMG;
 
@@ -33,17 +36,21 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity save(@ModelAttribute Users users) {
-        if(iUserService.findUsersByUsername(users.getUsername())){
+        if(iUserService.checkUsername(users.getUsername())){
             return new ResponseEntity(users, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         MultipartFile file_img = users.getImage();
         String fileName_IMG = file_img.getOriginalFilename();
         try {
-            file_img.transferTo(new File(upload_IMG + fileName_IMG));
+            if(!imageService.checkImage(fileName_IMG)){
+                imageService.save(fileName_IMG);
+                file_img.transferTo(new File(upload_IMG + fileName_IMG));
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        iUserService.save(new Users(users.getUsername(), users.getPassword(), users.getName(), users.getAddress(), users.getEmail(), users.getPhone(), fileName_IMG, iRoleService.findById(2l).get()));
+        Users newUser=new Users(users.getUsername(), users.getPassword(), users.getName(), users.getAddress(), users.getEmail(), users.getPhone(), fileName_IMG, iRoleService.findById(2L).get());
+        iUserService.save(newUser);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -74,6 +81,17 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Users usersLogin){
+        if(!iUserService.checkUsername(usersLogin.getUsername())){
+            return new ResponseEntity<>("Tên đăng nhập không tồn tại", HttpStatus.NOT_FOUND);
+        }
+        Users users=iUserService.findUserByUsername(usersLogin.getUsername()).get();
+        if(!users.getPassword().equals(usersLogin.getPassword())){
+            return new ResponseEntity<>("mật khẩu sai ", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return  new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping("/changePassword/{id}")

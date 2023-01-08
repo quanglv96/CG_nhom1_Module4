@@ -12,6 +12,8 @@ public interface IUserService extends IGeneralService<Users> {
 
 
     Optional<Users> findUserByName(String name);
+    Optional<Users> findUserByUsername(String username);
 
-    Boolean findUsersByUsername(String name);
+    Boolean checkUsername(String name);
+
 }

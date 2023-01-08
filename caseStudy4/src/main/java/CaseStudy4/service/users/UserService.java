@@ -47,7 +47,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Boolean findUsersByUsername(String name) {
-        return iUserRepository.findUsersByUsername(name);
+    public Optional<Users> findUserByUsername(String username) {
+        return iUserRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public Boolean checkUsername(String name) {
+        if(iUserRepository.countUsersByUsername(name)>0){
+            return true;
+        }
+       return  false;
     }
 }

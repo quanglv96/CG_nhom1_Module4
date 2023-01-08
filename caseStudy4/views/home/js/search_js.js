@@ -37,11 +37,13 @@ function tabSearch(choice){
     }
 }
 function submitSearch() {
+    localStorage.removeItem("searchIdUser");
     let textSearchLayout = document.getElementById("input_search").value;
     if (textSearchLayout === "") {
-        textSearchLayout = localStorage.getItem("textSearchHome")
-        localStorage.removeItem("textSearchHome");
+        textSearchLayout = localStorage.getItem("textSearch")
         document.getElementById("input_search").value = textSearchLayout;
+    }else {
+        localStorage.setItem("textSearch",textSearchLayout);
     }
     $.ajax({
         type: "GET",
@@ -172,7 +174,8 @@ function getUserSearch(listUser) {
 }
 
 function searchSongByUser(idUser) {
-    localStorage.removeItem("searchIdUser")
+    localStorage.setItem("searchIdUser",idUser);
+    localStorage.removeItem("textSearch");
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/search/songsByUser?idUser=" + idUser,

@@ -19,11 +19,10 @@ public class Users {
     @Column(unique = true)
     private String username;
     // bắt validate mật khẩu từ 6 đến 8 kí tự
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,8}$", message = "\n" +
-            "Passwords are 6-8 characters long")
+    @Pattern(regexp = "^.{6,8}$", message ="Passwords are 6-8 characters long")
     private String password;
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z]{1,}$", message = "Invalid name")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Invalid name")
     private String name;
     @NotNull
     private String address;
@@ -39,7 +38,22 @@ public class Users {
     @Transient
     private MultipartFile image;
 
-    public Users( String username, String password, String name, String address, String email, String phone, String avatar, Role role) {
+    public Users(String username, String password, String name, String address, String email, String phone, MultipartFile image) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.image = image;
+    }
+
+    public Users(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Users(String username, String password, String name, String address, String email, String phone, String avatar, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -48,6 +62,16 @@ public class Users {
         this.phone = phone;
         this.avatar = avatar;
         this.role = role;
+    }
+
+    public Users(String username, String password, String name, String address, String email, String phone, String avatar) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.avatar = avatar;
     }
 
     public Users(Long id, String username, String password, String name, String address, String email, String phone, String avatar, Role role) {
@@ -61,4 +85,5 @@ public class Users {
         this.avatar = avatar;
         this.role = role;
     }
+
 }

@@ -5,7 +5,7 @@ window.onload = function () {
 
 }
 function getSongByID(idSong){
-    let userObject = JSON.parse(localStorage.getItem("userObject"));
+    let userLogin = JSON.parse(localStorage.getItem("userLogin"));
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/songs/" + idSong,
@@ -15,7 +15,7 @@ function getSongByID(idSong){
             document.getElementById("time-upload").innerText = data.date;
             document.getElementById("audio-wave").innerHTML = `<audio href="views/upload_mp3/${data.audio}></audio>`;
             document.getElementById("avatar-song").setAttribute("src", `../../upload_img/${data.avatar}`)
-            document.getElementById("user-avatar").setAttribute("src", `../../upload_img/`+userObject.avatar)
+            document.getElementById("user-avatar").setAttribute("src", `../../upload_img/`+userLogin.avatar)
             document.getElementById("like-song").innerText = data.likes;
             document.getElementById("view-song").innerText = data.views;
             //comment

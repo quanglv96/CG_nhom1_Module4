@@ -105,7 +105,7 @@ function getListSong(songsList) {
                         <div class="item">
                             <a onclick="redirectSong(${songsList.id})" style="cursor: pointer;"><img class="slider-img" src="/views/upload_img/${songsList.avatar}" alt=""/></a>
                             <p class="m-0 item-title nameSongList name-song" style="cursor: pointer"><a onclick="redirectSong(${songsList.id})">${songsList.name}</a></p>
-                            <p class="m-0 item-description font-12 grey-text nameSongList name--use" style="cursor: pointer"><a onclick="redirectResultSearchUser(${songsList.users.id})">${songsList.users.name}</a></p>
+                            <p class="m-0 item-description font-12 grey-text nameSongList name--use" style="cursor: pointer"gi><a onclick="redirectResultSearchUser(${songsList.users.id})">${songsList.users.name}</a></p>
                         </div>
                     </div>`
 }
