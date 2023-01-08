@@ -6,11 +6,17 @@
     bottom: 0;
     background-color: rgba(190, 189, 189, 0.5);
     display: none;
-    z-index: 0;
+    z-index: 2;
 }
 
 .modal-header {
-    padding: 14px 14px 14px 0 !important;
+    border-bottom: none !important;
+    text-align: center !important;
+    display: block;
+}
+
+.modal-footer {
+    border-top: none !important;
 }
 
 .modal-dialogue {
@@ -44,30 +50,66 @@
 }
 
 .modal-input {
-    padding: 4px 8px;
+    padding: 6px 8px;
     width: 100%;
-    border: 0.5px solid rgb(202, 197, 197);
-    border-radius: 4px; 
+    border: none;
+    background-color: #f2f2f2;
+    outline: none;
 }
 
 .upload-mp3 {
     padding: 4px 8px;
     width: 100%;
     border: 0.5px solid rgb(202, 197, 197);
-    border-radius: 4px; 
+    border-radius: 4px;
 }
 
 .mp3-name {
     overflow: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.modal-close, .modal-submit {
+.modal-submit {
     border: none;
-    padding: 4px 8px !important;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 8px 0 !important;
 }
 
-.modal-footer {
-    padding: 10px 0 10px 10px !important;
+.modal-dialogue-small {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    padding: 16px 24px;
+    z-index: 2;
+}
+
+.modal-tab {
+    margin: -16px -24px 0 -24px;
+}
+
+.active, .other {
+    width: 50%;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.other {
+    background-color: #cccccc;
+}
+
+.facebook {
+    color: rgb(41, 41, 218);
+    cursor: pointer;
+}
+
+.google {
+    color: red;
+    cursor: pointer;
 }
