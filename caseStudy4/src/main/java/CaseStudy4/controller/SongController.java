@@ -77,17 +77,13 @@ public class SongController {
         return new ResponseEntity<>(iSongService.findAll(), HttpStatus.OK);
     }
     @PostMapping("/setLike/{id}")
-    public void setLikes(@PathVariable("id") Long id){
+    public ResponseEntity<Optional<Songs>> setLikes(@PathVariable("id") Long id, @RequestParam("config") int num){
         Songs songs=iSongService.findById(id).get();
-        songs.setLikes(songs.getLikes()+1);
+        songs.setLikes(songs.getLikes()+num);
         iSongService.save(songs);
+        return new ResponseEntity<>(iSongService.findById(id), HttpStatus.OK);
     }
-    @PostMapping("/disLike/{id}")
-    public void disLike(@PathVariable("id") Long id){
-        Songs songs=iSongService.findById(id).get();
-        songs.setLikes(songs.getLikes()-1);
-        iSongService.save(songs);
-    }
+    
     @PostMapping("/setView/{id}")
     public void setView(@PathVariable("id") Long id){
         Songs songs=iSongService.findById(id).get();

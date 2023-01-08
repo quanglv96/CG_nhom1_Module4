@@ -42,12 +42,12 @@ public class CommentService implements ICommentService {
 
     @Override
     public Iterable<Comments> findAllBySongsOrderByDateDesc(Songs songs) {
-        return iCommentRepository.findAllBySongsOrderByDateDesc(songs);
+        return iCommentRepository.findAllBySongsOrderByIdDesc(songs);
     }
 
     @Override
     public Iterable<Comments> findAllByPlaylistOrderByDateDesc(Playlist playlist) {
-        return iCommentRepository.findAllByPlaylistOrderByDateDesc(playlist);
+        return iCommentRepository.findAllByPlaylistOrderByIdDesc(playlist);
     }
 
 }

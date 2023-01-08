@@ -6,7 +6,7 @@ import CaseStudy4.model.Songs;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ICommentRepository extends JpaRepository<Comments, Long> {
-    Iterable<Comments> findAllBySongsOrderByDateDesc(Songs songs);
-    Iterable<Comments> findAllByPlaylistOrderByDateDesc(Playlist playlist);
+    Iterable<Comments> findAllBySongsOrderByIdDesc(Songs songs);
+    Iterable<Comments> findAllByPlaylistOrderByIdDesc(Playlist playlist);
 
 }

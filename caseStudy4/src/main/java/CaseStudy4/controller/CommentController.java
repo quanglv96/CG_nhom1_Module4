@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 @CrossOrigin("*")
@@ -41,7 +42,7 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<Iterable<Comments>> save(@RequestBody Comments comments) {
-        LocalDate date = LocalDate.now();
+        LocalDateTime date = LocalDateTime.now();
         comments.setDate(date);
         iCommentService.save(comments);
         return ResponseEntity.status(HttpStatus.OK).build();

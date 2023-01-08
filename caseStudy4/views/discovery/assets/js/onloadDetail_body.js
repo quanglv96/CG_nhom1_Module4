@@ -16,6 +16,9 @@ function getSongByID(idSong){
             }
             document.getElementById("name-Songs").innerText = data.name;
             document.getElementById("name-user").innerText = data.users.name;
+            document.getElementById("name-user").setAttribute("onclick",`redirectSearchUser(${data.users.id})`);
+            document.getElementById("btnLike").setAttribute("onclick",`clickLike_Song(${data.id})`);
+            $('#click-like').hide();
             document.getElementById("time-upload").innerText = data.date;
             document.getElementById("audio-wave").innerHTML = `<audio href="views/upload_mp3/${data.audio}></audio>`;
             document.getElementById("avatar-song").setAttribute("src", `../../upload_img/${data.avatar}`)
@@ -57,4 +60,9 @@ function getCommentByIdSong(idSong){
             document.getElementById("list-comment").innerHTML=content;
         }
     })
+}
+function redirectSearchUser(idUser){
+    localStorage.removeItem("textSearch");
+    localStorage.setItem("searchIdUser", idUser);
+    window.location = "../../discovery/layout/layout.html";
 }

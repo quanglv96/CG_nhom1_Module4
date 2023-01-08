@@ -16,10 +16,10 @@ function login() {
         url: "http://localhost:8080/users/login",
         success: function (user) {
             alert("oke");
+            $(".modal").hide();
             localStorage.setItem("userLogin",JSON.stringify(user))
         },
         error: function (error) {
-            modalLogIn.style.display = "block";
             alert(error.responseText);
 
         }

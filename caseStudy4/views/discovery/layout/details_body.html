@@ -27,7 +27,7 @@
                             </div>
                             <div class="first-desc-row d-inline-block">
                                 <p class="user-upload m-0 font-24" id="name-Songs"></p>
-                                <p class="item-name m-0 font-16" id="name-user"></p>
+                                <a class="item-name m-0 font-16" style="color: #4d5154" id="name-user" onclick="redirectSearchUser()"></a>
                             </div>
                         </div>
                         <div class="header-right">
@@ -55,7 +55,7 @@
                     <div class="comment border d-flex">
                         <img class="user-img" id="user-avatar" src="" alt="">
                         <div class="input-container d-flex align-item-center justify-content-center py-2 px-3">
-                            <input class="input-comment p-1" id="input-comment" type="text">
+                            <input class="input-comment p-1" id="input_comment" type="text">
                         </div>
                         <span class="send-btn">
                             <i onclick="sendComment_song()" class="fa-solid fa-paper-plane" onkeypress="return function (e){
@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <div class="user-action px-3">
-                        <span class="like-count border py-1 px-2 me-1 border-radius-1 pointer">
-                            <i class="fa-solid fa-heart"></i> <span id="like-song"></span>
+                        <span class="like-count border py-1 px-2 me-1 border-radius-1 pointer" id="btnLike">
+                            <i class="fa-solid fa-heart" id="click-like"></i><i class="fa-regular fa-heart" id="none-like"></i> <span id="like-song"></span>
                         </span>
                     <span class="like-count border py-1 px-2 me-1 border-radius-1 pointer">
                             <i class="fa-solid fa-square-plus"></i> Add to playlist
@@ -137,5 +137,9 @@
 <script src="../../users/onload-check-login.js"></script>
 <script src="../assets/js/redirect_Song.js"></script>
 <script src="../assets/js/comment.js"></script>
+<script src="../assets/js/like.js"></script>
+<script src="../../home/js/search_js.js"></script>
+<script>
 
+</script>
 </html>

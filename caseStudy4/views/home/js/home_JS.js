@@ -33,9 +33,11 @@ function fieldTextSearch(){
 }
 function redirectResultSearch(textSearchHome) {
     localStorage.setItem("textSearch", textSearchHome);
+    localStorage.removeItem("searchIdUser");
     window.location = "../../discovery/layout/layout.html";
 }
 function redirectResultSearchUser(idUser) {
+    localStorage.removeItem("textSearch");
     localStorage.setItem("searchIdUser", idUser);
     window.location = "../../discovery/layout/layout.html";
 }

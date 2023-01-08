@@ -1,5 +1,5 @@
 function sendComment_song(){
-    let inputComment_song =document.getElementById("input-comment").value;
+    let inputComment_song =document.getElementById("input_comment").value;
     let user=JSON.parse(localStorage.getItem("userLogin"));
     let idSong=localStorage.getItem("idSong");
     let comment={
@@ -19,7 +19,8 @@ function sendComment_song(){
         //tên API
         url: "http://localhost:8080/comment",
         success: function () {
-            location.reload();
+            $('#input_comment').val("");
+            getCommentByIdSong(idSong);
         }
     });
 
