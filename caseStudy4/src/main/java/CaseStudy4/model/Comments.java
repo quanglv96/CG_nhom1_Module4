@@ -1,5 +1,6 @@
 package CaseStudy4.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +34,20 @@ public class Comments {
         this.users = users;
         this.songs = songs;
         this.playlist = playlist;
+    }
+
+    public Comments(String content, Users users, Playlist playlist) {
+        this.content = content;
+        this.users = users;
+        this.playlist = playlist;
+    }
+
+    public Comments(String content, Users users, Songs songs) {
+        this.content = content;
+        this.users = users;
+        this.songs = songs;
+    }
+
+    public Comments() {
     }
 }
