@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="../assets/css/content.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/modal-create-playlist.css">
     <link rel="stylesheet" href="../assets/lib/fontawesome-free-6.2.1-web/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/wavesurfer.js"></script>
-    <link rel="stylesheet" href="../../home/css/modal_css.css">
     <title>Document</title>
 
 
@@ -28,8 +28,9 @@
                 <img class="logo-img" src="../assets/img/logo/Picture1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../discovery/layout/body_home.html">Home</a></div>
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="">Library</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white btn btn-sm" href="../../discovery/layout/body_home.html">Home</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white btn btn-sm" href="">Library</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white song-btn modal-open btn btn-sm" onclick="openModal('.song-modal')">Upload track</a></div>
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
@@ -178,131 +179,76 @@
         </div>
     </div>
 </div>
-<!--MODAL SIGNIN-->
-<div id="modalCreateAccount" class="modal">
-    <form id= "formCreateAccount" class="modal-form">
-        <div class="modal-body-sign">
-            <table>
-                <div style="position: relative">
-                    <button  type="button" style="position: absolute; right: 0" id="closeModalSignIn" class="btn-close" aria-label="Close"></button>
+
+
+<!--song modal-->
+<div class="modal song-modal">
+    <div class="modal-dialogue song-modal-dialogue">
+        <form class="song-form" id="song-form">
+            <h2 class="text-center modal-header">Upload song</h2>
+            <div class="row">
+                <div class="col col-4">
+                    <div class="modal-image mb-3">
+                        <img class="modal-img modal-img-song" src="../../upload_img/update-your-songs-avatar .png" alt="">
+                        <button class="upload-box upload-btn p-1">
+                                <span onclick="openUpload('.input-file-song')" class="py-2 px-2">
+                                    <i class="me-1 fa-solid fa-camera"></i>
+                                    <span>Upload image</span>
+                                </span>
+                            <input onchange="replaceImg(this, '.modal-img-song')" id="image" name="image" class="input-file-song" type="file"
+                                   hidden>
+                        </button>
+                    </div>
+                    <button class="upload-mp3">
+                        <span onclick="openUpload('.input-mp3-file')" class="py-2 px-2">Choose mp3 file: </span>
+                        <input onchange="getFileName(this)" id="mp3" name="mp3" class="input-mp3-file" type="file" hidden>
+                    </button>
+                    <p class="mp3-name font-12 grey-text"></p>
                 </div>
-                <tr>
-                    <th colspan="2" style="text-align: center; font-size: 40px">CREATE ACCOUNT</th>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="username">Username:</label><br>
-                        <input size="30px" name="username" id="newUsername" type="text" placeholder="Enter username"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                    <td>
-                        <label for="name">Full Name:</label><br>
-                        <input size="30px" name="name" id="name" type="text" placeholder="Enter full name"
-                               class="form-control name-input no-border-radius">
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <label for="password">Password:</label><br>
-                        <input size="30px" name="password" id="newPassword" type="password" placeholder="Enter password"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                    <td>
-                        <label for="address">Address:</label><br>
-                        <input size="30px" name="address" id="address" type="text" placeholder="Enter address"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="re-Password">Re-Password:</label><br>
-                        <input size="30px" name="re-Password" id="re-Password" type="password"
-                               placeholder="Enter re-Password"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                    <td>
-                        <label for="phone">Phone number:</label><br>
-                        <input size="30px" name="phone" id="phone" type="text" placeholder="Enter phone number"
-                               class="form-control price-input no-border-radius">
-                    </Td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="image">Image:</label><br>
-                        <input size="30px" name="image" id="image" type="file"
-                               class="form-control image-input no-border-radius">
-                    </td>
-                    <td>
-                        <label for="email">Email:</label><br>
-                        <input size="30px" name="email" id="email" type="text" placeholder="Enter email"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                </tr>
-                <tr >
-                    <td colspan="2" style="text-align: center">
-                        <button type="submit" class="btn btn-outline-success">Create</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </form>
-</div>
-
-<!--MODAL LOGIN-->
-<div id="modalLogin" class="modal">
-    <form id= "formLogin" class="modal-form">
-        <div class="modal-body-log" >
-            <div style="position: relative">
-            <button  type="button" style="position: absolute; right: 0" id="closeModalLogin" class="btn-close" aria-label="Close"></button>
+                <div class="col col-8">
+                    <div class="modal-body p-0">
+                        <div class="form-group mb-2">
+                            <label class="modal-label my-1" for="name">Name:</label><br>
+                            <input class="modal-input" name="name" type="text" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="modal-label my-1" for="description">Description:</label><br>
+                            <textarea class="modal-input" rows="3" name="description" type="text" id="description"
+                                      placeholder="Description"></textarea>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="modal-label my-1" for="composer">Composer:</label><br>
+                            <input class="modal-input" name="composer" type="text" id="composer" placeholder="Price">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="modal-label my-1" for="tags">Tag:</label><br>
+                            <input class="modal-input" name="tags" type="text" id="tags" placeholder="Tag">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="modal-label my-1" for="singer">Singer:</label><br>
+                            <input class="modal-input" name="singer" type="text" id="singer" placeholder="Singer">
+                        </div>
+                    </div>
+                    <div class="modal-footer px-0">
+                        <button onclick="closeModal()" class="modal-btn modal-close btn btn-sm btn-danger m-0"
+                                type="button">Close
+                        </button>
+                        <button class="modal-btn modal-submit-short btn btn-sm btn-dark m-0" onclick="createSongs()" type="button">Upload
+                        </button>
+                    </div>
+                </div>
             </div>
-            <table>
-
-                <tr>
-                    <th style="text-align: center; font-size: 40px">Login</th>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="username">Username:</label><br>
-                        <input size="30px" name="username" id="username" type="text" placeholder="Enter username"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="password">Password:</label><br>
-                        <input size="30px" name="password" id="password" type="password" placeholder="Enter password"
-                               class="form-control price-input no-border-radius">
-                    </td>
-                </tr>
-                <tr >
-                    <td style="text-align: center">
-                        <button  style="margin: 20px;width: 200px" type="submit" class="btn btn-outline-success">Login</button>
-                        <br><a href="#">Forgot your password?</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">
-                        <div class="input-group-prepend input-group mb-3" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')">
-                            <button class="btn" style="background-color: #0a53be;width: 15px"><i class="fa-brands fa-facebook-f"></i></button>
-                            <button class="btn" style="background-color: #0a53be;width: 5px">|</button>
-                            <button class="btn " style="background-color: #0a53be;width: 230px;color: white;font-weight: bold" >Login with Facebook</button>
-                        </div>
-                        <div class="input-group-prepend input-group mb-3" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')" >
-                            <button class="btn" style="background-color: #e31818;width: 15px"><i class="fa-brands fa-google-plus-g"></i></button>
-                            <button class="btn" style="background-color: #e31818;width: 5px">|</button>
-                            <button class="btn " style="background-color: #e31818;width: 230px;color: white;font-weight: bold">Login with Google</button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </form>
-
+        </form>
+    </div>
 </div>
+
+
+
 </body>
 <script src="../assets/js/header.js"></script>
 <script src="../assets/js/body.js"></script>
+<script src="../assets/js/modal.js"></script>
+<script src="../assets/js/create-song.js"></script>
 <script src="../../discovery/assets/js/redirect_Song.js"></script>
 <script src="../../users/onload-check-login.js"></script>
 <script src="../../home/js/search_js.js"></script>
