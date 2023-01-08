@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
+
 @AllArgsConstructor
 public class Playlist {
     @Id
@@ -52,6 +52,26 @@ public class Playlist {
         this.likes = likes;
     }
 
+    public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users) {
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
+        this.users = users;
+    }
+
+    public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, long views, long likes) {
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
+        this.users = users;
+        this.views = views;
+        this.likes = likes;
+    }
+
     public Playlist(Long id, String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, List<Songs> songsList, List<Tags> tagsList, long views, long likes) {
         this.id = id;
         this.name = name;
@@ -77,6 +97,9 @@ public class Playlist {
         this.tagsList = tagsList;
         this.views = views;
         this.likes = likes;
+    }
+
+    public Playlist() {
     }
 
     @Transient
