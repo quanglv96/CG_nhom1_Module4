@@ -3,12 +3,14 @@ package CaseStudy4.controller;
 import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
+import CaseStudy4.service.Singer.ISingerService;
 import CaseStudy4.service.Songs.ISongService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -27,6 +26,8 @@ import java.util.Optional;
 public class SongController {
     @Autowired
     private ISongService iSongService;
+    @Autowired
+    private ISingerService singerService;
     @Value("${upload.img}")
     private String upload_IMG;
     @Value("${upload.mp3}")
@@ -116,5 +117,9 @@ public class SongController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+@GetMapping("/singerList/{id}")
+    public ResponseEntity<Iterable<Songs>> listSinger(@PathVariable("id") Long idSinger){
+    return new ResponseEntity<>(iSongService.findAllBySingerList(idSinger), HttpStatus.OK);
     }
 }
