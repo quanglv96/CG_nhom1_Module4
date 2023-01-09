@@ -42,6 +42,7 @@ function getCommentByIdSong(idSong){
             let content="";
             for (let i = 0; i < data.length; i++) {
                 let comment=data[i];
+                let time=moment(comment.date).fromNow();
                 content+=`<div class="comment-item d-flex align-items-center justify-content-between mb-3">
                                 <div class="c-item-left d-flex align-items-center">
                                     <div class="c-avt me-2">
@@ -52,8 +53,8 @@ function getCommentByIdSong(idSong){
                                         <p class="m-0 c-content font-12">${comment.content}</p>
                                     </div>
                                 </div>
-                                <div class="c-item-right font-12">
-                                    <span class="c-time">${comment.date}</span>
+                                <div class="c-item-right font-12">        
+                                    <span class="c-time">${time}</span>
                                 </div>
                             </div>`
             }

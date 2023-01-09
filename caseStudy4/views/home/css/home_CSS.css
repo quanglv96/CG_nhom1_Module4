@@ -196,7 +196,7 @@ html {
 
 .header .avatar {
     border-radius: 50%;
-    background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+    /*background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);*/
     width: 30px;
     height: 30px;
 }
