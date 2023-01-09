@@ -1,5 +1,6 @@
 package CaseStudy4.controller;
 
+import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
 import CaseStudy4.service.Singer.ISingerService;
