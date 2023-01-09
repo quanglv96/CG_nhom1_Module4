@@ -4,7 +4,18 @@ body {
     justify-content: flex-end;
     background-color: #f2f2f2;
 }
+.banner-item {
+    width: 100%;
+    object-fit: cover;
+}
 
+.slider-section {
+    margin: 58px -10px 0 -10px;
+}
+
+.slider-container {
+    width: 100%;
+}
 .btn_menu {
     color: aliceblue;
 }
