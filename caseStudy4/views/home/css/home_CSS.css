@@ -2,6 +2,7 @@ body {
     padding: 0 150px 0 150px;
     text-align: center;
     justify-content: flex-end;
+    background-color: #f2f2f2;
 }
 
 .btn_menu {
@@ -74,4 +75,89 @@ a{
     margin: 0px;
     font-size: 18px;
     color: black;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+
+}
+
+.right-text {
+    text-align: right;
+}
+
+.grey-text {
+    color: #999999;
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.border-radius-1 {
+    border-radius: 4px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.big-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.col-20 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.no-border-radius {
+    border-radius: 0 !important;
+}
+
+.margin-2 {
+    margin: 2px !important;
+}
+
+.error {
+    color: red;
+    font-size: 10px;
 }

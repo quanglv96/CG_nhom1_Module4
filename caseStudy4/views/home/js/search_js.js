@@ -120,7 +120,7 @@ function getPlaylistSearch(playList) {
         let list = playList[i];
         let content = `<div class="content-item-song row mt-4">
                     <div class="item-image col-3">
-                        <div class="image"><img class="playlist-avt" src="/views/upload_img/${list.avatar}"></div>
+                        <div class="image"><img class="song-avt" src="/views/upload_img/${list.avatar}"></div>
                     </div>
                     <div class="item-desc col-9 d-flex align-items-center">
                         <div class="d-block">
