@@ -3,6 +3,7 @@ package CaseStudy4.controller;
 import CaseStudy4.model.Playlist;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
+import CaseStudy4.service.Singer.ISingerService;
 import CaseStudy4.service.Songs.ISongService;
 import CaseStudy4.service.playlist.IPlaylistService;
 import CaseStudy4.service.users.IUserService;
@@ -25,6 +26,8 @@ public class SearchController {
     private IPlaylistService iPlaylistService;
     @Autowired
     private IUserService iUserService;
+    @Autowired
+    private ISingerService singerService;
 
     @GetMapping
     public ResponseEntity<Object> search(@RequestParam("search") String text){
@@ -54,5 +57,6 @@ public class SearchController {
         resultSearch.add(iPlaylistService.findAllByUsers(iUserService.findById(idUser).get()));
         return new ResponseEntity<>(resultSearch,HttpStatus.OK);
     }
+
 
 }

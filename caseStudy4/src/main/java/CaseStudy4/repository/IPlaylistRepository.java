@@ -5,7 +5,9 @@ import CaseStudy4.model.Playlist;
 import CaseStudy4.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface IPlaylistRepository extends JpaRepository<Playlist, Long> {
     Iterable<Playlist> findAllByOrderByViewsDesc();
     Iterable<Playlist> findAllByOrderByDateCreateDesc();
