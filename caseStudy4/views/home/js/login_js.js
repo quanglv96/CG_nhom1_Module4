@@ -18,6 +18,7 @@ function login() {
             alert("oke");
             $(".modal").hide();
             localStorage.setItem("userLogin",JSON.stringify(user))
+            location.reload();
         },
         error: function (error) {
             alert(error.responseText);

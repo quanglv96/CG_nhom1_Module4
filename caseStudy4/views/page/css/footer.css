@@ -1,0 +1,12 @@
+.footer-container {
+    background-color: #f2f2f2;
+}
+
+.footer {
+    background-color: white;
+    border-top: none !important;
+}
+
+.big-icon {
+    font-size: 30px;
+}

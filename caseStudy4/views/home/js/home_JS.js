@@ -1,4 +1,5 @@
 window.onload = function () {
+    onloadCheckLogin();
     displaySongTrend();
 }
 
@@ -7,7 +8,7 @@ function displaySongTrend() {
         type: "GET",
         url: "http://localhost:8080/songs/listTrending",
         success: function (data) {
-            let content =""
+            let content = ""
             for (let i = 0; i < data.length; i++) {
                 if (i === 10) {
                     break;
@@ -27,21 +28,38 @@ function getListSong(songsList) {
     </div>`
 }
 
-function fieldTextSearch(){
+function fieldTextSearch() {
     let textSearchHome = document.getElementById("input_search").value;
-    document.getElementById("btnSearch").setAttribute("value",textSearchHome)
+    document.getElementById("btnSearch").setAttribute("value", textSearchHome)
 }
+
 function redirectResultSearch(textSearchHome) {
     localStorage.setItem("textSearch", textSearchHome);
     localStorage.removeItem("searchIdUser");
     window.location = "../../discovery/layout/layout.html";
 }
+
 function redirectResultSearchUser(idUser) {
     localStorage.removeItem("textSearch");
     localStorage.setItem("searchIdUser", idUser);
     window.location = "../../discovery/layout/layout.html";
 }
 
+let slideIndex = 0;
+slideShow();
+
+function slideShow() {
+    let slides = document.getElementsByClassName("banner-item");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1
+    }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(slideShow, 3000); // Change image every 2 seconds
+}
 
 
 

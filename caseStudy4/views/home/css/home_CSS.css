@@ -2,8 +2,21 @@ body {
     padding: 0 150px 0 150px;
     text-align: center;
     justify-content: flex-end;
+    background-color: #f2f2f2;
+}
+.banner-item {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
 }
 
+.slider-section {
+    margin: 58px -10px 0 -10px;
+}
+
+.slider-container {
+    width: 100%;
+}
 .btn_menu {
     color: aliceblue;
 }
@@ -74,4 +87,151 @@ a{
     margin: 0px;
     font-size: 18px;
     color: black;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.right-text {
+    text-align: right;
+}
+
+.grey-text {
+    color: #999999;
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.border-radius-1 {
+    border-radius: 4px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.big-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.col-20 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.no-border-radius {
+    border-radius: 0 !important;
+}
+
+.margin-2 {
+    margin: 2px !important;
+}
+
+.error {
+    color: red;
+    font-size: 10px;
+}
+.header-cointainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .logo {
+    width: 100px;
+}
+
+.header .logo-img {
+    object-fit: contain;
+    width: 100px;
+    margin: 4px 0;
+}
+
+.header .avatar {
+    border-radius: 50%;
+    /*background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);*/
+    width: 30px;
+    height: 30px;
+}
+
+.header .login-btn {
+    border: 1px solid white !important;
+}
+
+.header .login-btn:hover {
+    color: black !important;
+    background-color: #ffffff;
+}
+
+.header .user-info {
+    position: relative;
+}
+
+.header .user-menu {
+    position: absolute;
+    top: 51px;
+    left: 0;
+    list-style-type: none;
+    display: none;
+    background-color: white;
+}
+
+.header .user-menu li:hover a {
+    background-color: rgb(204, 201, 201);
+}
+.header .user-toggle {
+    border: 1px solid black;
+}
+
+.header .user-toggle:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 4px;
 }
