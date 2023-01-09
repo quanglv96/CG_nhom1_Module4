@@ -10,3 +10,8 @@
 .body {
     background-color: white;
 }
+.wrapper {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    /*grid-template-rows: 270px 200px;*/
+}

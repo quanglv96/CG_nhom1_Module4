@@ -1,5 +1,6 @@
 package CaseStudy4.controller;
 
+import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
 import CaseStudy4.service.Songs.ISongService;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -115,5 +117,4 @@ public class SongController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }

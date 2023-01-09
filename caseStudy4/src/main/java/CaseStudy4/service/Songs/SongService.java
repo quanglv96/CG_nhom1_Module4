@@ -1,11 +1,13 @@
 package CaseStudy4.service.Songs;
 
+import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
 import CaseStudy4.repository.ISongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class SongService implements ISongService {
@@ -35,6 +37,11 @@ public class SongService implements ISongService {
     @Override
     public Iterable<Songs> findAllByUsers(Users users) {
         return isongRepository.findAllByUsers(users);
+    }
+
+    @Override
+    public Iterable<Songs> findAllBySingerList(List<Singer> singerList) {
+        return isongRepository.findAllBySingerList(singerList);
     }
 
     @Override
