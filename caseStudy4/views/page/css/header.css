@@ -1,0 +1,66 @@
+.header-cointainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .logo {
+    width: 100px;
+}
+
+.header .logo-img {
+    object-fit: contain;
+    width: 100px;
+    margin: 4px 0;
+}
+
+.header .avatar {
+    border-radius: 50%;
+    background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+    width: 30px;
+    height: 30px;
+}
+
+.header .login-btn {
+    border: 1px solid white !important;
+}
+
+.header .login-btn:hover {
+    color: black !important;
+    background-color: #ffffff;
+}
+
+.header .user-info {
+    position: relative;
+}
+
+.header .user-menu {
+    position: absolute;
+    top: 51px;
+    left: 0;
+    list-style-type: none;
+    display: none;
+    background-color: white;
+}
+
+.header .user-menu li:hover a {
+    background-color: rgb(204, 201, 201);
+}
+
+.header .user-toggle {
+    border: 1px solid black;
+}
+
+.header .user-toggle:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 4px;
+}
