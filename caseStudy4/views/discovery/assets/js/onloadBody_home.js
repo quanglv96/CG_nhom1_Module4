@@ -115,9 +115,9 @@ function getListSong(songsList) {
 function getPlaylist(playlist) {
     return `<div class="item-contain col col-3 p-3">
                         <div class="item">
-                            <a href="${playlist.id}"><img class="slider-img" src="/views/upload_img/${playlist.avatar}" alt=""></a>
-                            <p class="m-0 item-title nameSongList name-song"><a href="${playlist.id}">${playlist.name}</a></p>
-                            <p class="m-0 item-description font-12 grey-text nameSongList name--use"><a href="${playlist.users.id}">${playlist.users.name}</a></p>
+                            <a href="${playlist.id}" style="cursor: pointer;"><img class="slider-img" src="/views/upload_img/${playlist.avatar}" alt=""></a>
+                            <p class="m-0 item-title nameSongList name-song" style="cursor: pointer"><a href="${playlist.id}">${playlist.name}</a></p>
+                            <p class="m-0 item-description font-12 grey-text nameSongList name--use" style="cursor: pointer"><a href="${playlist.users.id}">${playlist.users.name}</a></p>
                         </div>
                     </div>`
 }
