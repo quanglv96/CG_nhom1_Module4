@@ -56,4 +56,9 @@ public class SingerController {
     public ResponseEntity<Iterable<Singer>> search(String name) {
         return new ResponseEntity<>(singerService.findAllByName(name), HttpStatus.OK);
     }
+    @GetMapping("/addSong")
+    public ResponseEntity<?> addSong(@RequestParam("idSong") Long idSong,@RequestParam("idSinger") Long idSinger) {
+        singerService.addSingerSong(idSong,idSinger);
+        return ResponseEntity.ok( HttpStatus.OK);
+    }
 }

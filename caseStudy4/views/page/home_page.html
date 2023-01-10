@@ -15,51 +15,42 @@
     <link rel="stylesheet" href="../page/lib/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="../page/lib/slick-1.8.1/slick/slick-theme.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js"></script>
     <title>Document</title>
 </head>
 <body>
 <div class="header-cointainer container-fluid">
     <div class="header container d-flex align-items-center justify-content-between">
         <div class="navigation d-flex align-items-center">
-            <div onclick="renderHomePage(drawHomeFrame())" class="logo d-flex align-items-center me-3 pointer">
-                <img class="logo-img" src="/assets/img/logo/logo.jpg" alt="">
+            <div class="logo d-flex align-items-center me-3 pointer">
+                <img class="logo-img" src="../upload_img/LOGONHOM1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
-                <div><a onclick="renderDiscoveryPage()" class="px-3 nav-item text-decoration-none text-white" href="#!">Discovery</a></div>
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="#!">Library</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../views/discovery/layout/body_home.html">Discovery</a>
+                </div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../views/discovery/layout/body_home.html">Library</a></div>
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
-            <div class="search-bar mx-2">
-                <div class="input-group no-border-radius">
-                    <input class="form-control no-border-radius" type="text" placeholder="Search">
-                    <span class="input-group-text no-border-radius">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg>
-                        </span>
-                </div>
+            <div class="user-register d-flex align-items-center" id="falseLogin">
+                <button onclick="openModal('.login-modal')" class="btn btn-outline-dark text-white login-btn">Sign in
+                </button>
             </div>
-            <div class="user-register d-flex align-items-center">
-                <button onclick="openModal('.login-modal')" class="btn btn-outline-dark text-white login-btn no-border-radius">Sign in</button>
-            </div>
-            <div class="user-info d-flex align-items-center hide">
+            <div class="user-info d-flex align-items-center hide" id="trueLogin">
                 <div class="user-avatar p-2">
-                    <div class="avatar"></div>
+                    <img class="avatar" src="" alt="" id="trueLogin-avatar">
                 </div>
-                <p class="m-0 text-white username">Username</p>
+                <a style="color: white; text-decoration: none" class="m-0 text-white username" id="trueLogin-username"></a>
                 <span onclick="openModal('.user-menu')" class="text-white mx-2 user-toggle px-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down btn-icon" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         </svg>
                     </span>
                 <ul class="user-menu border p-0">
-                    <li><a class="dropdown-item py-2 px-3" href="#">User info</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="../page/user_info_page.html">User info</a></li>
                     <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
                     <hr class="m-1">
                     <li>
-                        <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out
+                        <a class="dropdown-item py-2 px-3 d-flex" onclick="logOut()">Log out
                             <span class="d-flex align-items-center ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
@@ -78,82 +69,23 @@
     <div class="container body pb-5">
         <div class="slider-section">
             <div class="slider-container">
-                <img class="banner-item" src="/assets/img/slider/Untitled-1.jpg" alt="">
-                <img class="banner-item" src="/assets/img/slider/Untitled-2.jpg" alt="">
-                <img class="banner-item" src="/assets/img/slider/Untitled-3.jpg" alt="">
+                <img class="banner-item" src="../discovery/assets/img/slider/Untitled-1.jpg" alt="">
+                <img class="banner-item" src="../discovery/assets/img/slider/Untitled-2.jpg" alt="">
+                <img class="banner-item" src="../discovery/assets/img/slider/Untitled-3.jpg" alt="">
             </div>
         </div>
         <div class="text-center my-5">
                 <span class="text-center home-input-group">
-                    <input type="text" class="home-input" placeholder="Search for artists, bands, tracks, podcasts">
-                    <span class="home-input-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="input_search" type="text" class="home-input" placeholder="Search for artists, bands, tracks, podcasts">
+                    <span class="home-input-icon"><i class="fa-solid fa-magnifying-glass" onclick="redirectResultSearch()"></i></span>
                 </span>
         </div>
 
         <h4 class="text-center mb-5">Hear what’s trending for free in the NDTQ community</h4>
-        <div class="trending-wrapper px-4">
-            <div class="row">
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-                <div class="col-20 mb-4">
-                    <div class="item">
-                        <img class="item-img" src="/assets/img/tải xuống.jpg" alt="">
-                        <p class="m-0 item-title">Song name</p>
-                        <p class="m-0 item-description font-12 grey-text">Upload user</p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="wrapper" id="listTrending"></div>
 
             <div class="text-center my-5">
-                <button class="explore-btn">Explore trending playlists</button>
+                <button class="explore-btn" onclick="window.location='../discovery/layout/body_home.html'">Explore trending playlists</button>
             </div>
 
             <div class="text-center mb-4">
@@ -204,7 +136,7 @@
             <div class="row">
                 <div class="col col-4">
                     <div class="modal-image mb-3">
-                        <img class="modal-img modal-img-song" src="/assets/img/white.png" alt="">
+                        <img class="modal-img modal-img-song" src="../assets/img/white.png" alt="">
                         <button class="upload-box upload-btn p-1">
                                 <span onclick="openUpload('.input-file-song')" class="py-2 px-2">
                                     <i class="me-1 fa-solid fa-camera"></i>
@@ -295,7 +227,7 @@
     </div>
 </div>
 
-<button onclick="openModal('.login-modal')" class="login-btn modal-open btn btn-sm btn-primary">Open login modal</button>
+
 <div class="modal login-modal">
     <div class="modal-dialogue-small login-modal-dialogue">
         <div class="modal-tab d-flex">
@@ -324,14 +256,14 @@
                 </div>
             </div>
             <div class="modal-footer p-0">
-                <button class="modal-submit m-0" type="button">Login</button>
+                <button class="modal-submit m-0" type="button" onclick="login()">Login</button>
             </div>
             <div class="social-login">
                 <h6 style="font-size: 13.5px;" class="text-center mt-4 mb-0">Or</h6>
                 <p class="text-center font-12 m-0">Signin with social media</p>
                 <div class="social-media d-flex justify-content-center mb-3">
-                    <div class="me-2 social-item font-30 facebook"><i class="fa-brands fa-facebook"></i></div>
-                    <div class="ms-2 social-item font-30 google"><i class="fa-brands fa-google"></i></div>
+                    <div class="me-2 social-item font-30 facebook" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')"><i class="fa-brands fa-facebook"></i></div>
+                    <div class="ms-2 social-item font-30 google" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')"><i class="fa-brands fa-google"></i></div>
                 </div>
             </div>
         </form>
@@ -367,9 +299,25 @@
     </div>
 </div>
 
+<script src="js/home_JS.js"></script>
+<script src="../users/onload-check-login.js"></script>
+<script src="../discovery/assets/js/redirect_Song.js"></script>
+<!--<script src="../../discovery/assets/js/validator.js"></script>-->
+<!--<script src="js/signIn_js.js"></script>-->
+<script src="js/login_js.js"></script>
+<script src="js/search_js.js"></script>
 <script src="../page/js/validator.js"></script>
 <script src="../page/js/home_page.js"></script>
 <script src="js/modal.js"></script>
 <script src="../page/lib/slick-1.8.1/slick/slick.js"></script>
+<!--<script src="../discovery/assets/js/modal-edit-create-playlist.js"></script>-->
+<!--<script src="../discovery/assets/js/edit-create-playlist.js"></script>-->
+<!--<script src="../discovery/assets/js/modal.js"></script>-->
 </body>
+<script>
+    window.onload = function () {
+        onloadCheckLogin();
+        displaySongTrend();
+    }
+</script>
 </html>

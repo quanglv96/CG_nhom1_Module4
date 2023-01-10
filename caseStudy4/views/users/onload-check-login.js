@@ -12,10 +12,10 @@ function onloadCheckLogin(){
         }
     }else {
         if(trueLogin!==null){
-            trueLogin.setAttribute("style",'display:block')
+            trueLogin.setAttribute("style",'display:flex !important')
             if(document.getElementById("trueLogin-username")!=null){
                 document.getElementById("trueLogin-username").innerText=user.name
-                document.getElementById("trueLogin-avatar").setAttribute("src",`../../upload_img/${user.avatar}`);
+                document.getElementById("trueLogin-avatar").setAttribute("src",`../upload_img/${user.avatar}`);
             }
         }
         if(falseLogin!==null){
@@ -26,5 +26,5 @@ function onloadCheckLogin(){
 }
 function logOut(){
     localStorage.removeItem("userLogin")
-    window.location = "../../home/layout/home.html";
+    window.location = "../page/home_page.html";
 }

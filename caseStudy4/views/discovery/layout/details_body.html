@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!--    <script src="https://unpkg.com/wavesurfer.js"></script>-->
-    <title>Document</title>
+    <title>details_body</title>
 
 
 </head>
@@ -59,12 +59,7 @@
                             <input class="input-comment p-1" id="input_comment" type="text">
                         </div>
                         <span class="send-btn">
-                            <i onclick="sendComment_song()" class="fa-solid fa-paper-plane" onkeypress="return function (e){
-                                if(e.keyCode===13){
-                                    return true;
-                                }
-                                return false;
-                            }"></i>
+                            <i onclick="sendComment_song()" class="fa-solid fa-paper-plane"></i>
                         </span>
                     </div>
                 </div>
@@ -139,8 +134,14 @@
 <script src="../assets/js/redirect_Song.js"></script>
 <script src="../assets/js/comment.js"></script>
 <script src="../assets/js/like.js"></script>
-<script src="../../home/js/search_js.js"></script>
+<script src="../../page/js/search_js.js"></script>
 <script>
+    window.onload = function () {
+        onloadCheckLogin();
+        let idSong = localStorage.getItem("idSong");
+        getSongByID(idSong);
+        getCommentByIdSong(idSong);
 
+    }
 </script>
 </html>

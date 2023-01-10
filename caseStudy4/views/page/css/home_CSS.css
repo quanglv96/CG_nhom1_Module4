@@ -57,7 +57,6 @@ body {
 }
 
 .item {
-    padding: 1rem;
     text-align: center;
     color: #000000;
 }
@@ -71,12 +70,6 @@ body {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
     /*grid-template-rows: 270px 200px;*/
-}
-a{
-    text-decoration: none;
-    /*đổi hình dạn chuột khi trỏ vào*/
-    cursor: pointer;
-    font-family: Interstate;
 }
 .name--user a{
     font-size: 15px;

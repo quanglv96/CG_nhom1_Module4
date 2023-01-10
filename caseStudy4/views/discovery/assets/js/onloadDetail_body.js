@@ -1,10 +1,4 @@
-window.onload = function () {
-    onloadCheckLogin();
-    let idSong = localStorage.getItem("idSong");
-    getSongByID(idSong);
-    getCommentByIdSong(idSong);
 
-}
 function getSongByID(idSong){
     let userLogin = JSON.parse(localStorage.getItem("userLogin"));
     $.ajax({

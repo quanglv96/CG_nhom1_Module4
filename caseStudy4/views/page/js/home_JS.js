@@ -1,8 +1,3 @@
-window.onload = function () {
-    onloadCheckLogin();
-    displaySongTrend();
-}
-
 function displaySongTrend() {
     $.ajax({
         type: "GET",
@@ -21,28 +16,25 @@ function displaySongTrend() {
 }
 
 function getListSong(songsList) {
-    return `<div class="item">
-        <img onclick="redirectSong(${songsList.id})" width="150px" height="150px" src="/views/upload_img/${songsList.avatar}"><br>
-        <p class="nameSongList name-song" ><a onclick="redirectSong(${songsList.id})" >${songsList.name}</a><br></p>
-        <p class="nameSongList name--user" onclick="redirectResultSearchUser(${songsList.users.id})" ><a>${songsList.users.name}</a></p>
+    return `<div class="item" style="padding: 17px;">
+        <img onclick="redirectSong(${songsList.id})" class="item-img" src="/views/upload_img/${songsList.avatar}"><br>
+        <p class="m-0 item-title" ><a onclick="redirectSong(${songsList.id})" >${songsList.name}</a><br></p>
+        <p class="m-0 item-description font-12 grey-text" onclick="redirectResultSearchUser(${songsList.users.id})" ><a>${songsList.users.name}</a></p>
     </div>`
 }
 
-function fieldTextSearch() {
-    let textSearchHome = document.getElementById("input_search").value;
-    document.getElementById("btnSearch").setAttribute("value", textSearchHome)
-}
 
-function redirectResultSearch(textSearchHome) {
+function redirectResultSearch() {
+    let textSearchHome = document.getElementById("input_search").value;
     localStorage.setItem("textSearch", textSearchHome);
     localStorage.removeItem("searchIdUser");
-    window.location = "../../discovery/layout/layout.html";
+    window.location = "../discovery/layout/layout.html";
 }
 
 function redirectResultSearchUser(idUser) {
     localStorage.removeItem("textSearch");
     localStorage.setItem("searchIdUser", idUser);
-    window.location = "../../discovery/layout/layout.html";
+    window.location = "../discovery/layout/layout.html";
 }
 
 let slideIndex = 0;
@@ -57,7 +49,7 @@ function slideShow() {
     if (slideIndex > slides.length) {
         slideIndex = 1
     }
-    slides[slideIndex - 1].style.display = "block";
+    // slides[slideIndex - 1].style.display = "block";
     setTimeout(slideShow, 3000); // Change image every 2 seconds
 }
 

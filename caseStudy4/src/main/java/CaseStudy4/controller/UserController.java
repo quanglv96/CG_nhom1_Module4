@@ -65,8 +65,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Iterable<Users>> update(@ModelAttribute Users users) {
+    @PostMapping("{id}")
+    public ResponseEntity<Optional<Users>> update(@ModelAttribute Users users) {
         try {
             Users oldUser = iUserService.findById(users.getId()).get();
             MultipartFile file_img = users.getImage();
@@ -76,8 +76,9 @@ public class UserController {
             } else {
                 file_img.transferTo(new File(upload_IMG + fileName_IMG));
             }
-            iUserService.save(new Users(users.getId(), users.getUsername(), users.getPassword(), users.getName(), users.getAddress(), users.getEmail(), users.getPhone(), fileName_IMG, oldUser.getRole()));
-            return ResponseEntity.status(HttpStatus.OK).build();
+            Users newUser=new Users(users.getId(), oldUser.getUsername(), oldUser.getPassword(), users.getName(), users.getAddress(), users.getEmail(), users.getPhone(), fileName_IMG, oldUser.getRole());
+            iUserService.save(newUser);
+            return new ResponseEntity<>(iUserService.findById(newUser.getId()),HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -94,9 +95,9 @@ public class UserController {
         return  new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("/changePassword/{id}")
-    public ResponseEntity<Iterable<Users>> changePassword(@RequestBody String newPassword, @PathVariable("id") Long id) {
-        iUserService.updatePasswordByID(newPassword, id);
+    @PostMapping("/changePassword")
+    public ResponseEntity<Iterable<Users>> changePassword(@RequestBody Users user) {
+        iUserService.updatePasswordByID(user.getPassword(), user.getId());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

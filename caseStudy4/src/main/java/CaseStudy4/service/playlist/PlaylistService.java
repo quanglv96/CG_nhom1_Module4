@@ -30,6 +30,8 @@ public class PlaylistService implements IPlaylistService{
 
     @Override
     public void remove(Long id) {
+        iPlaylistRepository.deletePlaylistInSongs(id);
+        iPlaylistRepository.deletePlaylistInTag(id);
         iPlaylistRepository.deleteById(id);
     }
 

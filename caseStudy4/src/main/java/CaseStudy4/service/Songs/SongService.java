@@ -2,9 +2,15 @@ package CaseStudy4.service.Songs;
 
 import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
+import CaseStudy4.model.Tags;
 import CaseStudy4.model.Users;
+import CaseStudy4.repository.ISingerRepository;
 import CaseStudy4.repository.ISongRepository;
+import CaseStudy4.repository.ITagRepository;
+import CaseStudy4.service.Singer.ISingerService;
+import CaseStudy4.service.Tags.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -15,6 +21,10 @@ import java.util.*;
 public class SongService implements ISongService {
     @Autowired
     private ISongRepository isongRepository;
+    @Autowired
+    private ITagService tagService;
+    @Autowired
+    private ISingerService singerService;
 
     @Override
     public Iterable<Songs> findAll() {
@@ -49,11 +59,24 @@ public class SongService implements ISongService {
 
     @Override
     public Songs save(Songs songs) {
+        isongRepository.save(songs);
+        Songs newSong=isongRepository.findByName(songs.getName()).get();
+        List<Tags> tagsList = newSong.getTagsList();
+        for (int i = 0; i <  tagsList.size(); i++) {
+            tagService.addSongerTag(newSong.getId(),tagsList.get(i).getId());
+        }
+        List<Singer> listSinger=newSong.getSingerList();
+        for (int i = 0; i < listSinger.size(); i++) {
+            singerService.addSingerSong(newSong.getId(),listSinger.get(i).getId());
+        }
         return isongRepository.save(songs);
     }
 
     @Override
     public void remove(Long id) {
+        isongRepository.deleteSongInPlaylist(id);
+        isongRepository.deleteSongInTag(id);
+        isongRepository.deleteSongInSinger(id);
         isongRepository.deleteById(id);
     }
 
@@ -80,4 +103,5 @@ public class SongService implements ISongService {
         }
         return result;
     }
+
 }
