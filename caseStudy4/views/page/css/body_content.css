@@ -1,0 +1,58 @@
+.body-content .song-avt,
+.body-content .user-avt,
+.body-content .playlist-avt {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio:  1 / 1;
+}
+
+.body-content .play-btn {
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.body-content .play-btn:hover {
+    background-color: #615e5e;
+}
+
+.body-content .tag-ref {
+    background-color: #999999;
+    color: white;
+    display: inline-block;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.body-content .tag-ref:hover {
+    background-color: #615e5e;
+}
+
+.body-content .audio-control {
+    width: 100%;
+}
+
+.body-content .user-desc {
+    display: flex;
+    align-items: center;
+}
+
+.body-content .first-desc-row {
+    flex: 1;
+}
+
+.audio-feedback {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wave-song > wave > wave {
+    border: none !important;
+}
+
+
+
