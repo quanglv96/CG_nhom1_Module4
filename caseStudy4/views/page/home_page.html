@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../page/lib/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="../page/lib/slick-1.8.1/slick/slick-theme.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Home Page</title>
 </head>
 <body>
 <div class="header-cointainer container-fluid">
@@ -25,9 +25,9 @@
                 <img class="logo-img" src="../upload_img/LOGONHOM1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../views/discovery/layout/body_home.html">Discovery</a>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../page/discovery_page.html">Discovery</a>
                 </div>
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../views/discovery/layout/body_home.html">Library</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../page/discovery_page.html">Library</a></div>
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
@@ -85,7 +85,7 @@
         <div class="wrapper" id="listTrending"></div>
 
             <div class="text-center my-5">
-                <button class="explore-btn" onclick="window.location='../discovery/layout/body_home.html'">Explore trending playlists</button>
+                <button class="explore-btn" onclick="window.location='../page/discovery_page.html'">Explore trending playlists</button>
             </div>
 
             <div class="text-center mb-4">
@@ -125,105 +125,6 @@
                 </li>
             </ul>
         </div>
-    </div>
-</div>
-
-<!--<button onclick="openModal('.song-modal')" class="song-btn modal-open btn btn-sm btn-primary">Open song modal</button>-->
-<div class="modal song-modal">
-    <div class="modal-dialogue song-modal-dialogue">
-        <form class="song-form">
-            <h2 class="text-center modal-header">Upload song</h2>
-            <div class="row">
-                <div class="col col-4">
-                    <div class="modal-image mb-3">
-                        <img class="modal-img modal-img-song" src="../assets/img/white.png" alt="">
-                        <button class="upload-box upload-btn p-1">
-                                <span onclick="openUpload('.input-file-song')" class="py-2 px-2">
-                                    <i class="me-1 fa-solid fa-camera"></i>
-                                    <span>Upload image</span>
-                                </span>
-                            <input onchange="replaceImg(this, '.modal-img-song')" class="input-file-song" type="file" hidden>
-                        </button>
-                    </div>
-                    <button class="upload-mp3">
-                        <span onclick="openUpload('.input-mp3-file')" class="py-2 px-2">Choose mp3 file: </span>
-                        <input onchange="getFileName(this)" class="input-mp3-file" type="file" hidden>
-                    </button>
-                    <p class="mp3-name font-12 grey-text"></p>
-                </div>
-                <div class="col col-8">
-                    <div class="modal-body p-0">
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="name">Name:</label><br>
-                            <input class="modal-input" name="name" type="text" id="name" placeholder="Name">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="description">Description:</label><br>
-                            <textarea class="modal-input" rows="3" name="description" type="text" id="description" placeholder="Description"></textarea>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="composer">Composer:</label><br>
-                            <input class="modal-input" name="composer" type="text" id="composer" placeholder="Price">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="tag">Tag:</label><br>
-                            <input class="modal-input" name="tag" type="text" id="tag" placeholder="Tag">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="singer">Singer:</label><br>
-                            <input class="modal-input" name="singer" type="text" id="singer" placeholder="Singer">
-                        </div>
-                    </div>
-                    <div class="modal-footer px-0">
-                        <button onclick="closeModal()" class="modal-btn modal-close btn btn-sm btn-danger m-0" type="button">Close</button>
-                        <button class="modal-btn modal-submit-short btn btn-sm btn-dark m-0" type="button">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<button onclick="openModal('.playlist-modal')" class="modal-open playlist-btn btn btn-sm btn-primary">Open playlist modal</button>
-<div class="modal playlist-modal">
-    <div class="modal-dialogue playlist-modal-dialogue">
-        <form class="playlist-form">
-            <h2 class="text-center modal-header">Create playlist</h2>
-            <div class="row">
-                <div class="col col-4">
-                    <div class="modal-image mb-3">
-                        <img class="modal-img modal-img-playlist" src="/assets/img/white.png" alt="">
-                        <button class="upload-box upload-btn p-1">
-                                <span onclick="openUpload('.input-file-playlist')" class="py-2 px-2">
-                                    <i class="me-1 fa-solid fa-camera"></i>
-                                    <span>Upload image</span>
-                                </span>
-                            <input onchange="replaceImg(this, '.modal-img-playlist')" class="input-file-playlist" type="file" hidden>
-                        </button>
-                    </div>
-                </div>
-                <div class="col col-8">
-                    <div class="modal-body p-0">
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="p-name">Name:</label><br>
-                            <input class="modal-input" name="name" type="text" id="p-name" placeholder="Name">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="p-description">Description:</label><br>
-                            <textarea class="modal-input" rows="3" name="description" type="text" id="p-description" placeholder="Description"></textarea>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="p-tag">Tag:</label><br>
-                            <input class="modal-input" name="tag" type="text" id="p-tag" placeholder="Tag">
-                        </div>
-                    </div>
-                    <div class="modal-footer px-0">
-                        <button onclick="closeModal()" class="modal-close modal-btn btn btn-sm btn-danger m-0" type="button">Close</button>
-                        <button class="modal-submit-short modal-btn btn btn-sm btn-dark m-0" type="button">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
 
@@ -302,17 +203,12 @@
 <script src="js/home_JS.js"></script>
 <script src="../users/onload-check-login.js"></script>
 <script src="../discovery/assets/js/redirect_Song.js"></script>
-<!--<script src="../../discovery/assets/js/validator.js"></script>-->
-<!--<script src="js/signIn_js.js"></script>-->
 <script src="js/login_js.js"></script>
 <script src="js/search_js.js"></script>
 <script src="../page/js/validator.js"></script>
 <script src="../page/js/home_page.js"></script>
 <script src="js/modal.js"></script>
 <script src="../page/lib/slick-1.8.1/slick/slick.js"></script>
-<!--<script src="../discovery/assets/js/modal-edit-create-playlist.js"></script>-->
-<!--<script src="../discovery/assets/js/edit-create-playlist.js"></script>-->
-<!--<script src="../discovery/assets/js/modal.js"></script>-->
 </body>
 <script>
     window.onload = function () {

@@ -49,7 +49,7 @@ public class SongController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Songs>> findByID(@PathVariable("id") Long id){
-        setView(id);
+//        setView(id);
         return new ResponseEntity<>(iSongService.findById(id), HttpStatus.OK);
     }
 
