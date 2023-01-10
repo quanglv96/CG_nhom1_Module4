@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 @Service
-//@Transactional
+@Transactional
 public class SingerService implements ISingerService{
     @Autowired
-    ISingerRepository singerRepository;
+    private ISingerRepository singerRepository;
+
 
     @Override
     public Iterable<Singer> findAll() {
@@ -31,6 +32,10 @@ public class SingerService implements ISingerService{
     @Override
     public void remove(Long id) {
         singerRepository.deleteById(id);
+    }
+    @Override
+    public void addSingerSong(Long idSong, Long idSinger){
+        singerRepository.addSingerSong(idSong,idSinger);
     }
 
     @Override

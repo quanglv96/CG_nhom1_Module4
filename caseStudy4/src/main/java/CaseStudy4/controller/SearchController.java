@@ -57,6 +57,10 @@ public class SearchController {
         resultSearch.add(iPlaylistService.findAllByUsers(iUserService.findById(idUser).get()));
         return new ResponseEntity<>(resultSearch,HttpStatus.OK);
     }
+    @GetMapping("/songsBySinger")
+    public ResponseEntity<Iterable<Songs>> findSongBySinger(@RequestParam("idSinger") Long idSinger){
+        return new ResponseEntity<>(iSongService.findAllBySingerList(idSinger),HttpStatus.OK);
+    }
 
 
 }

@@ -5,4 +5,5 @@ import CaseStudy4.service.IGeneralService;
 
 public interface ISingerService extends IGeneralService<Singer> {
     Iterable<Singer> findAllByName(String name);
+    void addSingerSong(Long idSong, Long idSinger);
 }
