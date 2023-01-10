@@ -64,6 +64,18 @@ public class Playlist {
         this.users = users;
     }
 
+    public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, List<Tags> tagsList, long views, long likes) {
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
+        this.users = users;
+        this.tagsList = tagsList;
+        this.views = views;
+        this.likes = likes;
+    }
+
     public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, long views, long likes) {
         this.name = name;
         this.description = description;

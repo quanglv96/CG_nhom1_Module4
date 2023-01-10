@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +64,8 @@ public class PlayListController {
         LocalDate date_create = LocalDate.now();
         LocalDate last_update = LocalDate.now();
         Users users=userService.findById(idUser).get();
-        Playlist newUser = new Playlist(playlist.getName(), playlist.getDescription(), fileName_IMG, date_create, last_update, users, 200, 200);
+        List<Tags> tagsList = editStringTag(playlist.getStringTag());
+        Playlist newUser = new Playlist(playlist.getName(), playlist.getDescription(), fileName_IMG, date_create, last_update, users,tagsList, 200, 200);
         iPlaylistService.save(newUser);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -89,6 +89,9 @@ public class PlayListController {
             Playlist oldPlaylist = iPlaylistService.findById(playlist.getId()).get();
             LocalDate last_update = LocalDate.now();
             List<Tags> tagsList = editStringTag(playlist.getStringTag());
+            for (int i = 0; i <  tagsList.size(); i++) {
+                tagService.addSongTag(id,tagsList.get(i).getId());
+            }
             iPlaylistService.save(new Playlist(playlist.getId(), playlist.getName(), playlist.getDescription(), fileName_IMG, oldPlaylist.getDateCreate(), last_update, oldPlaylist.getUsers(), oldPlaylist.getSongsList(), tagsList, oldPlaylist.getViews(), oldPlaylist.getLikes()));
             return new ResponseEntity<>(iPlaylistService.findAll(), HttpStatus.OK);
         } catch (IOException e) {

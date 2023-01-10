@@ -12,8 +12,12 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface ITagRepository extends JpaRepository<Tags, Long> {
-    Optional<Tags> findByName(String name);
+    Optional<Tags> findTagsByName(String name);
+
     @Modifying
     @Query(value = "INSERT INTO casestudy4.song_tag (id_song, id_tags)VALUES (?1, ?2)", nativeQuery = true)
     void addSongTag(Long idSong,Long idTag);
+    @Modifying
+    @Query(value ="INSERT INTO casestudy4.playlist_tag (id_playlist, id_tags) VALUES (?1, ?2)", nativeQuery = true)
+    void addPlaylistTag(Long idPlaylist,Long idTag);
 }

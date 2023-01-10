@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -38,11 +37,11 @@ public class TagService implements ITagService {
     @Override
     public Iterable<Tags> StringToListObj(List<String> listTag) {
         List<Tags> list = new ArrayList<>();
-        for (int i = 0; i < listTag.size(); i++) {
-            if(!iTagRepository.findByName(listTag.get(i)).isPresent()&& !Objects.equals(listTag.get(i), "")){
+        for (int i = 1; i < listTag.size(); i++) {
+            if(!iTagRepository.findTagsByName(listTag.get(i)).isPresent()){
                 save(new Tags(listTag.get(i)));
             }
-            list.add(iTagRepository.findByName(listTag.get(i)).get());
+            list.add(iTagRepository.findTagsByName(listTag.get(i)).get());
         }
         return list;
     }
@@ -50,15 +49,21 @@ public class TagService implements ITagService {
     @Override
     public void saveListTag(List<String> listTag) {
         for (int i = 0; i < listTag.size(); i++) {
-            if(!iTagRepository.findByName(listTag.get(i)).isPresent()){
+            if(!iTagRepository.findTagsByName(listTag.get(i)).isPresent()){
                 save(new Tags(listTag.get(i)));
             }
         }
     }
 
     @Override
-    public void addSongerTag(Long idSong, Long idTag) {
+    public void addSongTag(Long idSong, Long idTag) {
+
         iTagRepository.addSongTag(idSong, idTag);
+    }
+
+    @Override
+    public void addPlaylistTag(Long idPlaylist, Long idTag) {
+        iTagRepository.addPlaylistTag(idPlaylist,idTag);
     }
 
 }

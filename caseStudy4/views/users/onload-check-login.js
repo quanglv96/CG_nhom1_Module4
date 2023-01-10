@@ -23,7 +23,7 @@ function onloadCheckLogin(){
             }
             if(document.getElementById("trueLogin-username")!=null){
                 document.getElementById("trueLogin-username").innerText=user.name
-                document.getElementById("trueLogin-avatar").setAttribute("src",`../upload_img/${user.avatar}`);
+                document.getElementById("trueLogin-avatar").setAttribute("src",`/views/upload_img/${user.avatar}`);
             }
         }
         if(falseLogin!==null){
