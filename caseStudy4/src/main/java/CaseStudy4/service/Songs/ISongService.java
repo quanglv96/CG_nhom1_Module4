@@ -15,5 +15,5 @@ public interface ISongService extends IGeneralService<Songs> {
     Iterable<Songs> findAllByUsers(Users users);
 
     Iterable<Songs> findAllBySingerList(Long id);
-
+    List<Songs> generateFiveRandom(Long id);
 }

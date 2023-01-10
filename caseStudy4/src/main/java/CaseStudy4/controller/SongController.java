@@ -1,10 +1,12 @@
 package CaseStudy4.controller;
 
+import CaseStudy4.model.Comments;
 import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
 import CaseStudy4.service.Singer.ISingerService;
 import CaseStudy4.service.Songs.ISongService;
+import CaseStudy4.service.comment.ICommentService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,8 @@ public class SongController {
     private ISongService iSongService;
     @Autowired
     private ISingerService singerService;
+    @Autowired
+    private ICommentService commentService;
     @Value("${upload.img}")
     private String upload_IMG;
     @Value("${upload.mp3}")
@@ -36,7 +40,7 @@ public class SongController {
     public ResponseEntity<Iterable<Songs>> findAll(){
         return new ResponseEntity<>(iSongService.findAll(),HttpStatus.OK) ;
     }
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Songs>> findByID(@PathVariable("id") Long id){
         setView(id);
         return new ResponseEntity<>(iSongService.findById(id),HttpStatus.OK) ;
@@ -118,8 +122,22 @@ public class SongController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-@GetMapping("/singerList/{id}")
-    public ResponseEntity<Iterable<Songs>> listSinger(@PathVariable("id") Long idSinger){
-    return new ResponseEntity<>(iSongService.findAllBySingerList(idSinger), HttpStatus.OK);
+    @GetMapping("/singerList/{id}")
+        public ResponseEntity<Iterable<Songs>> listSinger(@PathVariable("id") Long idSinger){
+        return new ResponseEntity<>(iSongService.findAllBySingerList(idSinger), HttpStatus.OK);
+    }
+
+    @GetMapping("/getView/{id}")
+    public ResponseEntity<Object> getSongViews(@PathVariable("id") Long id) {
+        Optional<Songs> songs = iSongService.findById(id);
+        if (songs.isPresent()) {
+            songs.get().setViews(songs.get().getViews() + 1);
+            iSongService.save(songs.get());
+            Iterable<Comments> comments = commentService.findAllBySongsOrderByDateDesc(songs.get());
+            List<Songs> random = iSongService.generateFiveRandom(id);
+            Object[] result = new Object[]{songs.get(), comments, random};
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

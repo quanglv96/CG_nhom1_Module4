@@ -9,9 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 @Service
 public class SongService implements ISongService {
     @Autowired
@@ -61,5 +60,24 @@ public class SongService implements ISongService {
     @Override
     public Iterable<Songs> findAllBySingerList(Long id) {
         return isongRepository.findAllBySingerList(id);
+    }
+
+    @Override
+    public List<Songs> generateFiveRandom(Long id) {
+        List<Songs> result = new ArrayList<>();
+        List<Songs> songsList = (List<Songs>) findAll();
+        Set<Integer> indexes = new HashSet<>();
+        while (indexes.size() <= 4) {
+            Random rand = new Random();
+            int index = rand.nextInt(songsList.size());
+            if (Objects.equals(songsList.get(index).getId(), id)) {
+                continue;
+            }
+            indexes.add(index);
+        }
+        for (int i : indexes) {
+            result.add(songsList.get(i));
+        }
+        return result;
     }
 }
