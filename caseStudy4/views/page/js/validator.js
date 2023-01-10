@@ -1,4 +1,4 @@
-function validator(option, callback) {
+function validator(option) {
     let rulesSelector = {};
 
     let form = document.querySelector(option.form);
@@ -83,6 +83,11 @@ validator.lengthField = function(selector, min, max) {
     }
 }
 
-validator.callback = function() {
-
+validator.isDifferent = function(selector, getValue) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return (value !== getValue()) ? undefined : "The new password should be different from the old password"
+        }
+    }
 }

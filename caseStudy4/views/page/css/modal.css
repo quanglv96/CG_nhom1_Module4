@@ -6,7 +6,7 @@
     bottom: 0;
     background-color: rgba(190, 189, 189, 0.5);
     display: none;
-    z-index: 2;
+    z-index: 5;
 }
 
 .modal-header {
@@ -124,6 +124,10 @@
 
 .modal-btn {
     padding: 6px 12px !important;
-    width: 50%;
+    width: 100px;
     border-radius: 0 !important;
+}
+
+.modal-close {
+    margin-right: 4px !important;
 }
