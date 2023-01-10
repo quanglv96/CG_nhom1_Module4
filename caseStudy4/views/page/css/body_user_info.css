@@ -75,3 +75,12 @@
     border-radius: 12px;
     cursor: pointer;
 }
+
+.upload-btn-info {
+    border: none;
+    border-radius: 4px;
+    position: absolute;
+    left: 64px;
+    top: 200px;
+    opacity: 80%;
+}
