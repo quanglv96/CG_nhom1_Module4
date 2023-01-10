@@ -3,7 +3,9 @@ package CaseStudy4.controller;
 import CaseStudy4.model.Playlist;
 import CaseStudy4.model.Tags;
 import CaseStudy4.model.Users;
+import CaseStudy4.service.Tags.ITagService;
 import CaseStudy4.service.playlist.IPlaylistService;
+import CaseStudy4.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,7 @@ import org.w3c.dom.stylesheets.LinkStyle;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -25,6 +25,10 @@ import java.util.Optional;
 public class PlayListController {
     @Autowired
     private IPlaylistService iPlaylistService;
+    @Autowired
+    private IUserService userService;
+    @Autowired
+    private ITagService tagService;
     @Value("${upload.img}")
     private String upload_IMG;
 
@@ -43,13 +47,14 @@ public class PlayListController {
     public ResponseEntity<Iterable<Playlist>> listTrending() {
         return new ResponseEntity<>(iPlaylistService.listTrending(), HttpStatus.OK);
     }
+
     @GetMapping("/newPlaylist")
     public ResponseEntity<Iterable<Playlist>> newPlaylist() {
         return new ResponseEntity<>(iPlaylistService.listNewPlaylist(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@ModelAttribute Playlist playlist, @ModelAttribute("userLogin")Users users) {
+    public ResponseEntity<?> save(@ModelAttribute Playlist playlist, @RequestParam("idUser") Long idUser) {
         MultipartFile file_img = playlist.getImage();
         String fileName_IMG = file_img.getOriginalFilename();
         try {
@@ -59,9 +64,10 @@ public class PlayListController {
         }
         LocalDate date_create = LocalDate.now();
         LocalDate last_update = LocalDate.now();
-Playlist newUser=new Playlist(playlist.getName(), playlist.getDescription(), fileName_IMG, date_create, last_update, users, 200, 200);
+        Users users=userService.findById(idUser).get();
+        Playlist newUser = new Playlist(playlist.getName(), playlist.getDescription(), fileName_IMG, date_create, last_update, users, 200, 200);
         iPlaylistService.save(newUser);
-        return  ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("{id}")
@@ -70,8 +76,8 @@ Playlist newUser=new Playlist(playlist.getName(), playlist.getDescription(), fil
         return new ResponseEntity<>(iPlaylistService.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Iterable<Playlist>> update(@ModelAttribute Playlist playlist) {
+    @PostMapping("{id}")
+    public ResponseEntity<Iterable<Playlist>> update(@ModelAttribute Playlist playlist, @PathVariable("id") Long id) {
         try {
             MultipartFile file_img = playlist.getImage();
             String fileName_IMG = file_img.getOriginalFilename();
@@ -82,30 +88,50 @@ Playlist newUser=new Playlist(playlist.getName(), playlist.getDescription(), fil
             }
             Playlist oldPlaylist = iPlaylistService.findById(playlist.getId()).get();
             LocalDate last_update = LocalDate.now();
-            iPlaylistService.save(new Playlist(playlist.getId(), playlist.getName(), playlist.getDescription(), fileName_IMG, oldPlaylist.getDateCreate(), last_update, playlist.getUsers(), playlist.getSongsList(), playlist.getTagsList(), oldPlaylist.getViews(), oldPlaylist.getLikes()));
+            List<Tags> tagsList = editStringTag(playlist.getStringTag());
+            iPlaylistService.save(new Playlist(playlist.getId(), playlist.getName(), playlist.getDescription(), fileName_IMG, oldPlaylist.getDateCreate(), last_update, oldPlaylist.getUsers(), oldPlaylist.getSongsList(), tagsList, oldPlaylist.getViews(), oldPlaylist.getLikes()));
             return new ResponseEntity<>(iPlaylistService.findAll(), HttpStatus.OK);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-        @PostMapping("/setLike/{id}")
-        public void setLikes (@PathVariable("id") Long id){
-            Playlist playlist = iPlaylistService.findById(id).get();
-            playlist.setLikes(playlist.getLikes() + 1);
-            iPlaylistService.save(playlist);
+    public List<Tags> editStringTag(String tag) {
+        List<Tags> listTag;
+        String[] tags = tag.split("#");
+        for (int i = 0; i < tags.length; i++) {
+            if(!Objects.equals(tags[i], "")){
+                //xóa khoảng trắng
+                tags[i].replaceAll(" ", "");
+                // lowe case
+                tags[i].toLowerCase();
+            }
         }
-        @PostMapping("/disLike/{id}")
-        public void disLike (@PathVariable("id") Long id){
-            Playlist playlist = iPlaylistService.findById(id).get();
-            playlist.setLikes(playlist.getLikes() - 1);
-            iPlaylistService.save(playlist);
-        }
-
-        @PostMapping("/setView/{id}")
-        public void setView (@PathVariable("id") Long id){
-            Playlist playlist = iPlaylistService.findById(id).get();
-            playlist.setViews(playlist.getViews() + 1);
-            iPlaylistService.save(playlist);
-        }
-
+        // xóa trùng
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(Arrays.asList(tags));
+        tags = hashSet.toArray(new String[0]);
+        // chuyển tags và lưu
+        listTag = (List<Tags>) tagService.StringToListObj(Arrays.asList(tags));
+        return listTag;
     }
+    @PostMapping("/setLike/{id}")
+    public void setLikes(@PathVariable("id") Long id) {
+        Playlist playlist = iPlaylistService.findById(id).get();
+        playlist.setLikes(playlist.getLikes() + 1);
+        iPlaylistService.save(playlist);
+    }
+
+    @PostMapping("/disLike/{id}")
+    public void disLike(@PathVariable("id") Long id) {
+        Playlist playlist = iPlaylistService.findById(id).get();
+        playlist.setLikes(playlist.getLikes() - 1);
+        iPlaylistService.save(playlist);
+    }
+
+    @PostMapping("/setView/{id}")
+    public void setView(@PathVariable("id") Long id) {
+        Playlist playlist = iPlaylistService.findById(id).get();
+        playlist.setViews(playlist.getViews() + 1);
+        iPlaylistService.save(playlist);
+    }
+
+}

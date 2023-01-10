@@ -128,7 +128,7 @@
                 <div class="my-3 form-heading user-playlist-heading hide">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="h4 m-0">My playlist</div>
-                        <button class="btn btn-dark no-border-radius playlist-btn" onclick="openModal('.playlist-modal')">Create playlist</button>
+                        <button class="btn btn-dark no-border-radius playlist-btn" onclick="fieldCreatePlaylist()">Create playlist</button>
                     </div>
                 </div>
                 <hr class="m-0">
@@ -394,39 +394,39 @@
 <!-- MODAL PLAYLIST-->
 <div class="modal playlist-modal">
     <div class="modal-dialogue playlist-modal-dialogue">
-        <form class="playlist-form">
-            <h2 class="modal-header">Create playlist</h2>
+        <form class="playlist-form" id="form-playlist">
+            <h2 class="modal-header" id="title-playlist">Create playlist</h2>
             <div class="row">
                 <div class="col col-4">
                     <div class="modal-image mb-3">
-                        <img class="modal-img modal-img-playlist" src="/assets/img/white.png" alt="">
+                        <img class="modal-img modal-img-playlist" id="avt-p-init" src="../discovery/assets/img/white.png" alt="">
                         <button class="upload-box upload-btn p-1">
                                 <span onclick="openUpload('.input-file-playlist')" class="py-2 px-2">
                                     <i class="me-1 fa-solid fa-camera"></i>
                                     <span>Upload image</span>
                                 </span>
-                            <input onchange="replaceImg(this, '.modal-img-playlist')" class="input-file-playlist" type="file" hidden>
+                            <input name="image" onchange="replaceImg(this, '.modal-img-playlist')" class="input-file-playlist" type="file" hidden>
                         </button>
                     </div>
                 </div>
                 <div class="col col-8">
                     <div class="modal-body p-0">
                         <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="ip-name">Name:</label><br>
-                            <input class="modal-input" name="name" type="text" id="ip-name" placeholder="Name">
+                            <label class="modal-label my-1" for="ip-namePlay">Name:</label><br>
+                            <input class="modal-input" name="name" type="text" id="ip-namePlay" placeholder="Name">
                         </div>
                         <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="p-description">Description:</label><br>
-                            <textarea class="modal-input" rows="3" name="p-description" type="text" id="p-description" placeholder="Description"></textarea>
+                            <label class="modal-label my-1" for="description">Description:</label><br>
+                            <textarea class="modal-input" rows="3" name="description" type="text" id="description" placeholder="Description"></textarea>
                         </div>
                         <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="p-tag">Tag:</label><br>
-                            <input class="modal-input" name="tag" type="text" id="p-tag" placeholder="Tag">
+                            <label class="modal-label my-1" for="p-list-tag">Tag:</label><br>
+                            <input class="modal-input" name="stringTag" type="text" id="p-list-tag" placeholder="VD:#rap#rock">
                         </div>
                     </div>
                     <div class="modal-footer px-0">
-                        <button onclick="closeModal()" class="modal-close modal-btn btn btn-sm btn-danger m-0" type="button">Close</button>
-                        <button class="modal-submit-short modal-btn btn btn-sm btn-dark m-0" type="button">Upload</button>
+                        <button onclick="closeModal()" class="modal-close modal-btn btn btn-sm btn-danger m-0" type="reset">Close</button>
+                        <button class="modal-submit-short modal-btn btn btn-sm btn-dark m-0" type="button" id="btn-playlist">Upload</button>
                     </div>
                 </div>
             </div>
@@ -442,6 +442,7 @@
 <script src="js/home_JS.js"></script>
 <script src="../discovery/assets/js/redirect_Song.js"></script>
 <script src="../discovery/assets/js/edit-create-song.js"></script>
+<script src="../discovery/assets/js/edit-create-playlist.js"></script>
 <script src="../users/onload-check-login.js"></script>
 <script src="js/validator.js"></script>
 <script src="js/user_info_page.js"></script>

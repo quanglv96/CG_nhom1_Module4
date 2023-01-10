@@ -23,7 +23,10 @@ public class Playlist {
     private String description; // mô tả nội dung bài hát
     private String avatar;
     private LocalDate dateCreate; // ngày tạo
-    private LocalDate lastUpdate; // ngày cập nhập lần cuối
+    private LocalDate lastUpdate;
+    @Transient
+    private String stringTag;
+    // ngày cập nhập lần cuối
     @NotNull
     @OneToOne(targetEntity = Users.class)
     @JoinColumn(name = "id_users")
