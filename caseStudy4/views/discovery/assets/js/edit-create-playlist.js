@@ -1,4 +1,4 @@
-function createPlaylist(){
+function editCreatePlaylist(){
 let formData=new FormData($('#form-create-playlist')[0]);
 let tag =document.getElementById("tags").value;
 let listTags=tag.split("#")

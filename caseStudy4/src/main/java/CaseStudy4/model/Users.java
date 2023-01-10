@@ -85,5 +85,4 @@ public class Users {
         this.avatar = avatar;
         this.role = role;
     }
-
 }

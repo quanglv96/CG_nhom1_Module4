@@ -2,12 +2,18 @@ package CaseStudy4.repository;
 
 import CaseStudy4.model.Tags;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Repository
 @Transactional
 public interface ITagRepository extends JpaRepository<Tags, Long> {
-
+    Optional<Tags> findByName(String name);
+    @Modifying
+    @Query(value = "INSERT INTO casestudy4.song_tag (id_song, id_tags)VALUES (?1, ?2)", nativeQuery = true)
+    void addSongTag(Long idSong,Long idTag);
 }

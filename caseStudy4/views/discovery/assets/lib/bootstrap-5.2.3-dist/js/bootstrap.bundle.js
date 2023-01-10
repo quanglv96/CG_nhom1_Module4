@@ -4622,7 +4622,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v5.2.3): modal-create-playlist.js
+   * Bootstrap (v5.2.3): modal-edit-create-playlist.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */

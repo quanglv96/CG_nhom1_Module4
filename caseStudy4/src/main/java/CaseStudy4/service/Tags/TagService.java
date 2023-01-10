@@ -5,10 +5,13 @@ import CaseStudy4.repository.ITagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class TagService implements ITagService{
+public class TagService implements ITagService {
     @Autowired
     public ITagRepository iTagRepository;
 
@@ -24,12 +27,38 @@ public class TagService implements ITagService{
 
     @Override
     public Tags save(Tags tags) {
+
         return iTagRepository.save(tags);
     }
 
     @Override
     public void remove(Long id) {
         iTagRepository.deleteById(id);
+    }
+    @Override
+    public Iterable<Tags> StringToListObj(List<String> listTag) {
+        List<Tags> list = new ArrayList<>();
+        for (int i = 0; i < listTag.size(); i++) {
+            if(!iTagRepository.findByName(listTag.get(i)).isPresent()&& !Objects.equals(listTag.get(i), "")){
+                save(new Tags(listTag.get(i)));
+            }
+            list.add(iTagRepository.findByName(listTag.get(i)).get());
+        }
+        return list;
+    }
+
+    @Override
+    public void saveListTag(List<String> listTag) {
+        for (int i = 0; i < listTag.size(); i++) {
+            if(!iTagRepository.findByName(listTag.get(i)).isPresent()){
+                save(new Tags(listTag.get(i)));
+            }
+        }
+    }
+
+    @Override
+    public void addSongerTag(Long idSong, Long idTag) {
+        iTagRepository.addSongTag(idSong, idTag);
     }
 
 }

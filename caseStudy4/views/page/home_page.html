@@ -31,16 +31,6 @@
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
-            <div class="search-bar mx-2">
-                <div class="input-group no-border-radius">
-                    <input class="form-control no-border-radius" type="text" placeholder="Search">
-                    <span class="input-group-text no-border-radius">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg>
-                        </span>
-                </div>
-            </div>
             <div class="user-register d-flex align-items-center" id="falseLogin">
                 <button onclick="openModal('.login-modal')" class="btn btn-outline-dark text-white login-btn">Sign in
                 </button>
@@ -56,7 +46,7 @@
                         </svg>
                     </span>
                 <ul class="user-menu border p-0">
-                    <li><a class="dropdown-item py-2 px-3" href="#">User info</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="../page/user_info_page.html">User info</a></li>
                     <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
                     <hr class="m-1">
                     <li>
@@ -86,8 +76,8 @@
         </div>
         <div class="text-center my-5">
                 <span class="text-center home-input-group">
-                    <input type="text" class="home-input" placeholder="Search for artists, bands, tracks, podcasts">
-                    <span class="home-input-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="input_search" type="text" class="home-input" placeholder="Search for artists, bands, tracks, podcasts">
+                    <span class="home-input-icon"><i class="fa-solid fa-magnifying-glass" onclick="redirectResultSearch()"></i></span>
                 </span>
         </div>
 
@@ -313,15 +303,21 @@
 <script src="../users/onload-check-login.js"></script>
 <script src="../discovery/assets/js/redirect_Song.js"></script>
 <!--<script src="../../discovery/assets/js/validator.js"></script>-->
-<script src="js/signIn_js.js"></script>
+<!--<script src="js/signIn_js.js"></script>-->
 <script src="js/login_js.js"></script>
 <script src="js/search_js.js"></script>
 <script src="../page/js/validator.js"></script>
 <script src="../page/js/home_page.js"></script>
 <script src="js/modal.js"></script>
 <script src="../page/lib/slick-1.8.1/slick/slick.js"></script>
-<script src="../discovery/assets/js/modal-create-playlist.js"></script>
-<script src="../discovery/assets/js/create-playlist.js"></script>
-<script src="../discovery/assets/js/modal.js"></script>
+<!--<script src="../discovery/assets/js/modal-edit-create-playlist.js"></script>-->
+<!--<script src="../discovery/assets/js/edit-create-playlist.js"></script>-->
+<!--<script src="../discovery/assets/js/modal.js"></script>-->
 </body>
+<script>
+    window.onload = function () {
+        onloadCheckLogin();
+        displaySongTrend();
+    }
+</script>
 </html>

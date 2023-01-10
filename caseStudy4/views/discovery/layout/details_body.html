@@ -59,12 +59,7 @@
                             <input class="input-comment p-1" id="input_comment" type="text">
                         </div>
                         <span class="send-btn">
-                            <i onclick="sendComment_song()" class="fa-solid fa-paper-plane" onkeypress="return function (e){
-                                if(e.keyCode===13){
-                                    return true;
-                                }
-                                return false;
-                            }"></i>
+                            <i onclick="sendComment_song()" class="fa-solid fa-paper-plane"></i>
                         </span>
                     </div>
                 </div>
@@ -141,6 +136,12 @@
 <script src="../assets/js/like.js"></script>
 <script src="../../page/js/search_js.js"></script>
 <script>
+    window.onload = function () {
+        onloadCheckLogin();
+        let idSong = localStorage.getItem("idSong");
+        getSongByID(idSong);
+        getCommentByIdSong(idSong);
 
+    }
 </script>
 </html>

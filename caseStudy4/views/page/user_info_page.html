@@ -28,32 +28,29 @@
     <div class="header container d-flex align-items-center justify-content-between">
         <div class="navigation d-flex align-items-center">
             <div onclick="renderHomePage(drawHomeFrame())" class="logo d-flex align-items-center me-3 pointer">
-                <img class="logo-img" src="/assets/img/logo/logo.jpg" alt="">
+                <img class="logo-img" src="../upload_img/LOGONHOM1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
-                <div><a onclick="renderDiscoveryPage()" class="px-3 nav-item text-decoration-none text-white" href="#!">Discovery</a></div>
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="#!">Library</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../views/discovery/layout/body_home.html">Discovery</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../../views/discovery/layout/body_home.html">Library</a></div>
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
             <div class="search-bar mx-2">
                 <div class="input-group no-border-radius">
-                    <input class="form-control no-border-radius" type="text" placeholder="Search">
-                    <span class="input-group-text no-border-radius">
+                    <input id="input_search" class="form-control no-border-radius" type="text" placeholder="Search">
+                    <span onclick="redirectResultSearch()" class="input-group-text no-border-radius">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </span>
                 </div>
             </div>
-            <div class="user-register d-flex align-items-center">
-                <button onclick="openModal('.login-modal')" class="btn btn-outline-dark text-white login-btn no-border-radius">Sign in</button>
-            </div>
-            <div class="user-info d-flex align-items-center hide">
+            <div class="user-info d-flex align-items-center hide" id="trueLogin">
                 <div class="user-avatar p-2">
-                    <div class="avatar"></div>
+                    <img class="avatar" src="" alt="" id="trueLogin-avatar">
                 </div>
-                <p class="m-0 text-white username">Username</p>
+                <a style="color: white; text-decoration: none" class="m-0 text-white username" id="trueLogin-username"></a>
                 <span onclick="openModal('.user-menu')" class="text-white mx-2 user-toggle px-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down btn-icon" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -64,7 +61,7 @@
                     <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
                     <hr class="m-1">
                     <li>
-                        <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out
+                        <a class="dropdown-item py-2 px-3 d-flex" onclick="logOut()">Log out
                             <span class="d-flex align-items-center ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
@@ -87,16 +84,16 @@
             <div class="row">
                 <div class="col col-3 my-3">
                     <div class="user-info-img">
-                        <img class="fit-image" src="/assets/img/tải xuống.jpg" alt="">
+                        <img class="fit-image" id="avt-user" src="" alt="">
                     </div>
                 </div>
                 <div class="col col-9 my-4">
                     <div class="user-info-id">
                         <div class="user-info-name-wrapper">
-                            <span class="font-24 px-3 py-2 bg-dark text-white">Name</span>
+                            <a class="font-24 px-3 py-2 bg-dark text-white" style="text-decoration: none" id="name-user"></a>
                         </div>
                         <div class="user-info-username-wrapper">
-                            <span class="font-16 px-3 py-2 bg-dark text-white">Username</span>
+                            <a class="font-16 px-3 py-2 bg-dark text-white" style="text-decoration: none" id="username-user"></a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +102,7 @@
         <div class="user-tab mt-3">
             <div class="tab-section d-flex justify-content-center">
                 <div onclick="showForm('.user-info')" class="user-info-tab tab-item text-center info-tab">
-                    User infomation
+                    User information
                 </div>
                 <div onclick="showForm('.change-password')" class="change-password-tab tab-item text-center info-tab">
                     Change password
@@ -125,29 +122,31 @@
                 <div class="my-3 form-heading user-song-heading hide">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="h4 m-0">My song</div>
-                        <button class="btn btn-dark no-border-radius">Upload song</button>
+                        <button class="btn btn-dark no-border-radius song-btn" onclick="fieldCreateSong()">Upload song</button>
                     </div>
                 </div>
                 <div class="my-3 form-heading user-playlist-heading hide">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="h4 m-0">My playlist</div>
-                        <button class="btn btn-dark no-border-radius">Create playlist</button>
+                        <button class="btn btn-dark no-border-radius playlist-btn" onclick="openModal('.playlist-modal')">Create playlist</button>
                     </div>
                 </div>
                 <hr class="m-0">
                 <div class="info-content">
-                    <form class="user-info-form info-form show mt-3">
+
+<!--                    INFORMATION-->
+                    <form class="user-info-form info-form show mt-3" id="formChange">
                         <div class="input-section row">
                             <div class="input-left col col-3">
                                 <div class="modal-image">
-                                    <img class="modal-img user-img-info" src="/assets/img/white.png" alt="">
+                                    <img class="modal-img user-img-info" id="avt-info" src="" alt="">
                                     <button class="upload-box upload-btn p-1">
                                             <span onclick="openUpload('.user-img-intput')" class="py-2 px-2">
                                                 <i class="me-1 fa-solid fa-camera"></i>
                                                 <span>Upload image</span>
                                             </span>
-                                        <input onchange="replaceImg(this, '.user-img-info')" class="user-img-intput"
-                                               type="file" hidden>
+                                        <input onchange="replaceImg(this, '.user-img-info')" id="image" name="image" class="user-img-intput"
+                                               type="file">
                                     </button>
                                 </div>
                             </div>
@@ -155,52 +154,54 @@
                                 <div class="row">
                                     <div class="col col-6">
                                         <div class="form-group mb-2 disable">
-                                            <label class="modal-label my-1" for="i-username">Username:</label><br>
-                                            <input class="modal-input" value="Truong" name="username" type="text"
-                                                   id="i-username" placeholder="Username" disabled>
+                                            <label class="modal-label my-1" for="username" >Username:</label><br>
+                                            <input class="modal-input" id="username" name="username" type="text"
+                                                    placeholder="Username" disabled>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label class="modal-label my-1" for="i-name">Name:</label><br>
-                                            <input class="modal-input" name="name" type="text" id="i-name"
+                                            <label class="modal-label my-1" for="name">Name:</label><br>
+                                            <input class="modal-input" name="name" type="text" id="name"
                                                    placeholder="Name">
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label class="modal-label my-1" for="i-address">Address:</label><br>
-                                            <input class="modal-input" name="address" type="text" id="i-address"
+                                            <label class="modal-label my-1" for="address">Address:</label><br>
+                                            <input class="modal-input" name="address" type="text" id="address"
                                                    placeholder="Address">
                                         </div>
                                     </div>
                                     <div class="col col-6">
                                         <div class="form-group mb-2">
-                                            <label class="modal-label my-1" for="i-email">Email:</label><br>
-                                            <input class="modal-input" name="email" type="text" id="i-email"
+                                            <label class="modal-label my-1" for="email">Email:</label><br>
+                                            <input class="modal-input" name="email" type="text" id="email"
                                                    placeholder="Email">
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label class="modal-label my-1" for="i-phone_number">Phone
+                                            <label class="modal-label my-1" for="phone">Phone
                                                 number:</label><br>
-                                            <input class="modal-input" name="phone_number" type="text"
-                                                   id="i-phone_number" placeholder="Phone number">
+                                            <input class="modal-input" name="phone"  id="phone" type="text"
+                                                   placeholder="Phone number">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit-section text-end">
                                     <button class="user-info-btn btn btn-sm btn-danger m-0 no-border-radius"
-                                            type="reset">Clear
+                                            type="reset">Reset
                                     </button>
                                     <button class="user-info-btn btn btn-sm btn-dark m-0 no-border-radius"
-                                            type="button">Save change
+                                            type="button" onclick="saveChangeInfo()">Save change
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </form>
+
+<!--                    CHANGE PASS-->
                     <form class="change-password-form info-form hide" id="change-pass-form">
                         <div class="password-form my-4">
                             <div class="form-group pass-form-group">
-                                <label class="modal-label my-1" for="rpl-password">Current password:</label><br>
-                                <input class="modal-input" name="rpl-password" type="password" id="rpl-password"
-                                       placeholder="Current password">
+                                <label class="modal-label my-1" for="current-password">Current password:</label><br>
+                                <input class="modal-input" name="rpl-password" type="password"
+                                       placeholder="Current password" id="current-password">
                                 <span class="form-message font-12"></span>
                             </div>
                             <div class="form-group pass-form-group">
@@ -210,9 +211,9 @@
                                 <span class="form-message font-12"></span>
                             </div>
                             <div class="form-group pass-form-group">
-                                <label class="modal-label my-1" for="confirm-new-password">Confirm new password:</label><br>
+                                <label class="modal-label my-1" for="re-new-password">Confirm new password:</label><br>
                                 <input class="modal-input" name="confirm-new-password" type="password"
-                                       id="confirm-new-password" placeholder="Confirm new password">
+                                       id="re-new-password" placeholder="Confirm new password">
                                 <span class="form-message font-12"></span>
                             </div>
                         </div>
@@ -220,11 +221,13 @@
                             <button class="user-info-btn btn btn-sm btn-danger m-0 no-border-radius" type="reset">
                                 Clear
                             </button>
-                            <button class="user-info-btn btn btn-sm btn-dark m-0 no-border-radius" type="submit">Save
+                            <button class="user-info-btn btn btn-sm btn-dark m-0 no-border-radius" type="button" onclick="changePassword()">Save
                                 change
                             </button>
                         </div>
                     </form>
+
+<!--                   SONG USER-->
                     <form class="user-song-form info-form hide">
                         <div>
                             <table class="table table-striped">
@@ -248,67 +251,13 @@
                                     <div>Delete</div>
                                 </th>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>Itsumo nando demo</div>
-                                    </td>
-                                    <td>
-                                        <div>Hayao Miyazaki</div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span class="u-tag px-2 font-12">#Instrumental</span>
-                                            <span class="u-tag px-2 font-12">#Ost</span>
-                                            <span class="u-tag px-2 font-12">#Anime</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>Itsumo nando demo</div>
-                                    </td>
-                                    <td>
-                                        <div>Hayao Miyazaki</div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span class="u-tag px-2 font-12">#Instrumental</span>
-                                            <span class="u-tag px-2 font-12">#Ost</span>
-                                            <span class="u-tag px-2 font-12">#Anime</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <tbody id="listSong-user">
                                 </tbody>
                             </table>
                         </div>
                     </form>
+
+<!--                    LIST PLAYLIST-->
                     <form class="user-playlist-form info-form hide">
                         <div>
                             <table class="table table-striped">
@@ -338,79 +287,13 @@
                                     <div>Delete</div>
                                 </th>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>Ghilbli collection</div>
-                                    </td>
-                                    <td>
-                                        <div>Anime OST</div>
-                                    </td>
-                                    <td>
-                                        <div>08/01/2023</div>
-                                    </td>
-                                    <td>
-                                        <div>09/01/2023</div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span class="u-tag px-2 font-12">#Instrumental</span>
-                                            <span class="u-tag px-2 font-12">#Ost</span>
-                                            <span class="u-tag px-2 font-12">#Anime</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>Ghilbli collection</div>
-                                    </td>
-                                    <td>
-                                        <div>Anime OST</div>
-                                    </td>
-                                    <td>
-                                        <div>08/01/2023</div>
-                                    </td>
-                                    <td>
-                                        <div>09/01/2023</div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span class="u-tag px-2 font-12">#Instrumental</span>
-                                            <span class="u-tag px-2 font-12">#Ost</span>
-                                            <span class="u-tag px-2 font-12">#Anime</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pointer">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <tbody id="playlist-user">
+
                                 </tbody>
                             </table>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -452,59 +335,54 @@
     </div>
 </div>
 
-<!-- <button onclick="openModal('.song-modal')" class="song-btn modal-open btn btn-sm btn-primary">Open song modal</button> -->
+<!--MODAL SONG-->
 <div class="modal song-modal">
     <div class="modal-dialogue song-modal-dialogue">
-        <form class="song-form">
-            <h2 class="modal-header">Upload song</h2>
+        <form class="song-form" id="form-Song">
+            <h2 class="modal-header" id="title">Upload song</h2>
             <div class="row">
                 <div class="col col-4">
                     <div class="modal-image mb-3">
-                        <img class="modal-img modal-img-song" src="/assets/img/white.png" alt="">
+                        <img class="modal-img modal-img-song" id="avt-s-init" src="" alt="">
                         <button class="upload-box upload-btn p-1">
                                 <span onclick="openUpload('.input-file-song')" class="py-2 px-2">
                                     <i class="me-1 fa-solid fa-camera"></i>
                                     <span>Upload image</span>
                                 </span>
-                            <input onchange="replaceImg(this, '.modal-img-song')" class="input-file-song" type="file"
-                                   hidden>
+                            <input onchange="replaceImg(this, '.modal-img-song')" id="img" name="image" class="input-file-song" type="file"
+                                 hidden>
                         </button>
                     </div>
-                    <button class="upload-mp3">
+                    <button class="upload-mp3" id="btn-upMp3">
                         <span onclick="openUpload('.input-mp3-file')" class="py-2 px-2">Choose mp3 file: </span>
-                        <input onchange="getFileName(this)" class="input-mp3-file" type="file" hidden>
+                        <input id="mp3" name="mp3" onchange="getFileName(this)" class="input-mp3-file" type="file" hidden>
                     </button>
-                    <p class="mp3-name font-12 grey-text"></p>
+                    <p class="mp3-name font-12 grey-text" id="name-mp3"></p>
                 </div>
                 <div class="col col-8">
                     <div class="modal-body p-0">
                         <div class="form-group mb-2">
                             <label class="modal-label my-1" for="name">Name:</label><br>
-                            <input class="modal-input" name="name" type="text" id="name" placeholder="Name">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="description">Description:</label><br>
-                            <textarea class="modal-input" rows="3" name="description" type="text" id="description"
-                                      placeholder="Description"></textarea>
+                            <input class="modal-input" name="name" id="ip-nameSong" type="text" placeholder="Name">
                         </div>
                         <div class="form-group mb-2">
                             <label class="modal-label my-1" for="composer">Composer:</label><br>
-                            <input class="modal-input" name="composer" type="text" id="composer" placeholder="Price">
+                            <input class="modal-input" name="composer" type="text" id="composer" placeholder="Composer">
                         </div>
                         <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="tag">Tag:</label><br>
-                            <input class="modal-input" name="tag" type="text" id="tag" placeholder="Tag">
+                            <label class="modal-label my-1" for="s-list-tag">Tag:</label><br>
+                            <input class="modal-input" name="listTag" type="text" id="s-list-tag" placeholder="Tag">
                         </div>
                         <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="singer">Singer:</label><br>
-                            <input class="modal-input" name="singer" type="text" id="singer" placeholder="Singer">
+                            <label class="modal-label my-1" for="s-list-singer">Singer:</label><br>
+                            <input class="modal-input" name="listSinger" type="text" id="s-list-singer" placeholder="Singer">
                         </div>
                     </div>
                     <div class="modal-footer px-0">
-                        <button onclick="closeModal()" class="modal-btn modal-close btn btn-sm btn-danger m-0"
-                                type="button">Close
+                        <button onclick="closeModal()"  class="modal-btn modal-close btn btn-sm btn-danger m-0"
+                                type="reset">Close
                         </button>
-                        <button class="modal-btn modal-submit-short btn btn-sm btn-dark m-0" type="button">Upload
+                        <button class="modal-btn modal-submit-short btn btn-sm btn-dark m-0" id="submit-form-song" type="button">Upload
                         </button>
                     </div>
                 </div>
@@ -513,7 +391,7 @@
     </div>
 </div>
 
-<!-- <button onclick="openModal('.playlist-modal')" class="modal-open playlist-btn btn btn-sm btn-primary">Open playlist modal</button> -->
+<!-- MODAL PLAYLIST-->
 <div class="modal playlist-modal">
     <div class="modal-dialogue playlist-modal-dialogue">
         <form class="playlist-form">
@@ -534,8 +412,8 @@
                 <div class="col col-8">
                     <div class="modal-body p-0">
                         <div class="form-group mb-2">
-                            <label class="modal-label my-1" for="p-name">Name:</label><br>
-                            <input class="modal-input" name="name" type="text" id="p-name" placeholder="Name">
+                            <label class="modal-label my-1" for="ip-name">Name:</label><br>
+                            <input class="modal-input" name="name" type="text" id="ip-name" placeholder="Name">
                         </div>
                         <div class="form-group mb-2">
                             <label class="modal-label my-1" for="p-description">Description:</label><br>
@@ -556,87 +434,23 @@
     </div>
 </div>
 
-<div class="modal login-modal">
-    <div class="modal-dialogue-small login-modal-dialogue">
-        <div class="modal-tab d-flex">
-            <div onclick="switchTab('active', 'other')" class="active">Login</div>
-            <div onclick="switchTab('other', 'active')" class="other">Register</div>
-        </div>
-        <form id="login-form" class="modal-tab-active">
-            <h2 class="d-block text-center modal-header m-0">Login</h2>
-            <div class="modal-body p-0 mb-5">
-                <div class="form-group">
-                    <label class="modal-label my-1" for="username">Username:</label><br>
-                    <input class="modal-input no-border-radius" name="username" type="text" id="username"
-                           placeholder="Username" autocomplete="off">
-                    <span class="form-message font-12"></span>
-                </div>
-                <div class="form-group">
-                    <label class="modal-label my-1" for="password">Password:</label><br>
-                    <input class="modal-input no-border-radius" name="password" type="password" id="password"
-                           placeholder="Password" autocomplete="off">
-                    <span class="form-message font-12"></span>
-                </div>
-                <div class="form-group d-flex justify-content-between mt-2">
-                    <div class="remember-me d-flex align-items-center">
-                        <input type="checkbox">
-                        <span class="font-12 ms-1">Remember me</span>
-                    </div>
-                    <a class="font-12" href="#!">Forgot password</a>
-                </div>
-            </div>
-            <div class="modal-footer p-0">
-                <button class="modal-submit m-0" type="button">Login</button>
-            </div>
-            <div class="social-login">
-                <h6 style="font-size: 13.5px;" class="text-center mt-4 mb-0">Or</h6>
-                <p class="text-center font-12 m-0">Signin with social media</p>
-                <div class="social-media d-flex justify-content-center mb-3">
-                    <div class="me-2 social-item font-30 facebook"><i class="fa-brands fa-facebook"></i></div>
-                    <div class="ms-2 social-item font-30 google"><i class="fa-brands fa-google"></i></div>
-                </div>
-            </div>
-        </form>
-        <form id="register-form" class="modal-tab-other hide">
-            <h2 class="d-block text-center modal-header m-0">Register</h2>
-            <div class="modal-body p-0 mb-5">
-                <div class="form-group">
-                    <label class="modal-label my-1" for="c-username">Username:</label><br>
-                    <input class="modal-input no-border-radius" name="username" type="text" id="c-username"
-                           placeholder="Username" autocomplete="off">
-                    <span class="form-message font-12"></span>
-                </div>
-                <div class="form-group">
-                    <label class="modal-label my-1" for="c-password">Password:</label><br>
-                    <input class="modal-input no-border-radius" name="password" type="password" id="c-password"
-                           placeholder="Password" autocomplete="off">
-                    <span class="form-message font-12"></span>
-                </div>
-                <div class="form-group">
-                    <label class="modal-label my-1" for="re-password">Re-password:</label><br>
-                    <input class="modal-input no-border-radius" name="re-password" type="password" id="re-password"
-                           placeholder="Re-password" autocomplete="off">
-                    <span class="form-message font-12"></span>
-                </div>
-                <div class="form-group">
-                    <label class="modal-label my-1" for="phone-number">Phone number:</label><br>
-                    <input class="modal-input no-border-radius" name="phone-number" type="text" id="phone-number"
-                           placeholder="Phone number" autocomplete="off">
-                    <span class="form-message font-12"></span>
-                </div>
-            </div>
-            <div class="modal-footer p-0">
-                <button class="modal-submit m-0">Create account</button>
-                <div class="p-2 mb-0"></div>
-            </div>
-        </form>
-    </div>
-</div>
+
 <script src="https://unpkg.com/wavesurfer.js"></script>
 <script src="lib/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+<script src="js/onload_user_info_page.js"></script>
+<script src="js/login_js.js"></script>
+<script src="js/home_JS.js"></script>
+<script src="../discovery/assets/js/redirect_Song.js"></script>
+<script src="../discovery/assets/js/edit-create-song.js"></script>
+<script src="../users/onload-check-login.js"></script>
 <script src="js/validator.js"></script>
 <script src="js/user_info_page.js"></script>
 <script src="js/modal.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 </body>
+<script>
+    window.onload=function (){
+        onload_user_info()
+    }
+</script>
 </html>

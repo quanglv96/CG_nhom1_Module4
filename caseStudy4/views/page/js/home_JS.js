@@ -1,8 +1,3 @@
-window.onload = function () {
-    onloadCheckLogin();
-    displaySongTrend();
-}
-
 function displaySongTrend() {
     $.ajax({
         type: "GET",
@@ -28,15 +23,12 @@ function getListSong(songsList) {
     </div>`
 }
 
-function fieldTextSearch() {
-    let textSearchHome = document.getElementById("input_search").value;
-    document.getElementById("btnSearch").setAttribute("value", textSearchHome)
-}
 
-function redirectResultSearch(textSearchHome) {
+function redirectResultSearch() {
+    let textSearchHome = document.getElementById("input_search").value;
     localStorage.setItem("textSearch", textSearchHome);
     localStorage.removeItem("searchIdUser");
-    window.location = "../../discovery/layout/layout.html";
+    window.location = "../discovery/layout/layout.html";
 }
 
 function redirectResultSearchUser(idUser) {
@@ -57,7 +49,7 @@ function slideShow() {
     if (slideIndex > slides.length) {
         slideIndex = 1
     }
-    slides[slideIndex - 1].style.display = "block";
+    // slides[slideIndex - 1].style.display = "block";
     setTimeout(slideShow, 3000); // Change image every 2 seconds
 }
 

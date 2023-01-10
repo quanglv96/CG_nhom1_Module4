@@ -41,7 +41,10 @@ public class Songs {
     private MultipartFile mp3;
     @Transient
     private MultipartFile image;
-
+@Transient
+private String listTag;
+@Transient
+private String listSinger;
     public Songs(String name, List<Singer> singerList, String composer, LocalDate date, List<Tags> tagsList, MultipartFile mp3, MultipartFile image) {
         this.name = name;
         this.singerList = singerList;
