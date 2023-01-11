@@ -31,6 +31,7 @@ public class PlaylistService implements IPlaylistService{
     @Override
     public Playlist save(Playlist playlist) {
         List<Tags> tagsList = playlist.getTagsList();
+        iPlaylistRepository.save(playlist);
         for (int i = 0; i <  tagsList.size(); i++) {
             tagService.addPlaylistTag(playlist.getId(),tagsList.get(i).getId());
         }

@@ -22,7 +22,6 @@ public class Users {
     @Pattern(regexp = "^.{6,8}$", message ="Passwords are 6-8 characters long")
     private String password;
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Invalid name")
     private String name;
     @NotNull
     private String address;

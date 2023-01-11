@@ -104,9 +104,9 @@ public class PlayListController {
         for (int i = 0; i < tags.length; i++) {
             if(!Objects.equals(tags[i], "")){
                 //xóa khoảng trắng
-                tags[i].replaceAll(" ", "");
+                tags[i]=  tags[i].replaceAll(" ", "");
                 // lowe case
-                tags[i].toLowerCase();
+                tags[i]=tags[i].toLowerCase();
             }
         }
         // xóa trùng

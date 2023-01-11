@@ -34,11 +34,12 @@ public class TagService implements ITagService {
     public void remove(Long id) {
         iTagRepository.deleteById(id);
     }
+
     @Override
     public Iterable<Tags> StringToListObj(List<String> listTag) {
         List<Tags> list = new ArrayList<>();
         for (int i = 1; i < listTag.size(); i++) {
-            if(!iTagRepository.findTagsByName(listTag.get(i)).isPresent()){
+            if (!iTagRepository.findTagsByName(listTag.get(i)).isPresent()) {
                 save(new Tags(listTag.get(i)));
             }
             list.add(iTagRepository.findTagsByName(listTag.get(i)).get());
@@ -49,7 +50,7 @@ public class TagService implements ITagService {
     @Override
     public void saveListTag(List<String> listTag) {
         for (int i = 0; i < listTag.size(); i++) {
-            if(!iTagRepository.findTagsByName(listTag.get(i)).isPresent()){
+            if (!iTagRepository.findTagsByName(listTag.get(i)).isPresent()) {
                 save(new Tags(listTag.get(i)));
             }
         }
@@ -57,13 +58,17 @@ public class TagService implements ITagService {
 
     @Override
     public void addSongTag(Long idSong, Long idTag) {
+        if (iTagRepository.checkSongTag(idSong, idTag) == 0){
+            iTagRepository.addSongTag(idSong, idTag);
+        }
 
-        iTagRepository.addSongTag(idSong, idTag);
     }
 
     @Override
     public void addPlaylistTag(Long idPlaylist, Long idTag) {
-        iTagRepository.addPlaylistTag(idPlaylist,idTag);
+        if (iTagRepository.checkPlaylistTag(idPlaylist, idTag) == 0) {
+            iTagRepository.addPlaylistTag(idPlaylist, idTag);
+        }
     }
 
 }
