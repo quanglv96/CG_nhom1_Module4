@@ -9,7 +9,7 @@ function renderSong(song) {
 }
 
 function renderPlaylist(playlist) {
-    return  `<div class="item-contain col col-3 p-3">
+    return  `<div onclick="toPlaylistDetail(${playlist.id})" class="item-contain col col-3 p-3">
                 <div class="item">
                     <img onclick="redirectPlayList(${playlist.id})"  class="slider-img" src="/views/upload_img/${playlist.avatar}" alt="">
                     <p class="m-0 item-title" onclick="redirectPlayList(${playlist.id})">${playlist.name}</p>
@@ -47,4 +47,9 @@ function callAjax(url, sliderSelector, prevSelector, nextSelector, callback) {
             createSlider(sliderSelector, prevSelector, nextSelector)
         },
     })
+}
+
+function toPlaylistDetail(id) {
+    localStorage.setItem('playlistId', id);
+    window.location.href = '../page/playlist_detail_page.html';
 }

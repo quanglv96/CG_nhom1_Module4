@@ -23,8 +23,8 @@
 <div class="header-cointainer container-fluid">
     <div class="header container d-flex align-items-center justify-content-between">
         <div class="navigation d-flex align-items-center">
-            <div onclick="renderHomePage(drawHomeFrame())" class="logo d-flex align-items-center me-3 pointer">
-                <img class="logo-img" src="/assets/img/logo/logo.jpg" alt="">
+            <div onclick="renderHomePage()" class="logo d-flex align-items-center me-3 pointer">
+                <img class="logo-img" src="../upload_img/LOGONHOM1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
                 <div><a onclick="renderDiscoveryPage()" class="px-3 nav-item text-decoration-none text-white" href="#!">Discovery</a>
@@ -97,14 +97,14 @@
                                 <i class="font-24 fa-solid fa-play"></i>
                             </div>
                             <div class="first-desc-row d-inline-block">
-                                <p class="user-upload m-0 font-24">User upload</p>
-                                <p class="item-name m-0 font-16">Playlist name</p>
+                                <p class="user-upload m-0 font-24"></p>
+                                <p class="item-name m-0 font-16"></p>
                             </div>
                         </div>
                         <div class="header-right">
                             <div class="second-desc-row d-inline-block right-text">
-                                <p class="date-upload m-0 font-16 pb-3">Time upload</p>
-                                <span class="item-tag">#Instrumental</span>
+                                <p class="date-upload m-0 font-16 pb-3"></p>
+                                <span class="item-tag"></span>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
             </div>
             <div class="col col-4 p-0">
                 <div class="song-image p-3">
-                    <img class="song-img" src="/assets/img/audio_img/Fly-me-to-the-moon.jpg" alt="">
+                    <img class="playlist-img" src="" alt="">
                 </div>
             </div>
         </div>
@@ -136,8 +136,8 @@
                             <i class="fa-solid fa-play"></i> 110K
                         </span>
                     <span class="comment-count border py-1 px-2 border-radius-1 pointer">
-                            <i class="fa-solid fa-comment"></i> 100K
-                        </span>
+                        <i class="fa-solid fa-comment"></i> <span></span>
+                    </span>
                     <hr>
                 </div>
                 <div class="songs-list px-3 mb-3">
@@ -632,5 +632,11 @@
 <script src="js/validator.js"></script>
 <script src="js/detail_body.js"></script>
 <script src="js/modal.js"></script>
+<script>
+    window.onload = function() {
+        let id = localStorage.getItem('playlistId');
+        callAjax(id);
+    }
+</script>
 </body>
 </html>
