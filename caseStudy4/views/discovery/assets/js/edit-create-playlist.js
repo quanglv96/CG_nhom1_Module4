@@ -10,11 +10,12 @@ let formData=new FormData($('#form-playlist')[0]);
         //tên API
         url: "http://localhost:8080/playlist?idUser="+user.id,
         success: function () {
-            alert("tạo thành công");
+            alert("Successful");
+            closeModal()
             search_song_playlist_byUser(user);
         },
         error: function () {
-            alert("tên play list đã trùng");
+            alert("lỗi");
         }
     });
 }
@@ -29,12 +30,13 @@ function savePlaylist(id) {
         //tên API
         url: "http://localhost:8080/playlist/"+id,
         success: function () {
-            alert("tạo thành công");
+            alert("Successful");
             let user = JSON.parse(localStorage.getItem("userLogin"));
             search_song_playlist_byUser(user);
+            closeModal()
         },
         error: function () {
-            alert("tên play list đã trùng");
+            alert("lỗi");
         }
     });
 }

@@ -155,7 +155,7 @@ function getPlayList(playlist) {
         let listTag = index.tagsList;
         let contentTag = "";
         for (let j = 0; j < listTag.length; j++) {
-            contentTag += `<span class= "u-tag px-2 font-12"> #${listTag[i].name}</span>`
+            contentTag += `<span class= "u-tag px-2 font-12"> #${listTag[j].name}</span>`
         }
         content += `<tr>
                                     <td>
@@ -280,7 +280,7 @@ function deleteSong(idSong) {
         type: "DELETE",
         url: "http://localhost:8080/songs/"+idSong,
         success: function () {
-            alert("Xóa thành công")
+            alert("Successful");
             let user = JSON.parse(localStorage.getItem("userLogin"));
             search_song_playlist_byUser(user);
         }
@@ -292,7 +292,7 @@ function deletePlaylist(idPlaylist) {
         type: "DELETE",
         url: "http://localhost:8080/playlist/"+idPlaylist,
         success: function () {
-            alert("Xóa thành công")
+            alert("Successful");
             let user = JSON.parse(localStorage.getItem("userLogin"));
             search_song_playlist_byUser(user);
         }

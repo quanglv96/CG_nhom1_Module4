@@ -10,7 +10,8 @@ function createSongs(){
         //tên API
         url: "http://localhost:8080/songs?idUser="+user.id,
         success: function () {
-            alert(" Cập nhập thành công");
+            alert("Successful");
+            closeModal()
             search_song_playlist_byUser(user);
         },
         error: function () {
@@ -29,10 +30,11 @@ function saveSong(id) {
         //tên API
         url: "http://localhost:8080/songs/"+id,
         success: function () {
-            alert("tạo thành công");
+            alert("Successful");
+            closeModal()
         },
         error: function () {
-            alert("tên play list đã trùng");
+            alert("lỗi");
         }
     });
 }
