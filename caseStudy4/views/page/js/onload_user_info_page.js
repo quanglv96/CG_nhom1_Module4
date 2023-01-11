@@ -179,7 +179,7 @@ function getPlayList(playlist) {
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="pointer playlist-btn" onclick="fieldDataPlaylist(${index.id})" >                              
+                                        <div class="pointer playlist-btn" onclick="fieldEditPlaylist(${index.id})" >                              
                                            <i class="fa-solid fa-pen-to-square modal-open" ></i>
                                         </div>
                                     </td>
@@ -240,7 +240,38 @@ function fieldCreateSong(){
     document.getElementById("submit-form-song").innerText = "ADD"
     openModal('.song-modal');
 }
-function fieldDataPlaylist(idPlaylist) {
+function fieldCreatePlaylist(){
+    document.getElementById("title-playlist").innerText = "NEW PLAYLIST"
+    document.getElementById("avt-p-init").setAttribute("src", `../../upload_img/tải xuống.png`);
+    document.getElementById("ip-namePlay").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("btn-playlist").setAttribute("onclick", `createPlaylist()`)
+    document.getElementById("btn-playlist").innerText="ADD";
+    openModal('.playlist-modal')
+}
+function fieldEditPlaylist(idPlaylist) {
+    $.ajax({
+        type: "GET",
+        //tên API
+        url: "http://localhost:8080/playlist/" + idPlaylist,
+        success: function (data) {
+            document.getElementById("title-playlist").innerText = "EDIT PLAYLIST"
+            document.getElementById("avt-p-init").setAttribute("src", `../upload_img/${data.avatar}`);
+            document.getElementById("ip-namePlay").value = data.name;
+            document.getElementById("description").value = data.description;
+            document.getElementById("btn-playlist").setAttribute("onclick", `savePlaylist(${data.id})`)
+            document.getElementById("btn-playlist").innerText="Update";
+            let listTag = data.tagsList;
+            let contentTag = "";
+            for (let j = 0; j < listTag.length; j++) {
+                contentTag += `#${listTag[j].name}`
+            }
+            document.getElementById("p-list-tag").value = contentTag;
+        },
+        error: function () {
+            alert("lỗi")
+        }
+    });
     openModal('.playlist-modal');
 }
 

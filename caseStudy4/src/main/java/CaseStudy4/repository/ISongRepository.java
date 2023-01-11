@@ -27,6 +27,7 @@ public interface ISongRepository extends JpaRepository<Songs, Long> {
 
 //    @Query(value = "update Songs set views=(views+ 1)")
 //    Optional<Songs> findById(Long aLong);
+    Optional<Songs> findById(Long id);
 
     Optional<Songs> findByName(String name);
 
@@ -38,7 +39,7 @@ public interface ISongRepository extends JpaRepository<Songs, Long> {
     @Query(value = "select * from songs where id in (select id_song from song_singer  where id_singer= :id )", nativeQuery = true)
     Iterable<Songs> findAllBySingerList(Long id);
     @Modifying
-    @Query(value="DELETE FROM casestudy4.playlist_song WHERE id_songs = ?1;", nativeQuery = true)
+    @Query(value="DELETE FROM casestudy4.playlist_song WHERE id_songs = ?1", nativeQuery = true)
     void deleteSongInPlaylist(Long idSong);
     @Modifying
     @Query(value="DELETE FROM casestudy4.song_tag WHERE id_song = ?1", nativeQuery = true)

@@ -3,17 +3,23 @@ package CaseStudy4.service.playlist;
 import CaseStudy4.model.Playlist;
 
 import CaseStudy4.model.Songs;
+import CaseStudy4.model.Tags;
 import CaseStudy4.model.Users;
 import CaseStudy4.repository.IPlaylistRepository;
+import CaseStudy4.service.Tags.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.*;
 
 @Service
 public class PlaylistService implements IPlaylistService{
     @Autowired
     private IPlaylistRepository iPlaylistRepository;
+    @Autowired
+    private ITagService tagService;
     @Override
     public Iterable<Playlist> findAll() {
         iPlaylistRepository.setViewsAllPlaylist();
@@ -27,6 +33,10 @@ public class PlaylistService implements IPlaylistService{
 
     @Override
     public Playlist save(Playlist playlist) {
+        List<Tags> tagsList = playlist.getTagsList();
+        for (int i = 0; i <  tagsList.size(); i++) {
+            tagService.addPlaylistTag(playlist.getId(),tagsList.get(i).getId());
+        }
         return iPlaylistRepository.save(playlist);
     }
 

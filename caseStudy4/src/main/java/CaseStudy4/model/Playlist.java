@@ -23,7 +23,10 @@ public class Playlist {
     private String description; // mô tả nội dung bài hát
     private String avatar;
     private LocalDate dateCreate; // ngày tạo
-    private LocalDate lastUpdate; // ngày cập nhập lần cuối
+    private LocalDate lastUpdate;
+    @Transient
+    private String stringTag;
+    // ngày cập nhập lần cuối
     @NotNull
     @OneToOne(targetEntity = Users.class)
     @JoinColumn(name = "id_users")
@@ -59,6 +62,18 @@ public class Playlist {
         this.dateCreate = dateCreate;
         this.lastUpdate = lastUpdate;
         this.users = users;
+    }
+
+    public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, List<Tags> tagsList, long views, long likes) {
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.dateCreate = dateCreate;
+        this.lastUpdate = lastUpdate;
+        this.users = users;
+        this.tagsList = tagsList;
+        this.views = views;
+        this.likes = likes;
     }
 
     public Playlist(String name, String description, String avatar, LocalDate dateCreate, LocalDate lastUpdate, Users users, long views, long likes) {

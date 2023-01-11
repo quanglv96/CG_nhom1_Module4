@@ -48,7 +48,7 @@ public class SongController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Songs>> findByID(@PathVariable("id") Long id){
-        setView(id);
+//        setView(id);
         return new ResponseEntity<>(iSongService.findById(id), HttpStatus.OK);
     }
 
@@ -135,7 +135,7 @@ public class SongController {
             //TAG
             List<Tags> tagsList = editStringTag(songs.getListTag());
             for (int i = 0; i <  tagsList.size(); i++) {
-                tagService.addSongerTag(id,tagsList.get(i).getId());
+                tagService.addSongTag(id,tagsList.get(i).getId());
             }
             List<Singer> listSinger=editStringSinger(songs.getListSinger());
             for (int i = 0; i < listSinger.size(); i++) {
@@ -173,7 +173,7 @@ public class SongController {
     public List<Tags> editStringTag(String tag) {
         List<Tags> listTag;
         String[] tags = tag.split("#");
-        for (int i = 0; i < tags.length; i++) {
+        for (int i = 1; i < tags.length; i++) {
             if(!Objects.equals(tags[i], "")){
                 //xóa khoảng trắng
                 tags[i].replaceAll(" ", "");

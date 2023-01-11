@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="lib/fontawesome-free-6.2.1-web/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/wavesurfer.js"></script>
     <title>Document</title>
@@ -23,59 +24,50 @@
 <div class="header-cointainer container-fluid">
     <div class="header container d-flex align-items-center justify-content-between">
         <div class="navigation d-flex align-items-center">
-            <div onclick="renderHomePage(drawHomeFrame())" class="logo d-flex align-items-center me-3 pointer">
-                <img class="logo-img" src="/assets/img/logo/logo.jpg" alt="">
+            <div onclick="window.location='../page/home_page.html'" class="logo d-flex align-items-center me-3 pointer">
+                <img class="logo-img" src="../upload_img/LOGONHOM1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
-                <div><a onclick="renderDiscoveryPage()" class="px-3 nav-item text-decoration-none text-white" href="#!">Discovery</a>
-                </div>
-                <div><a class="px-3 nav-item text-decoration-none text-white" href="#!">Library</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../page/discovery_page.html">Discovery</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="../page/discovery_page.html">Library</a></div>
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
             <div class="search-bar mx-2">
                 <div class="input-group no-border-radius">
-                    <input class="form-control no-border-radius" type="text" placeholder="Search">
-                    <span class="input-group-text no-border-radius">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-search" viewBox="0 0 16 16">
+                    <input id="input_search" class="form-control no-border-radius" type="text" placeholder="Search">
+                    <span class="input-group-text no-border-radius" onclick="redirectResultSearch()" >
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </span>
                 </div>
             </div>
-            <div class="user-register d-flex align-items-center">
-                <button onclick="openModal('.login-modal')"
-                        class="btn btn-outline-dark text-white login-btn no-border-radius">Sign in
-                </button>
+            <div class="user-register d-flex align-items-center" id="falseLogin">
+                <button onclick="openModal('.login-modal')" class="btn btn-outline-dark text-white login-btn no-border-radius">Sign in</button>
             </div>
-            <div class="user-info d-flex align-items-center hide">
+            <div class="user-info d-flex align-items-center hide" id="trueLogin">
                 <div class="user-avatar p-2">
-                    <div class="avatar"></div>
+                    <img class="avatar" src="" alt="" id="trueLogin-avatar">
                 </div>
-                <p class="m-0 text-white username">Username</p>
+                <a style="color: white; text-decoration: none" class="m-0 text-white username" id="trueLogin-username"></a>
                 <span onclick="openModal('.user-menu')" class="text-white mx-2 user-toggle px-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-chevron-down btn-icon" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down btn-icon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         </svg>
                     </span>
                 <ul class="user-menu border p-0">
-                    <li><a class="dropdown-item py-2 px-3" href="#">User info</a></li>
-                    <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="../page/user_info_page.html">User info</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="../page/user_info_page.html">Change password</a></li>
                     <hr class="m-1">
                     <li>
-                        <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out
+                        <a class="dropdown-item py-2 px-3 d-flex" onclick="logOut()">Log out
                             <span class="d-flex align-items-center ms-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-                                        <path fill-rule="evenodd"
-                                              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                    </svg>
-                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                </svg>
+                            </span>
                         </a>
                     </li>
                 </ul>
@@ -97,13 +89,13 @@
                                 <i class="font-24 fa-solid fa-play"></i>
                             </div>
                             <div class="first-desc-row d-inline-block">
-                                <p class="user-upload m-0 font-24">User upload</p>
-                                <p class="item-name m-0 font-16">Song name</p>
+                                <p class="user-upload m-0 font-24" id="name-user" onclick="redirectSearchUser()"></p>
+                                <p class="item-name m-0 font-16" id="name-Songs">Song name</p>
                             </div>
                         </div>
                         <div class="header-right">
                             <div class="second-desc-row d-inline-block right-text">
-                                <p class="date-upload m-0 font-16 pb-3">Time upload</p>
+                                <p class="date-upload m-0 font-16 pb-3" id="time-upload">Time upload</p>
                                 <span class="item-tag">#Instrumental</span>
                             </div>
                         </div>
@@ -117,45 +109,45 @@
             </div>
             <div class="col col-4 p-0">
                 <div class="song-image p-3">
-                    <img class="song-img" src="/assets/img/audio_img/Itsumo-nando-demo.jpg" alt="">
+                    <img class="song-img" id="avatar-song" src="" alt="">
                 </div>
             </div>
         </div>
 
         <div class="comment-related-song row p-3">
             <div class="col col-8 p-0">
-                <div class="feedback p-3">
+                <div id="trueLogin-2" class="feedback p-3">
                     <div class="comment border d-flex">
-                        <img class="user-img" src="/assets/img/tải xuống.jpg" alt="">
+                        <img class="user-img" id="user-avatar" src="" alt="">
                         <div class="input-container d-flex align-item-center justify-content-center py-2 px-3">
-                            <input class="input-comment" type="text">
+                            <input class="input-comment" id="input_comment" type="text">
                         </div>
                         <span class="send-btn">
-                                <i class="fa-solid fa-paper-plane"></i>
+                                <i class="fa-solid fa-paper-plane" onclick="sendComment_song()"></i>
                             </span>
                     </div>
                 </div>
                 <div class="user-action px-3">
-                        <span class="like-count border py-1 px-2 me-1 border-radius-1 pointer">
-                            <i class="fa-solid fa-heart"></i> 110K
+                        <span class="like-count border py-1 px-2 me-1 border-radius-1 pointer" id="btnLike">
+                            <i class="fa-solid fa-heart" id="click-like"></i><i class="fa-regular fa-heart" id="none-like"></i> <span id="like-song"></span>
                         </span>
                     <span class="like-count border py-1 px-2 me-1 border-radius-1 pointer">
                             <i class="fa-solid fa-square-plus"></i> Add to playlist
                         </span>
                     <span class="play-count border py-1 px-2 me-1 border-radius-1 pointer">
-                            <i class="fa-solid fa-play"></i> 110K
+                            <i class="fa-solid fa-play"></i> <span id="view-song"></span>
                         </span>
                     <span class="comment-count border py-1 px-2 border-radius-1 pointer">
-                            <i class="fa-solid fa-comment"></i> 100K
+                            <i class="fa-solid fa-comment"></i> <span id="comment-song"></span>
                         </span>
                     <hr>
                 </div>
                 <div class="list-com-and-user row p-3">
                     <div class="col col-2">
                         <div class="user-avt">
-                            <img class="img-avt" src="/assets/img/tải xuống.jpg" alt="">
+                            <img class="img-avt" id="avatar-User-Song" src="" alt="">
                         </div>
-                        <p class="my-2 grey-text">Username</p>
+                        <p class="my-2 grey-text" id="name-user2"></p>
                         <div class="d-flex align-items-center justify-content-between">
                                 <span class="playlist-count d-flex align-items-center">
                                     <span class="filter-icon me-1 grey-text">
@@ -188,37 +180,7 @@
                             485 comment
                         </p>
                         <hr>
-                        <div class="comment-item d-flex align-items-center justify-content-between mb-3">
-                            <div class="c-item-left d-flex align-items-center">
-                                <div class="c-avt me-2">
-                                    <img class="c-img" src="/assets/img/tải xuống.jpg" alt="">
-                                </div>
-                                <div class="c-desc">
-                                    <p class="m-0 c-uname grey-text font-12">User com</p>
-                                    <p class="m-0 c-content font-12">Lorem, ipsum dolor sit amet consectetur adipisicing
-                                        elit</p>
-                                </div>
-                            </div>
-                            <div class="c-item-right font-12">
-                                <span class="c-time">11 hour ago</span>
-
-                            </div>
-                        </div>
-                        <div class="comment-item d-flex align-items-center justify-content-between MB-3">
-                            <div class="c-item-left d-flex align-items-center">
-                                <div class="c-avt me-2">
-                                    <img class="c-img" src="/assets/img/tải xuống.jpg" alt="">
-                                </div>
-                                <div class="c-desc">
-                                    <p class="m-0 c-uname grey-text font-12">User com</p>
-                                    <p class="m-0 c-content font-12">Lorem, ipsum dolor sit amet consectetur adipisicing
-                                        elit</p>
-                                </div>
-                            </div>
-                            <div class="c-item-right font-12">
-                                <span class="c-time">11 hour ago</span>
-
-                            </div>
+                        <div id="list-comment">
                         </div>
                     </div>
                 </div>
@@ -236,90 +198,11 @@
                                 </span>
                                 <span class="ps-1 grey-text pointer">More track</span>
                             </span>
-                        <span class="grey-text pointer">View all</span>
+                        <a class="grey-text pointer" href="../page/discovery_page.html" >View all</a>
                     </div>
                     <hr class="m-0">
-                    <div class="random-list mt-3 mb-3">
-                        <div class="random-item d-flex mb-1 pointer">
-                            <div class="random-img">
-                                <img class="fit-img" src="/assets/img/tải xuống.jpg" alt="">
-                            </div>
-                            <div class="random-song-desc ms-2">
-                                <div class="grey-text line-16 font-12 fit-head">User name</div>
-                                <div class="line-16 font-12">Song name</div>
-                                <div class="react-box">
-                                        <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-heart"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-play"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text">
-                                            <i class="fa-solid fa-comment"></i> 100K
-                                        </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="random-item d-flex mb-1 pointer">
-                            <div class="random-img">
-                                <img class="fit-img" src="/assets/img/tải xuống.jpg" alt="">
-                            </div>
-                            <div class="random-song-desc ms-2">
-                                <div class="grey-text line-16 font-12 fit-head">User name</div>
-                                <div class="line-16 font-12">Song name</div>
-                                <div class="react-box">
-                                        <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-heart"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-play"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text">
-                                            <i class="fa-solid fa-comment"></i> 100K
-                                        </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="random-item d-flex mb-1 pointer">
-                            <div class="random-img">
-                                <img class="fit-img" src="/assets/img/tải xuống.jpg" alt="">
-                            </div>
-                            <div class="random-song-desc ms-2">
-                                <div class="grey-text line-16 font-12 fit-head">User name</div>
-                                <div class="line-16 font-12">Song name</div>
-                                <div class="react-box">
-                                        <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-heart"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-play"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text">
-                                            <i class="fa-solid fa-comment"></i> 100K
-                                        </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="random-item d-flex mb-1 pointer">
-                            <div class="random-img">
-                                <img class="fit-img" src="/assets/img/tải xuống.jpg" alt="">
-                            </div>
-                            <div class="random-song-desc ms-2">
-                                <div class="grey-text line-16 font-12 fit-head">User name</div>
-                                <div class="line-16 font-12">Song name</div>
-                                <div class="react-box">
-                                        <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-heart"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text pe-2">
-                                            <i class="fa-solid fa-play"></i> 110K
-                                        </span>
-                                    <span class="font-12 grey-text">
-                                            <i class="fa-solid fa-comment"></i> 100K
-                                        </span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="random-list mt-3 mb-3" id="randomSongs">
+
                     </div>
                 </div>
             </div>
@@ -482,14 +365,12 @@
             <div class="modal-body p-0 mb-5">
                 <div class="form-group">
                     <label class="modal-label my-1" for="username">Username:</label><br>
-                    <input class="modal-input no-border-radius" name="username" type="text" id="username"
-                           placeholder="Username" autocomplete="off">
+                    <input class="modal-input no-border-radius" name="username" type="text" id="username" placeholder="Username" autocomplete="off">
                     <span class="form-message font-12"></span>
                 </div>
                 <div class="form-group">
                     <label class="modal-label my-1" for="password">Password:</label><br>
-                    <input class="modal-input no-border-radius" name="password" type="password" id="password"
-                           placeholder="Password" autocomplete="off">
+                    <input class="modal-input no-border-radius" name="password" type="password" id="password" placeholder="Password" autocomplete="off">
                     <span class="form-message font-12"></span>
                 </div>
                 <div class="form-group d-flex justify-content-between mt-2">
@@ -501,14 +382,14 @@
                 </div>
             </div>
             <div class="modal-footer p-0">
-                <button class="modal-submit m-0" type="button">Login</button>
+                <button class="modal-submit m-0" type="button" onclick="login()">Login</button>
             </div>
             <div class="social-login">
                 <h6 style="font-size: 13.5px;" class="text-center mt-4 mb-0">Or</h6>
                 <p class="text-center font-12 m-0">Signin with social media</p>
                 <div class="social-media d-flex justify-content-center mb-3">
-                    <div class="me-2 social-item font-30 facebook"><i class="fa-brands fa-facebook"></i></div>
-                    <div class="ms-2 social-item font-30 google"><i class="fa-brands fa-google"></i></div>
+                    <div class="me-2 social-item font-30 facebook" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')"><i class="fa-brands fa-facebook"></i></div>
+                    <div class="ms-2 social-item font-30 google" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')"><i class="fa-brands fa-google"></i></div>
                 </div>
             </div>
         </form>
@@ -517,26 +398,22 @@
             <div class="modal-body p-0 mb-5">
                 <div class="form-group">
                     <label class="modal-label my-1" for="c-username">Username:</label><br>
-                    <input class="modal-input no-border-radius" name="username" type="text" id="c-username"
-                           placeholder="Username" autocomplete="off">
+                    <input class="modal-input no-border-radius" name="username" type="text" id="c-username" placeholder="Username" autocomplete="off">
                     <span class="form-message font-12"></span>
                 </div>
                 <div class="form-group">
                     <label class="modal-label my-1" for="c-password">Password:</label><br>
-                    <input class="modal-input no-border-radius" name="password" type="password" id="c-password"
-                           placeholder="Password" autocomplete="off">
+                    <input class="modal-input no-border-radius" name="password" type="password" id="c-password" placeholder="Password" autocomplete="off">
                     <span class="form-message font-12"></span>
                 </div>
                 <div class="form-group">
                     <label class="modal-label my-1" for="re-password">Re-password:</label><br>
-                    <input class="modal-input no-border-radius" name="re-password" type="password" id="re-password"
-                           placeholder="Re-password" autocomplete="off">
+                    <input class="modal-input no-border-radius" name="re-password" type="password" id="re-password" placeholder="Re-password" autocomplete="off">
                     <span class="form-message font-12"></span>
                 </div>
                 <div class="form-group">
                     <label class="modal-label my-1" for="phone-number">Phone number:</label><br>
-                    <input class="modal-input no-border-radius" name="phone-number" type="text" id="phone-number"
-                           placeholder="Phone number" autocomplete="off">
+                    <input class="modal-input no-border-radius" name="phone-number" type="text" id="phone-number" placeholder="Phone number" autocomplete="off">
                     <span class="form-message font-12"></span>
                 </div>
             </div>
@@ -547,8 +424,27 @@
         </form>
     </div>
 </div>
+<script src="js/onload_Song_detail_page.js"></script>
+<script src="../discovery/assets/js/comment.js"></script>
+<script src="../discovery/assets/js/like.js"></script>
+<script src="../users/onload-check-login.js"></script>
 <script src="js/validator.js"></script>
+<script src="js/home_JS.js"></script>
 <script src="js/detail_body.js"></script>
+<script src="js/login_js.js"></script>
+<script src="js/search_js.js"></script>
+<script src="../discovery/assets/js/redirect_Song.js"></script>
+<script src="js/validator.js"></script>
+<script src="js/discovery_page.js"></script>
 <script src="js/modal.js"></script>
 </body>
+<script>
+    window.onload = function() {
+        onloadCheckLogin();
+        let idSong = localStorage.getItem("idSong");
+        getSongByID(idSong);
+        getCommentByIdSong(idSong);
+        randomSongs(idSong)
+    }
+</script>
 </html>

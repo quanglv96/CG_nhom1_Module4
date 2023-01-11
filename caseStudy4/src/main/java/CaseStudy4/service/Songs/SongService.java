@@ -4,15 +4,10 @@ import CaseStudy4.model.Singer;
 import CaseStudy4.model.Songs;
 import CaseStudy4.model.Tags;
 import CaseStudy4.model.Users;
-import CaseStudy4.repository.ISingerRepository;
 import CaseStudy4.repository.ISongRepository;
-import CaseStudy4.repository.ITagRepository;
 import CaseStudy4.service.Singer.ISingerService;
 import CaseStudy4.service.Tags.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -60,14 +55,14 @@ public class SongService implements ISongService {
     @Override
     public Songs save(Songs songs) {
         isongRepository.save(songs);
-        Songs newSong=isongRepository.findByName(songs.getName()).get();
-        List<Tags> tagsList = newSong.getTagsList();
+//        Songs newSong=isongRepository.findByName(songs.getName()).get();
+        List<Tags> tagsList = songs.getTagsList();
         for (int i = 0; i <  tagsList.size(); i++) {
-            tagService.addSongerTag(newSong.getId(),tagsList.get(i).getId());
+            tagService.addSongTag(songs.getId(),tagsList.get(i).getId());
         }
-        List<Singer> listSinger=newSong.getSingerList();
+        List<Singer> listSinger=songs.getSingerList();
         for (int i = 0; i < listSinger.size(); i++) {
-            singerService.addSingerSong(newSong.getId(),listSinger.get(i).getId());
+            singerService.addSingerSong(songs.getId(),listSinger.get(i).getId());
         }
         return isongRepository.save(songs);
     }

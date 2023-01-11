@@ -15,50 +15,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/wavesurfer.js"></script>
-    <title>Document</title>
+    <title>Discovery Page</title>
 </head>
 <body>
 <div class="header-cointainer container-fluid">
     <div class="header container d-flex align-items-center justify-content-between">
         <div class="navigation d-flex align-items-center">
-            <div onclick="renderHomePage(drawHomeFrame())" class="logo d-flex align-items-center me-3 pointer">
-                <img class="logo-img" src="/assets/img/logo/logo.jpg" alt="">
+            <div onclick="window.location='../page/home_page.html'" class="logo d-flex align-items-center me-3 pointer">
+                <img class="logo-img" src="../upload_img/LOGONHOM1.png" alt="">
             </div>
             <div class="nav-bar d-flex align-items-center">
-                <div><a onclick="renderDiscoveryPage()" class="px-3 nav-item text-decoration-none text-white" href="#!">Discovery</a></div>
+                <div><a class="px-3 nav-item text-decoration-none text-white" href="#!">Discovery</a></div>
                 <div><a class="px-3 nav-item text-decoration-none text-white" href="#!">Library</a></div>
             </div>
         </div>
         <div class="user-controller d-flex align-items-center">
             <div class="search-bar mx-2">
                 <div class="input-group no-border-radius">
-                    <input class="form-control no-border-radius" type="text" placeholder="Search">
-                    <span class="input-group-text no-border-radius">
+                    <input id="input_search" class="form-control no-border-radius" type="text" placeholder="Search">
+                    <span class="input-group-text no-border-radius" onclick="redirectResultSearch()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </span>
                 </div>
             </div>
-            <div class="user-register d-flex align-items-center">
+            <div class="user-register d-flex align-items-center" id="falseLogin">
                 <button onclick="openModal('.login-modal')" class="btn btn-outline-dark text-white login-btn no-border-radius">Sign in</button>
             </div>
-            <div class="user-info d-flex align-items-center hide">
+            <div class="user-info d-flex align-items-center hide" id="trueLogin">
                 <div class="user-avatar p-2">
-                    <div class="avatar"></div>
+                    <img class="avatar" src="" alt="" id="trueLogin-avatar">
                 </div>
-                <p class="m-0 text-white username">Username</p>
+                <a style="color: white; text-decoration: none" class="m-0 text-white username" id="trueLogin-username"></a>
                 <span onclick="openModal('.user-menu')" class="text-white mx-2 user-toggle px-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down btn-icon" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         </svg>
                     </span>
                 <ul class="user-menu border p-0">
-                    <li><a class="dropdown-item py-2 px-3" href="#">User info</a></li>
-                    <li><a class="dropdown-item py-2 px-3" href="#">Change password</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="../page/user_info_page.html">User info</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="../page/user_info_page.html">Change password</a></li>
                     <hr class="m-1">
                     <li>
-                        <a class="dropdown-item py-2 px-3 d-flex" href="#">Log out
+                        <a class="dropdown-item py-2 px-3 d-flex" onclick="logOut()">Log out
                             <span class="d-flex align-items-center ms-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
@@ -290,14 +290,14 @@
                 </div>
             </div>
             <div class="modal-footer p-0">
-                <button class="modal-submit m-0" type="button">Login</button>
+                <button class="modal-submit m-0" type="button" onclick="login()">Login</button>
             </div>
             <div class="social-login">
                 <h6 style="font-size: 13.5px;" class="text-center mt-4 mb-0">Or</h6>
                 <p class="text-center font-12 m-0">Signin with social media</p>
                 <div class="social-media d-flex justify-content-center mb-3">
-                    <div class="me-2 social-item font-30 facebook"><i class="fa-brands fa-facebook"></i></div>
-                    <div class="ms-2 social-item font-30 google"><i class="fa-brands fa-google"></i></div>
+                    <div class="me-2 social-item font-30 facebook" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')"><i class="fa-brands fa-facebook"></i></div>
+                    <div class="ms-2 social-item font-30 google" onclick="alert('tính năng đang phát triển, bỏ qua đi bạn ơi')"><i class="fa-brands fa-google"></i></div>
                 </div>
             </div>
         </form>
@@ -334,8 +334,24 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+<script src="js/login_js.js"></script>
+<script src="../discovery/assets/js/onloadBody_home.js"></script>
+<script src="../users/onload-check-login.js"></script>
+<script src="js/home_JS.js"></script>
+<script src="js/search_js.js"></script>
+<script src="../page/js/home_page.js"></script>
+<script src="../discovery/assets/js/redirect_Song.js"></script>
 <script src="js/validator.js"></script>
 <script src="js/discovery_page.js"></script>
 <script src="js/modal.js"></script>
 </body>
+<script>
+    window.onload = function() {
+        onloadCheckLogin();
+        callAjax('http://localhost:8080/songs/listTrending', '.trending-song', '.trending-s-left', '.trending-s-right', renderSong);
+        callAjax('http://localhost:8080/songs/newSongs', '.newest-song', '.newest-s-left', '.newest-s-right', renderSong);
+        callAjax('http://localhost:8080/playlist/listTrending', '.top-playlist', '.top-p-left', '.top-p-right', renderPlaylist);
+        callAjax('http://localhost:8080/playlist/newPlaylist', '.new-playlist', '.new-p-left', '.new-p-right', renderPlaylist)
+    }
+</script>
 </html>
