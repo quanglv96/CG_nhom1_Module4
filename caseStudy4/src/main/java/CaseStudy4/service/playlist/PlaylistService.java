@@ -2,12 +2,14 @@ package CaseStudy4.service.playlist;
 
 import CaseStudy4.model.Playlist;
 
+import CaseStudy4.model.Songs;
 import CaseStudy4.model.Users;
 import CaseStudy4.repository.IPlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
+
 @Service
 public class PlaylistService implements IPlaylistService{
     @Autowired
@@ -53,5 +55,24 @@ public class PlaylistService implements IPlaylistService{
     @Override
     public Iterable<Playlist> findAllByNameContaining(String name) {
         return iPlaylistRepository.findAllByNameContaining(name);
+    }
+
+    @Override
+    public List<Playlist> generateFiveRandom(Long id) {
+        List<Playlist> result = new ArrayList<>();
+        List<Playlist> playlists = (List<Playlist>) findAll();
+        Set<Integer> indexes = new HashSet<>();
+        while (indexes.size() <= 4) {
+            Random rand = new Random();
+            int index = rand.nextInt(playlists.size());
+            if (Objects.equals(playlists.get(index).getId(), id)) {
+                continue;
+            }
+            indexes.add(index);
+        }
+        for (int i : indexes) {
+            result.add(playlists.get(i));
+        }
+        return result;
     }
 }

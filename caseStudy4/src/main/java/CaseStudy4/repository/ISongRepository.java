@@ -25,9 +25,8 @@ public interface ISongRepository extends JpaRepository<Songs, Long> {
 
     Iterable<Songs> findAllByNameContaining(String name);
 
-    @Modifying
-    @Query(value = "update Songs set views=(views+ 1)")
-    Optional<Songs> findById(Long aLong);
+//    @Query(value = "update Songs set views=(views+ 1)")
+//    Optional<Songs> findById(Long aLong);
 
     Optional<Songs> findByName(String name);
 

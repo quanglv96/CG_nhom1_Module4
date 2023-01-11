@@ -1,8 +1,8 @@
 package CaseStudy4.controller;
 
-import CaseStudy4.model.Playlist;
-import CaseStudy4.model.Tags;
-import CaseStudy4.model.Users;
+import CaseStudy4.model.*;
+import CaseStudy4.service.Songs.ISongService;
+import CaseStudy4.service.comment.ICommentService;
 import CaseStudy4.service.playlist.IPlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -25,6 +26,10 @@ import java.util.Optional;
 public class PlayListController {
     @Autowired
     private IPlaylistService iPlaylistService;
+    @Autowired
+    private ISongService iSongService;
+    @Autowired
+    private ICommentService commentService;
     @Value("${upload.img}")
     private String upload_IMG;
 
@@ -108,4 +113,19 @@ Playlist newUser=new Playlist(playlist.getName(), playlist.getDescription(), fil
             iPlaylistService.save(playlist);
         }
 
+    @GetMapping("/getView/{id}")
+    public ResponseEntity<Object> getSongViews(@PathVariable("id") Long id) {
+        Optional<Playlist> playlist = iPlaylistService.findById(id);
+        if (playlist.isPresent()) {
+            playlist.get().setViews(playlist.get().getViews() + 1);
+            iPlaylistService.save(playlist.get());
+            Iterable<Comments> comments = commentService.findAllByPlaylistOrderByDateDesc(playlist.get());
+            List<Playlist> random = iPlaylistService.generateFiveRandom(id);
+            List<Songs> songUpload = (List<Songs>) iSongService.findAllByUsers(playlist.get().getUsers());
+            List<Playlist> playlistsUpload = (List<Playlist>) iPlaylistService.findAllByUsers(playlist.get().getUsers());
+            Object[] result = new Object[]{playlist.get(), comments, random, new int[]{songUpload.size(), playlistsUpload.size()}};
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
     }

@@ -1,16 +1,13 @@
 package CaseStudy4.controller;
 
-import CaseStudy4.model.Comments;
-import CaseStudy4.model.Singer;
-import CaseStudy4.model.Songs;
-import CaseStudy4.model.Tags;
-import CaseStudy4.model.Users;
+import CaseStudy4.model.*;
 import CaseStudy4.repository.ITagRepository;
 import CaseStudy4.repository.IUserRepository;
 import CaseStudy4.service.Singer.ISingerService;
 import CaseStudy4.service.Songs.ISongService;
 import CaseStudy4.service.comment.ICommentService;
 import CaseStudy4.service.Tags.ITagService;
+import CaseStudy4.service.playlist.IPlaylistService;
 import CaseStudy4.service.users.IUserService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +35,8 @@ public class SongController {
     private ITagService tagService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IPlaylistService playlistService;
     @Value("${upload.img}")
     private String upload_IMG;
     @Value("${upload.mp3}")
@@ -163,7 +162,9 @@ public class SongController {
             iSongService.save(songs.get());
             Iterable<Comments> comments = commentService.findAllBySongsOrderByDateDesc(songs.get());
             List<Songs> random = iSongService.generateFiveRandom(id);
-            Object[] result = new Object[]{songs.get(), comments, random};
+            List<Songs> songUpload = (List<Songs>) iSongService.findAllByUsers(songs.get().getUsers());
+            List<Playlist> playlistsUpload = (List<Playlist>) playlistService.findAllByUsers(songs.get().getUsers());
+            Object[] result = new Object[]{songs.get(), comments, random, new int[]{songUpload.size(), playlistsUpload.size()}};
             return new ResponseEntity<>(result, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
