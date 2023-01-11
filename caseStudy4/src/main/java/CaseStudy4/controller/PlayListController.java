@@ -8,6 +8,7 @@ import CaseStudy4.model.*;
 import CaseStudy4.service.Songs.ISongService;
 import CaseStudy4.service.comment.ICommentService;
 import CaseStudy4.service.playlist.IPlaylistService;
+import CaseStudy4.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -163,5 +164,4 @@ public class PlayListController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-}
 }

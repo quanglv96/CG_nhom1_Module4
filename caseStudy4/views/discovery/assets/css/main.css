@@ -42,6 +42,10 @@ body {
     cursor: pointer;
 }
 
+.font-30 {
+    font-size: 30px;
+}
+
 .font-24 {
     font-size: 24px;
 }
@@ -52,4 +56,44 @@ body {
 
 .font-12 {
     font-size: 12px;
+}
+
+.col-20 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.no-border-radius {
+    border-radius: 0 !important;
+}
+
+.margin-2 {
+    margin: 2px !important;
+}
+
+.error {
+    color: red;
+    font-size: 10px;
+}
+
+.fit-img {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+}
+
+.line-16 {
+    line-height: 16px;
+}
+
+.width-100 {
+    width: 100%;
 }

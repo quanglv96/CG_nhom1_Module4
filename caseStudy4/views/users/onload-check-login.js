@@ -1,7 +1,7 @@
 
 function onloadCheckLogin(){
     let trueLogin = document.getElementById("trueLogin");
-   let  trueLogin_2=document.getElementById("trueLogin-2");
+    let  trueLogin_2=document.getElementById("trueLogin-2");
     let falseLogin = document.getElementById("falseLogin");
     let user=JSON.parse(localStorage.getItem("userLogin"));
     if(user===null){

@@ -13,7 +13,6 @@ function getSongByID(idSong) {
             document.getElementById("btnLike").setAttribute("onclick", `clickLike_Song(${data.id})`);
             $('#click-like').hide();
             document.getElementById("time-upload").innerText = data.date;
-            document.getElementById("audio-wave").innerHTML = `<audio href="views/upload_mp3/${data.audio}></audio>`;
             document.getElementById("avatar-song").setAttribute("src", `../upload_img/${data.avatar}`)
             document.getElementById("like-song").innerText = data.likes;
             document.getElementById("view-song").innerText = data.views;
@@ -21,8 +20,11 @@ function getSongByID(idSong) {
             document.getElementById("comment-song").innerText = data.views;
             document.getElementById("avatar-User-Song").setAttribute("src", `../upload_img/${data.users.avatar}`)
             document.getElementById("name-user2").innerText = data.users.name;
-            document.getElementById("comment-2").innerText = data.views;
-            createDetailWaveForm('#audio-wave', '.play-button', `/assets/audio/${data[0].audio}`)
+            if(document.getElementById("comment-2") != null) {
+                document.getElementById("comment-2").innerText = data.views;
+            }
+
+            createDetailWaveForm('#audio-wave', '.play-button', `../upload_mp3/${data.audio}`)
         }
     })
 }
