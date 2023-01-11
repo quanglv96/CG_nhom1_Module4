@@ -47,6 +47,14 @@ public class Users {
         this.image = image;
     }
 
+    public Users(String username, String password, String name, String address, String phone) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+    }
+
     public Users(String username, String password) {
         this.username = username;
         this.password = password;

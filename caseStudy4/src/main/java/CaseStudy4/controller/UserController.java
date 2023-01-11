@@ -100,4 +100,12 @@ public class UserController {
         iUserService.updatePasswordByID(user.getPassword(), user.getId());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody Users users){
+        if(iUserService.checkUsername(users.getUsername())){
+            return new ResponseEntity(users, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        iUserService.save(new Users(users.getUsername(),users.getPassword(),users.getName(),"","",users.getPhone(),"avt-defaut.png",iRoleService.findById(2L).get()));
+        return  ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
